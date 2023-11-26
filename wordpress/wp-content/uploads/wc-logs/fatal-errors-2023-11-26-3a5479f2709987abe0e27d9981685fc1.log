@@ -1,0 +1,26 @@
+2023-11-26T06:12:43+00:00 CRITICAL Uncaught Error: Undefined constant "App\Controllers\GENERALY_SETTINGS_ID" in /var/www/html/wp-content/themes/my-theme/App/Controllers/AdminController.php:15
+Stack trace:
+#0 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): App\Controllers\AdminController->show(Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/settings', Array, NULL)
+#2 /var/www/html/wp-includes/rest-api.php(551): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#3 /var/www/html/wp-includes/rest-api.php(2918): rest_do_request(Object(WP_REST_Request))
+#4 [internal function]: rest_preload_api_request(Array, '/wp/v2/settings')
+#5 /var/www/html/wp-includes/block-editor.php(753): array_reduce(Array, 'rest_preload_ap...', Array)
+#6 /var/www/html/wp-admin/edit-form-blocks.php(77): block_editor_rest_api_preload(Array, Object(WP_Block_Editor_Context))
+#7 /var/www/html/wp-admin/post-new.php(72): require('/var/www/html/w...')
+#8 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Controllers/AdminController.php на строке 15
+
+2023-11-26T06:13:05+00:00 CRITICAL Uncaught Error: Undefined constant "App\Controllers\GENERALY_SETTINGS_ID" in /var/www/html/wp-content/themes/my-theme/App/Controllers/AdminController.php:15
+Stack trace:
+#0 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): App\Controllers\AdminController->show(Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/settings', Array, NULL)
+#2 /var/www/html/wp-includes/rest-api.php(551): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#3 /var/www/html/wp-includes/rest-api.php(2918): rest_do_request(Object(WP_REST_Request))
+#4 [internal function]: rest_preload_api_request(Array, '/wp/v2/settings')
+#5 /var/www/html/wp-includes/block-editor.php(753): array_reduce(Array, 'rest_preload_ap...', Array)
+#6 /var/www/html/wp-admin/edit-form-blocks.php(77): block_editor_rest_api_preload(Array, Object(WP_Block_Editor_Context))
+#7 /var/www/html/wp-admin/post-new.php(72): require('/var/www/html/w...')
+#8 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Controllers/AdminController.php на строке 15
+

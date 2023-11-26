@@ -2,19 +2,22 @@
 
 namespace App\Classes;
 
-class Session{
+class Session
+{
     private static string $tableName = 'wp_sessions';
 
     private static $instance;
 
-    private static function getCookieAuth(){
-        if(isset($_COOKIE['auth'])){
+    private static function getCookieAuth()
+    {
+        if (isset($_COOKIE['auth'])) {
             return $_COOKIE['auth'];
         }
         return null;
     }
 
-    public function __construct(){
+    public function __construct()
+    {
         if(Session::$instance){
             return Session::$instance;
         }
@@ -26,20 +29,21 @@ class Session{
 
         $result = false;
 
-        if($wpdb->get_row("SHOW TABLES FROM $db_name LIKE '$tableName'")){
+        
+        if ($wpdb->get_row("SHOW TABLES FROM $db_name LIKE '$tableName'")) {
             $result = true;
         } else {
-            $result = $wpdb->query("CREATE TABLE `WorpressDB`.`wp_sessions` (`id` INT NOT NULL AUTO_INCREMENT , `token` VARCHAR(40) NOT NULL , `data` JSON NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB");
+            $result = $wpdb->query("CREATE TABLE `$db_name`.`wp_sessions` (`id` INT NOT NULL AUTO_INCREMENT , `token` VARCHAR(40) NOT NULL , `data` JSON NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB");
         }
 
-        if($result){
+        if ($result) {
             $token = Session::getCookieAuth();
 
             $result = true;
 
-            $tokenData = $wpdb->get_row( "SELECT * FROM $tableName WHERE `token` = '$token'");
+            $tokenData = $wpdb->get_row("SELECT * FROM $tableName WHERE `token` = '$token'");
 
-            if(!$tokenData){
+            if (!$tokenData) {
                 $result = $wpdb->insert($tableName, ['id' => null, 'token' => $token, 'data' => '{"key": "value"}']);
             }
         }
@@ -47,7 +51,8 @@ class Session{
         Session::$instance = $this;
     }
 
-    public static function init(){
+    public static function init()
+    {
         global $wpdb;
 
         $db_name = $wpdb->dbname;
@@ -56,20 +61,20 @@ class Session{
 
         $result = false;
 
-        if($wpdb->get_row("SHOW TABLES FROM $db_name LIKE '$tableName'")){
+        if ($wpdb->get_row("SHOW TABLES FROM $db_name LIKE '$tableName'")) {
             $result = true;
         } else {
             $result = $wpdb->query("CREATE TABLE `$db_name`.`$tableName` (`id` INT NOT NULL AUTO_INCREMENT , `token` VARCHAR(40) NOT NULL , `data` JSON NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB");
         }
 
-        if($result){
+        if ($result) {
             $token = Session::getCookieAuth();
 
             $result = true;
 
-            $tokenData = $wpdb->get_row( "SELECT * FROM $tableName WHERE `token` = '$token'");
+            $tokenData = $wpdb->get_row("SELECT * FROM $tableName WHERE `token` = '$token'");
 
-            if(!$tokenData){
+            if (!$tokenData) {
                 $result = $wpdb->insert($tableName, ['id' => null, 'token' => $token, 'data' => '{"key": "value"}']);
             }
             return $result;
@@ -78,14 +83,15 @@ class Session{
         return $result;
     }
 
-    public function add(string $key, $value){
+    public function add(string $key, $value)
+    {
         global $wpdb;
 
         $token = Session::getCookieAuth();
 
         $tableName = Session::$tableName;
 
-        $result = $wpdb->get_row( "SELECT * FROM $tableName WHERE `token` = '$token'" );
+        $result = $wpdb->get_row("SELECT * FROM $tableName WHERE `token` = '$token'");
 
         $sessionData = json_decode($result->data, true);
 
@@ -101,18 +107,19 @@ class Session{
         return $resultUpdate;
     }
 
-    
 
-    public function get(string $key){
+
+    public function get(string $key)
+    {
         global $wpdb;
 
         $token = Session::getCookieAuth();
 
         $tableName = Session::$tableName;
 
-        $result = $wpdb->get_row( "SELECT * FROM $tableName WHERE `token` = '$token'" );
+        $result = $wpdb->get_row("SELECT * FROM $tableName WHERE `token` = '$token'");
 
-        if(!$result){
+        if (!$result) {
             return false;
         }
 
@@ -121,16 +128,17 @@ class Session{
         return isset($dataArray[$key]) ? $dataArray[$key] : false;
     }
 
-    public function remove(string $key){
+    public function remove(string $key)
+    {
         global $wpdb;
 
         $token = Session::getCookieAuth();
 
         $tableName = Session::$tableName;
 
-        $result = $wpdb->get_row( "SELECT * FROM $tableName WHERE `token` = '$token'" );
+        $result = $wpdb->get_row("SELECT * FROM $tableName WHERE `token` = '$token'");
 
-        if(!$result){
+        if (!$result) {
             return false;
         }
 

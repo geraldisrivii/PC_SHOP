@@ -2,15 +2,18 @@
 
 
 namespace App\Controllers;
+
 use \WP_REST_Request;
 use \WP_REST_Response;
 use \WP_User;
 use App\Classes\Validator;
 
 
-class UserController{
+class UserController
+{
 
-    public function signup(WP_REST_Request $request){
+    public function signup(WP_REST_Request $request)
+    {
 
         $response = new WP_REST_Response();
 
@@ -19,7 +22,7 @@ class UserController{
             'password' => $request['password'],
             'email' => $request['email']
         ];
-    
+
         $validator = new Validator($userRequest);
         $validator->add_rules([
             'login' => '/[A-Za-z0-9]{6,15}/',
@@ -27,113 +30,114 @@ class UserController{
             'email' => '/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/'
         ]);
         $validData = $validator->run();
-    
+
         if (!$validator->is_valid_all()) {
             return $response->data = [
                 'status' => false,
                 'message' => 'Something fields isnt match to validation rules',
                 'validated_fields' => $validData
-            ]; 
+            ];
         }
-    
+
         $user = session()->get('user');
-    
+
         $userWP = null;
-    
-        if(!$user){
+
+        if (!$user) {
             $time = time();
-    
+
             $email = "user_{$time}@example.com";
-        
+
             $user_id = wp_create_user($userRequest['login'], $userRequest['password'], $userRequest['email']);
-    
+
             if (is_wp_error($user_id)) {
-                $response->set_status( 400 );
+                $response->set_status(400);
                 return $response->data = [
                     'user_id' => $user_id,
                     'status' => false,
                     'message' => isset($user_id->errors) ? $user_id->errors : 'something went wrong',
                 ];
             }
-            
-    
-            update_metadata( 'user', $user_id, 'isEmailVerified', false );
-    
+
+
+            update_metadata('user', $user_id, 'isEmailVerified', false);
+
             $userWP = new WP_User($user_id);
             $userWP->set_role('customer');
-    
+
             session()->add('user', $userWP);
-    
+
             return $response->data = [
                 'status' => true,
                 'user' => $userWP,
                 'message' => 'Succesfuly registered'
             ];
-            
+
         }
-    
-    
+
+
         $response->data = [
             'status' => false,
             'user' => $user,
             'message' => 'Already registered'
         ];
-        
+
         return $response;
     }
 
-    public function signin(WP_REST_Request $request){
+    public function signin(WP_REST_Request $request)
+    {
         $response = new WP_REST_Response();
 
-        $userRequest = (object)[
+        $userRequest = (object) [
             'login' => $request['login'],
             'password' => $request['password'],
         ];
-    
-        $validator = new Validator((array)$userRequest);
+
+        $validator = new Validator((array) $userRequest);
         $validator->add_rules([
             'login' => '/[A-Za-z0-9]{6,15}/',
             'password' => '/[A-Za-z0-9]{6,20}[0-9]+/',
         ]);
         $validData = $validator->run();
-    
+
         if (!$validator->is_valid_all()) {
             return $response->data = [
                 'status' => false,
                 'message' => 'Something fields isnt match to validation rules',
                 'validated_fields' => $validData
-            ]; 
+            ];
         }
-    
+
         $user = session()->get('user');
-    
-        if($user){
-            $response->set_status( 400 );
+
+        if ($user) {
+            $response->set_status(400);
             return $response->data = [
                 'status' => false,
                 'message' => 'User already logged in'
             ];
         }
-    
-        $userWP = get_user_by( 'login', $userRequest->login );
-        
-        if($userWP == false){
-            $response->set_status( 400 );
+
+        $userWP = get_user_by('login', $userRequest->login);
+
+        if ($userWP == false) {
+            $response->set_status(400);
             return $response->data = [
                 'status' => false,
                 'message' => 'User with passed login, not found'
             ];
         }
-        if(wp_check_password($userRequest->password, $userWP->user_pass, $userWP->ID)){
+        if (wp_check_password($userRequest->password, $userWP->user_pass, $userWP->ID)) {
             $result = session()->add('user', $userWP);
-            $userWP->is_email_verified = get_metadata( 'user', $userWP->ID, 'isEmailVerified', true );
+            $userWP->is_email_verified = get_metadata('user', $userWP->ID, 'isEmailVerified', true);
             return $response->data = [
                 'status' => true,
                 'message' => 'Succesfuly logged in',
                 'user' => $userWP,
             ];
         }
-    
+
         $response->data = [
             'status' => false,
             'message' => 'User with passed login, have another password'
@@ -141,7 +145,8 @@ class UserController{
         return $response;
     }
 
-    public function signout(WP_REST_Request $request){
+    public function signout(WP_REST_Request $request)
+    {
 
         $response = new WP_REST_Response();
 
@@ -152,31 +157,36 @@ class UserController{
         ];
     }
 
-    public function getCurrentUser(WP_REST_Request $request){
+    public function getCurrentUser(WP_REST_Request $request)
+    {
         $response = new WP_REST_Response();
 
         $user = session()->get('user');
 
-        if(!$user){
-            return $response->data = false;
+        if (!$user) {
+            return $response->data = [
+                'status' => false,
+                'message' => 'User not found'
+            ];
         }
 
-        $user['data']['is_email_verified'] = (boolean)get_metadata( 'user', $user['ID'], 'isEmailVerified', true);
+        $user['data']['is_email_verified'] = (boolean) get_metadata('user', $user['ID'], 'isEmailVerified', true);
 
         $response->data = $user;
-        
+
         return $response;
     }
 
 
-    public function checkExistingUser(WP_REST_Request $request){
+    public function checkExistingUser(WP_REST_Request $request)
+    {
         $response = new WP_REST_Response();
 
         $name = $request['field'];
 
-        $result = get_user_by( $name, $request['value'] );
+        $result = get_user_by($name, $request['value']);
 
-        if($result){
+        if ($result) {
             return $response->data = [
                 'status' => false,
                 'message' => "This {$name} already used"

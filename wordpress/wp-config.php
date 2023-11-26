@@ -20,22 +20,22 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'WorpressDB' );
+define('DB_NAME', 'WordpressDB');
 
 /** Database username */
-define( 'DB_USER', 'root' );
+define('DB_USER', 'root');
 
 /** Database password */
-define( 'DB_PASSWORD', 'root' );
+define('DB_PASSWORD', 'root');
 
 /** Database hostname */
-define( 'DB_HOST', 'wc_db' );
+define('DB_HOST', 'wc_db');
 
 /** Database charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8mb4' );
+define('DB_CHARSET', 'utf8');
 
 /** The database collate type. Don't change this if in doubt. */
-define( 'DB_COLLATE', '' );
+define('DB_COLLATE', '');
 
 /**#@+
  * Authentication unique keys and salts.
@@ -48,14 +48,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         '3Uatw36aYQ:pjsZ$.ZqPi+<%[HWvM6%q|7x<8Amip}[XOK$T;~LKW+Pgh`AegR^O' );
-define( 'SECURE_AUTH_KEY',  ')5zcK`W|YTVWd:*-zWAg^>)u^Lj=>q6g7kp<M}*4&,7#?@&l^3TeJ!&$ &,>/peE' );
-define( 'LOGGED_IN_KEY',    '.lwSd~5]M#6iqG)aGh6tR$[5ebJue{f;.JTE63+[NsWpJNz7VLh|GMKmiZV@3[z~' );
-define( 'NONCE_KEY',        'C>J~Nh@LJ]iI7L1a!^{dyGFRRM|Z O&%wKJ X+s*w{|y5)C/:T[7/Eqv>)8`V2|Q' );
-define( 'AUTH_SALT',        '41y`MKgPP!O9fn8ae=5-,:;+_1z#[ ;@i#|O<;a+Xk<(&jA Lu{P0Xua1urdBQp-' );
-define( 'SECURE_AUTH_SALT', 'F@R(hye8LhYr%JeNrAA_H6xwdG<qjB9,z*[b=7&$l:+]}VFLKapT)Hle;=/liRo$' );
-define( 'LOGGED_IN_SALT',   'FyWz^ozY*mOxfzfmqAhD[h515zpe%>Z=kI,oyFW6gq}:e?+4<r{jmXiv77zl@Y>^' );
-define( 'NONCE_SALT',       'M6&20|oA8{<~FiW?0l,<A82`hHb9CsI+fc[ZZ^^CWlgDSj5nIF2R6Ic[JM+[pxt]' );
+define('AUTH_KEY', 'E>{5ZI&^&|AlqepZDf#Sz{MZY6B7+758F42=SM0#j5#GA2ODf%`-Md.pq!?oa}*Y');
+define('SECURE_AUTH_KEY', '*OJ+/+}^i@!8HTDg+gq7,Id<1*b:WL%jM|U&c9AH)6?)dp! avn<9W+-DYC!#5&M');
+define('LOGGED_IN_KEY', '5{oEaLP?U{QmK^NI$p01o+>p@ wpq[g9I8D3$7krFHXJlBMxh-iM7FWoP^~w4}N:');
+define('NONCE_KEY', '@,$cX5<a^rh_O~-RXh]O[X`3Z+X5Uc_7%O?E#K/PSz6l uS_2!Zn|S?(oF+y`T+r');
+define('AUTH_SALT', 'CW>!t3,c^#husV&+W3uQ/Z|~/G?R@ZN$+/9T^b8CGBS_oUrl{fH/.mDAC~m9B/#x');
+define('SECURE_AUTH_SALT', 'DY6FF`a_v/!<#%|G=R[1O|hAtpqTI8+d; F@l{9o[b3XeCY(3cWv|/Tw2A`N,x+a');
+define('LOGGED_IN_SALT', 'V<>fcFgs+{;aXp$KaUg:6@JVXI&ZB|F|Op:C(?kEL/B0a;RO{L/:]0(#,Dti.vrE');
+define('NONCE_SALT', ';^)kRCM1+u/M1^w0J5YWC,LBGvZN|E V<IqO>fOT#6++=#|-{bJtr+3]-php#tso');
 
 /**#@-*/
 
@@ -79,11 +79,27 @@ $table_prefix = 'wp_';
  *
  * @link https://wordpress.org/documentation/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', true );
+define('WP_DEBUG', true);
+
+/* Add any custom values between this line and the "stop editing" line. */
+
+
+
+/* That's all, stop editing! Happy publishing. */
+
+/** Absolute path to the WordPress directory. */
+if (!defined('ABSPATH')) {
+	define('ABSPATH', __DIR__ . '/');
+}
+
+/** Sets up WordPress vars and included files. */
+require_once ABSPATH . 'wp-settings.php';
+
+
 ini_set('display_errors', 1);
 /* Add any custom values between this line and the "stop editing" line. */
 
-define('WP_MEMORY_LIMIT', '160M');
+// define('WP_MEMORY_LIMIT', '160M');
 
 
 
@@ -91,49 +107,37 @@ define('WP_MEMORY_LIMIT', '160M');
 
 define('MAIL_SETTINGS', [
 	'mail_settings_dev' => [
-        'host' => 'smtp.gmail.com',
-        'auth' => true,
-        'port' => 465,
-        'username' => 'sasamaltsev981@gmail.com',
-        'password' => 'rzdd nftp wqal vcxh',
-        'secure' => 'ssl',
-        'charset' => 'UTF-8',
-        'from_email' => 'sasamaltsev981@gmail.com',
-        'from_name' => 'Alexander Maltsev',
-        'is_html' => true
-    ], 
+		'host' => 'smtp.gmail.com',
+		'auth' => true,
+		'port' => 465,
+		'username' => 'sasamaltsev981@gmail.com',
+		'password' => 'rzdd nftp wqal vcxh',
+		'secure' => 'ssl',
+		'charset' => 'UTF-8',
+		'from_email' => 'sasamaltsev981@gmail.com',
+		'from_name' => 'Alexander Maltsev',
+		'is_html' => true
+	],
 	'mail_settings_prod' => [
-        'host' => 'smtp.gmail.com',
-        'auth' => true,
-        'port' => 465,
-        'username' => 'sasamaltsev981@gmail.com',
-        'password' => 'rzdd nftp wqal vcxh',
-        'secure' => 'ssl',
-        'charset' => 'UTF-8',
-        'from_email' => 'sasamaltsev981@gmail.com',
-        'from_name' => 'Alexander Maltsev',
-        'is_html' => true
-    ], 
+		'host' => 'smtp.gmail.com',
+		'auth' => true,
+		'port' => 465,
+		'username' => 'sasamaltsev981@gmail.com',
+		'password' => 'rzdd nftp wqal vcxh',
+		'secure' => 'ssl',
+		'charset' => 'UTF-8',
+		'from_email' => 'sasamaltsev981@gmail.com',
+		'from_name' => 'Alexander Maltsev',
+		'is_html' => true
+	],
 ]);
 
 // for admin panel
-define('GENERALY_SETTINGS_ID', 154);
+define('GENERALY_SETTINGS_ID', 21);
 
 
 // For yookassa
 
-define('SHOP_ID', '321322');
-define('SHOP_KEY', 'test_6u50VVu79MGLmELpPGMn3BySLTUO3EKTKzze6xxv82Q');
-define('RETURNED_URL', 'http://localhost:8080/katalog');
-
-
-
-/* That's all, stop editing! Happy publishing. */
-
-/** Absolute path to the WordPress directory. */
-if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', __DIR__ . '/' );
-}
-
-/** Sets up WordPress vars and included files. */
-require_once ABSPATH . 'wp-settings.php';
+define('SHOP_ID', '321321');
+define('SHOP_KEY', 'test_VmUiqwqcRNY8Kqk03ipeMBwrUt6ZpVB_ZZMHGvL8jtY');
+define('RETURNED_URL', 'http://localhost');
