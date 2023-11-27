@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /*
 Plugin Name: Register settings button in admin panel plugin
@@ -8,7 +8,7 @@ Author: Alexander Malstev
 */
 
 
-$post_ID = 154;
+// $post_ID = 25;
 
 function settings_menu()
 {
@@ -17,7 +17,7 @@ function settings_menu()
 
 function settings_page()
 {
-	global $post_ID;
+	$post_ID = GENERALY_SETTINGS_ID;
 	wp_redirect(get_home_url() . "/wp-admin/post.php?post={$post_ID}&action=edit");
 }
 add_action('admin_menu', 'settings_menu');
@@ -27,7 +27,7 @@ add_action('pre_get_posts', 'exclude_post_from_admin');
 
 function exclude_post_from_admin($query)
 {
-	global $post_ID;
+	$post_ID = GENERALY_SETTINGS_ID;
 	if (is_admin() && $query->get('post_type') == 'post') {
 		$query->set('post__not_in', [$post_ID]);
 	}

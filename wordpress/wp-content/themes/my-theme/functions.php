@@ -11,6 +11,7 @@ function wp_enqueue_scripts_func()
     wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/main.js', [], null, true);
 
 }
+add_filter( 'wp_is_application_passwords_available', '__return_true' );
 
 
 add_filter('woocommerce_rest_check_permissions', 'disable_ssl_verification_for_local_development', 10, 4);

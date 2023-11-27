@@ -133,8 +133,9 @@ define('MAIL_SETTINGS', [
 ]);
 
 // for admin panel
-define('GENERALY_SETTINGS_ID', 21);
+define('GENERALY_SETTINGS_ID', 25);
 
+define('WP_ENVIRONMENT_TYPE', 'local');
 
 // For yookassa
 

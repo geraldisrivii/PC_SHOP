@@ -24,3 +24,68 @@ Stack trace:
 #8 {main}
   thrown в /var/www/html/wp-content/themes/my-theme/App/Controllers/AdminController.php на строке 15
 
+2023-11-26T12:47:17+00:00 CRITICAL Uncaught TypeError: Cannot access offset of type string on string in /var/www/html/wp-content/plugins/cfs-rest-api/cfs-rest-api.php:69
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): custom_editor_before_insert(Object(WP_Post), Object(WP_REST_Request), true)
+#1 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(772): do_action('rest_after_inse...', Object(WP_Post), Object(WP_REST_Request), true)
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WP_REST_Posts_Controller->create_item(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/posts', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wp/v2/posts')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/plugins/cfs-rest-api/cfs-rest-api.php на строке 69
+
+2023-11-26T12:59:53+00:00 CRITICAL Uncaught Error: Cannot use object of type WP_Post as array in /var/www/html/wp-content/plugins/custom-field-suite/includes/api.php:266
+Stack trace:
+#0 /var/www/html/wp-content/plugins/custom-field-suite/cfs.php(63): cfs_api->save_fields(Array, Object(WP_Post), Array)
+#1 /var/www/html/wp-content/plugins/cfs-rest-api/cfs-rest-api.php(73): Custom_Field_Suite->save(Array, Object(WP_Post))
+#2 /var/www/html/wp-includes/class-wp-hook.php(324): custom_editor_before_insert(Object(WP_Post), Object(WP_REST_Request), true)
+#3 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#4 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#5 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(772): do_action('rest_after_inse...', Object(WP_Post), Object(WP_REST_Request), true)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WP_REST_Posts_Controller->create_item(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/posts', Array, NULL)
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#9 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wp/v2/posts')
+#10 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#11 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#12 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#13 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#14 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#15 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#16 /var/www/html/wp-blog-header.php(16): wp()
+#17 /var/www/html/index.php(17): require('/var/www/html/w...')
+#18 {main}
+  thrown в /var/www/html/wp-content/plugins/custom-field-suite/includes/api.php на строке 266
+
+2023-11-26T13:00:09+00:00 CRITICAL Uncaught TypeError: Only arrays and Traversables can be unpacked in /var/www/html/wp-content/plugins/cfs-rest-api/cfs-rest-api.php:73
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): custom_editor_before_insert(Object(WP_Post), Object(WP_REST_Request), true)
+#1 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 /var/www/html/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /var/www/html/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(772): do_action('rest_after_inse...', Object(WP_Post), Object(WP_REST_Request), true)
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WP_REST_Posts_Controller->create_item(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/posts', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wp/v2/posts')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/plugins/cfs-rest-api/cfs-rest-api.php на строке 73
+
