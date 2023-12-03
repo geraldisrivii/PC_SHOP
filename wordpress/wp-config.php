@@ -135,6 +135,11 @@ define('MAIL_SETTINGS', [
 // for admin panel
 define('GENERALY_SETTINGS_ID', 25);
 
+define('PATHS_NAMES_ARRAY', [
+	'/' => '558',
+	'/katalog' => '868',
+]);
+
 define('WP_ENVIRONMENT_TYPE', 'local');
 
 // For yookassa

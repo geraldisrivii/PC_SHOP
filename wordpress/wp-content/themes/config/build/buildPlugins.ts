@@ -13,6 +13,7 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
 
     let isDev = options.mode === 'development';
     const plugins: Configuration['plugins'] = [
+        new WebpackManifestPlugin({}),
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: [
                 '**/*', '!composer.json', '!composer.lock', '!vendor/**', '!App/**', '!functions.php',
@@ -23,6 +24,10 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
         //     template: options.paths.html, filename: 'index.php', chunks: 'all',
         // }),
         new VueLoaderPlugin(),
+        !isDev && new MiniCssExtractPlugin({
+            filename: '[name].[contenthash:8].css',
+            chunkFilename: 'css/[name].[contenthash:8].css',
+        }),
         !isDev && options.analyzer && new BundleAnalyzerPlugin(),
     ]
 

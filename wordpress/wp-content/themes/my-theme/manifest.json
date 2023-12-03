@@ -1,0 +1,5 @@
+{
+  "main.js": "auto/assets/js/main.js",
+  "assets/js/src_views_main_vue.js": "auto/assets/js/src_views_main_vue.js",
+  "assets/js/src_views_katalog_vue.js": "auto/assets/js/src_views_katalog_vue.js"
+}
