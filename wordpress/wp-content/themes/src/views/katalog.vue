@@ -16,7 +16,7 @@ import { Ref, onMounted, ref } from 'vue';
 
 let isPageDataLoaded: Ref<boolean> = ref(false)
 
-
+declare var preloaderClose: () => void;
 
 const store = useVuex()
 
@@ -27,6 +27,8 @@ onMounted(async () => {
     page.value = await getPageSettings(190) // katalog post id
 
     isPageDataLoaded.value = true
+
+    preloaderClose();
 })
 
 </script>

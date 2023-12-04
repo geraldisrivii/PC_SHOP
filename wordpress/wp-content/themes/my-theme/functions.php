@@ -58,6 +58,9 @@ function wp_enqueue_scripts_func()
     wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/main.js', [], null, true);
 
 
+    wp_enqueue_script('preloader', get_template_directory_uri() . '/libs/preloader.js', [], null, true);
+
+
 }
 add_filter('wp_is_application_passwords_available', '__return_true');
 
@@ -82,16 +85,39 @@ function add_custom_price_to_groupped_response(WP_REST_Response $response, $prod
         $children_ids = $product->get_children();
         $childrenPrice = 0;
 
+        $children = [];
+
         foreach ($children_ids as $child_id) {
             // Получаем объект дочернего товара
             $child = wc_get_product($child_id);
 
             // Добавляем цену в массив
             $childrenPrice += $child->get_price();
+
+            $childData = $child->get_data();
+
+            $cfsFields = CFS()->find_fields([
+                'post_id' => $child_id
+            ]);
+
+            foreach ($cfsFields as $key => $field) {
+                $childData['cfs'][$field['name']] = CFS()->get($field['name'], $child_id);
+            }
+
+            $categories = get_the_terms($child_id, 'product_cat');
+
+            $childData['categories'] = $categories;
+
+            unset($childData['category_ids']);
+
+            unset($childData['meta_data']);
+
+            $children[] = $childData;
         }
 
         // Добавляем массив дочерних товаров в данные ответа
-        $response->data['price'] = (string)($childrenPrice);
+        $response->data['price'] = (string) ($childrenPrice);
+        $response->data['grouped_products'] = $children;
     }
 
     return $response;

@@ -24,12 +24,18 @@ import FifthSection from '@/sections/main/fifth-section.vue';
 
 let isPageDataLoaded: Ref<boolean> = ref(false)
 
+declare var preloaderClose: () => void;
+
 onBeforeMount(async () => {
 
     let { page } = usePageSettings(store)
     page.value = await getPageSettings(21)
 
     isPageDataLoaded.value = true
+
+
+
+    preloaderClose();
 })
 
 

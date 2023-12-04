@@ -70,18 +70,19 @@ const productRam = computed(() => grouppedProductNames.value.find(item => item.c
     gap: 20px;
 
     transition: all 0.3s;
-    &:hover{
+
+    &:hover {
         cursor: pointer;
         box-shadow: 0 0 10px #ffffff;
     }
 
-    &__image{
+    &__image {
         width: 100%;
         height: 100%;
         object-fit: contain;
     }
 
-    &__price{
+    &__price {
         font-size: 18px;
         font-weight: 500px;
         text-transform: uppercase;
