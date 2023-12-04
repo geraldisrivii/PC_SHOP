@@ -1,11 +1,11 @@
 
 <template>
     <main v-if="isPageDataLoaded">
-        <FirstSection/>
-        <SecondSection/>
-        <ThirdSection/>
-        <FourthSection/>
-        <FifthSection/>
+        <FirstSection />
+        <SecondSection />
+        <ThirdSection />
+        <FourthSection />
+        <FifthSection />
     </main>
 </template>
 
@@ -24,13 +24,15 @@ import FifthSection from '@/sections/main/fifth-section.vue';
 
 let isPageDataLoaded: Ref<boolean> = ref(false)
 
-let { page } = usePageSettings(store)
-
 onBeforeMount(async () => {
+
+    let { page } = usePageSettings(store)
     page.value = await getPageSettings(21)
 
     isPageDataLoaded.value = true
 })
+
+
 
 
 </script>

@@ -19,7 +19,6 @@ export function build(options: BuildOptions): webpack.Configuration {
         output: {
             path: paths.output,
             filename: 'assets/js/[name].js',
-            // clean: true
         },
         plugins: buildPlugins(options),
         module: {

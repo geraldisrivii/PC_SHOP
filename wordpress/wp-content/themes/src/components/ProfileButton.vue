@@ -1,5 +1,5 @@
 <template>
-    <button @click="onClick" class="basket-button">
+    <button @click="onClick" class="profile-button">
         <img :src="app['header-profile_icon']" alt="header-profile_icon">
     </button>
 </template>
@@ -30,4 +30,18 @@ const onClick = () => {
 
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+@import "@/scss/base/mixins.scss";
+
+.profile-button {
+    img {
+        width: 38px;
+        height: 38px;
+
+        @include table {
+            width: 35px;
+            height: 35px;
+        }
+    }
+}
+</style>

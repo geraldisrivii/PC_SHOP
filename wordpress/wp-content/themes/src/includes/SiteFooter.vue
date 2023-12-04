@@ -33,6 +33,9 @@ const socials: Ref<ISocials[]> = ref(app.value['footer_socials']);
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/base/mixins.scss';
+@import '@/scss/base/typography.scss';
+
 .footer-logo {
     position: absolute;
     right: 0;
@@ -45,6 +48,14 @@ const socials: Ref<ISocials[]> = ref(app.value['footer_socials']);
     font-weight: 600;
     line-height: normal;
     text-transform: uppercase;
+    @include table{
+        font-size: 250px;
+    }
+
+    @include min-table{
+        display: none;
+    }
+
 }
 
 .footer {}

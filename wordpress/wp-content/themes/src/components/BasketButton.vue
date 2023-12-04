@@ -34,10 +34,21 @@ const onClick = () => {
 </script>
 
 <style scoped lang="scss">
+@import "@/scss/base/mixins.scss";
+
 .basket-button {
+    
     display: flex;
     align-items: center;
     gap: 10px;
+
+    img {
+        @include table{
+            width: 35px;
+            height: 35px;
+        }
+    }
+
     &__aroud {
         border-radius: 100%;
         height: 30px;
@@ -47,8 +58,9 @@ const onClick = () => {
         justify-content: center;
         align-items: center;
     }
+
     &__count {
-        
+
         color: white;
     }
 }

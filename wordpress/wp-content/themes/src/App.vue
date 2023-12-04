@@ -2,24 +2,27 @@
     <SiteHeader v-model:isProfileShow="isProfiletShow" v-model:isBasketShow="isBasketShow" v-if="isDataLoaded" />
     <router-view v-if="isDataLoaded"></router-view>
     <SiteFooter v-if="isDataLoaded" />
+    <Preloader ref="preloader" />
 </template>
 <script setup lang="ts">
 // API
 import { getSettings } from './api/App/getSettings';
 // TYPES
-import { Ref, computed, onMounted, ref } from 'vue';
+import { Ref, computed, onMounted, ref, watch } from 'vue';
 // COMPONENTS
 import SiteHeader from './includes/SiteHeader.vue';
 // STORE
 import { useVuex } from './store/useVuex';
 import { useAppSettings } from './hooks/App/useAppSettings';
 import SiteFooter from './includes/SiteFooter.vue';
+import Preloader from './components/Preloader.vue';
 
 // DATA
 let isDataLoaded: Ref<boolean> = ref(false);
 let isBasketShow: Ref<boolean> = ref(false)
 let isProfiletShow: Ref<boolean> = ref(false)
 
+const preloader = ref<InstanceType<typeof Preloader> | null>(null)
 let store = useVuex();
 const { app } = useAppSettings(store)
 

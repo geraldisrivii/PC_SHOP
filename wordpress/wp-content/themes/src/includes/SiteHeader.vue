@@ -48,6 +48,7 @@ const updateProfileShow = () => {
 
     @include laptop {
         width: 100%;
+        padding: 10px 15px;
     }
 
     left: 50%;
@@ -86,5 +87,9 @@ const updateProfileShow = () => {
     display: flex;
     align-items: center;
     gap: 25px;
+
+    @include table{
+        gap: 20px;
+    }
 }
 </style>

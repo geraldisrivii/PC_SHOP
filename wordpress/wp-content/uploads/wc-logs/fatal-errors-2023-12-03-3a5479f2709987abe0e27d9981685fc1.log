@@ -1,0 +1,124 @@
+2023-12-03T10:13:36+00:00 CRITICAL syntax error, unexpected variable "$fields", expecting "(" в /var/www/html/wp-content/themes/my-theme/functions.php на строке 108
+
+2023-12-03T10:17:58+00:00 CRITICAL Uncaught Error: Attempt to modify property "data" on array in /var/www/html/wp-content/plugins/cfs-rest-api/cfs-rest-api.php:106
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): add_custom_fields_to_api_response(Array, Object(WC_Product_Simple))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 /var/www/html/wp-content/themes/my-theme/functions.php(112): apply_filters('woocommerce_res...', Array, Object(WC_Product_Simple))
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): add_custom_price_to_groupped_response(Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(WP_REST_Response), Array)
+#5 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#6 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#9 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#10 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#11 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#12 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#13 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#14 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#15 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#16 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#17 /var/www/html/wp-blog-header.php(16): wp()
+#18 /var/www/html/index.php(17): require('/var/www/html/w...')
+#19 {main}
+  thrown в /var/www/html/wp-content/plugins/cfs-rest-api/cfs-rest-api.php на строке 106
+
+2023-12-03T10:18:43+00:00 CRITICAL Uncaught Error: Call to a member function has_child() on array in /var/www/html/wp-content/themes/my-theme/functions.php:82
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): add_custom_price_to_groupped_response(Object(WP_REST_Response), Array)
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(WP_REST_Response), Array)
+#2 /var/www/html/wp-content/themes/my-theme/functions.php(112): apply_filters('woocommerce_res...', Object(WP_REST_Response), Array)
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): add_custom_price_to_groupped_response(Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(WP_REST_Response), Array)
+#5 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#6 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#9 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#10 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#11 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#12 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#13 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#14 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#15 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#16 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#17 /var/www/html/wp-blog-header.php(16): wp()
+#18 /var/www/html/index.php(17): require('/var/www/html/w...')
+#19 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/functions.php на строке 82
+
+2023-12-03T10:18:44+00:00 CRITICAL Uncaught Error: Call to a member function has_child() on array in /var/www/html/wp-content/themes/my-theme/functions.php:82
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): add_custom_price_to_groupped_response(Object(WP_REST_Response), Array)
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(WP_REST_Response), Array)
+#2 /var/www/html/wp-content/themes/my-theme/functions.php(112): apply_filters('woocommerce_res...', Object(WP_REST_Response), Array)
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): add_custom_price_to_groupped_response(Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(WP_REST_Response), Array)
+#5 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#6 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#9 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#10 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#11 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#12 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#13 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#14 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#15 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#16 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#17 /var/www/html/wp-blog-header.php(16): wp()
+#18 /var/www/html/index.php(17): require('/var/www/html/w...')
+#19 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/functions.php на строке 82
+
+2023-12-03T10:18:57+00:00 CRITICAL syntax error, unexpected variable "$childData", expecting ")" в /var/www/html/wp-content/themes/my-theme/functions.php на строке 112
+
+2023-12-03T10:18:59+00:00 CRITICAL Uncaught Error: Call to undefined method stdClass::has_child() in /var/www/html/wp-content/themes/my-theme/functions.php:82
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): add_custom_price_to_groupped_response(Object(WP_REST_Response), Object(stdClass))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(WP_REST_Response), Array)
+#2 /var/www/html/wp-content/themes/my-theme/functions.php(112): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(stdClass))
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): add_custom_price_to_groupped_response(Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(WP_REST_Response), Array)
+#5 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#6 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#9 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#10 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#11 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#12 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#13 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#14 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#15 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#16 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#17 /var/www/html/wp-blog-header.php(16): wp()
+#18 /var/www/html/index.php(17): require('/var/www/html/w...')
+#19 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/functions.php на строке 82
+
+2023-12-03T10:19:01+00:00 CRITICAL Uncaught Error: Call to undefined method stdClass::has_child() in /var/www/html/wp-content/themes/my-theme/functions.php:82
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): add_custom_price_to_groupped_response(Object(WP_REST_Response), Object(stdClass))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(WP_REST_Response), Array)
+#2 /var/www/html/wp-content/themes/my-theme/functions.php(112): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(stdClass))
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): add_custom_price_to_groupped_response(Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(WP_REST_Response), Array)
+#5 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#6 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#9 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#10 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#11 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#12 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#13 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#14 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#15 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#16 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#17 /var/www/html/wp-blog-header.php(16): wp()
+#18 /var/www/html/index.php(17): require('/var/www/html/w...')
+#19 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/functions.php на строке 82
+
