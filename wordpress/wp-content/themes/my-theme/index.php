@@ -26,7 +26,7 @@
         height: 100vh;
         background-color: gray;
         z-index: 9999;
-        transition: all 0.4s;
+        transition: all 0.3s ease-in-out;
     }
     
     .close{

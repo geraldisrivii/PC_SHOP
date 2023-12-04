@@ -1,5 +1,5 @@
 <template>
-    <div :style="{ 'background': `url(${page['first-section_background_image']}) no-repeat center / cover` }"
+    <div ref="box" :style="{ 'background': `url(${page['first-section_background_image']}) no-repeat center / cover` }"
         class="first-section">
         <div class="container first-section-container">
             <div class="first-section-left">
@@ -8,7 +8,7 @@
                     page['first-section_button_text'] }}</button>
             </div>
             <div class="first-section-right">
-                <img :src="page['first-section_image']" alt="first-section_image">
+                <img ref="image" :src="page['first-section_image']" alt="first-section_image">
             </div>
         </div>
     </div>
@@ -16,10 +16,38 @@
 
 <script setup lang="ts">
 
+import { useLoad } from '@/hooks/App/useLoad';
 import { usePageSettings } from '@/hooks/App/usePageSettings';
 import store from '@/store';
+import imagesLoaded from 'imagesloaded';
+import { Ref, onMounted, ref } from 'vue';
+
 
 let { page } = usePageSettings(store)
+
+
+let { loader } = useLoad(2)
+
+loader.onAllisLoaded = () => {
+    console.log('all is loaded')
+}
+
+
+const box: Ref<HTMLElement | null> = ref(null)
+const image: Ref<HTMLElement | null> = ref(null)
+
+
+onMounted(() => {
+    imagesLoaded(box.value, image.value, () => {
+        loader.load()
+    })
+
+    setTimeout(() => loader.load(), 2000)
+})
+
+
+
+
 
 </script>
 

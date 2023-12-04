@@ -12,22 +12,6 @@ const routes: Array<RouteRecordRaw> = [
         component: async () => import('@/views/katalog.vue'),
         name: 'katalog',
     },
-    // {
-    //     path: '/katalog/laptops',
-    //     component: async () => import('@/views/katalog.vue'),
-    //     name: 'katalog-gaming-laptops',
-    //     meta: {
-    //         category: 'laptop'
-    //     }
-    // },
-    // {
-    //     path: '/katalog/workstations',
-    //     component: async () => import('@/views/katalog.vue'),
-    //     name: 'katalog-workstation',
-    //     meta: {
-    //         category: 'workstation'
-    //     }
-    // },
 ]
 
 const router = createRouter({
@@ -40,6 +24,22 @@ const router = createRouter({
                 behavior: 'smooth',
             }
         }
+    }
+})
+
+declare var preloaderOpen: () => void;
+declare var preloaderClose: () => void;
+
+
+router.afterEach((to, from) => {
+
+
+    window.scrollTo(0, 0)
+    preloaderOpen();
+    if (to.name == from.name) {
+        setTimeout(() => {
+            preloaderClose()
+        }, 800)
     }
 })
 

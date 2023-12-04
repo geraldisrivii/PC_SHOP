@@ -33,8 +33,6 @@ onBeforeMount(async () => {
 
     isPageDataLoaded.value = true
 
-
-
     preloaderClose();
 })
 

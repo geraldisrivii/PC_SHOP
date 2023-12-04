@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@vueform/multiselect": "^2.6.2",
+    "imagesloaded": "^5.0.0",
     "swiper": "^10.3.0",
     "vue-multiselect": "^3.0.0-beta.2",
     "vue-select": "^4.0.0-beta.6"
