@@ -1,8 +1,9 @@
 <template>
-    <div class="first-section" :style="{ background: `url('${currentSettings.background}'), no-repeat center / cover` }">
+    <div ref="box" class="first-section"
+        :style="{ background: `url('${currentSettings.background}'), no-repeat center / cover` }">
         <div class="first-section-container container">
             <div class="image-box">
-                <img :src="currentSettings.image" :alt="currentSettings.title">
+                <img @load="updateImages" ref="image" :src="currentSettings.image" :alt="currentSettings.title">
             </div>
             <div class="description-box">
                 <p class="description-box__title title">{{ currentSettings.title }}</p>
@@ -14,11 +15,17 @@
 
 <script setup lang="ts">
 
+import { useLoad } from '@/hooks/App/useLoad';
 import { usePageSettings } from '@/hooks/App/usePageSettings';
 import { useVuex } from '@/store/useVuex';
 import { IFirstSectionSettings } from '@/types/Katalog';
-import { Ref, computed, ref } from 'vue';
+import { Ref, computed, onUpdated, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import imagesLoaded from 'imagesloaded';
+
+const emit = defineEmits<{
+    (e: 'load'): void
+}>()
 
 const route = useRoute();
 
@@ -31,7 +38,27 @@ const settings = ref(page.value['first-section-settings']) as Ref<IFirstSectionS
 const currentSettings = computed(() => settings.value.find(item => item.category[0].slug == route.params.category))
 
 
-console.log(currentSettings);
+
+
+// refs
+const box: Ref<HTMLElement | null> = ref(null)
+const image: Ref<HTMLElement | null> = ref(null)
+
+let { loader } = useLoad(1)
+
+
+
+loader.value.onAllisLoaded = () => {
+    emit('load')
+    loader.value.restart()
+}
+
+const updateImages = () => {
+    imagesLoaded(box.value, () => {
+        loader.value.load()
+    })
+}
+
 </script>
 
 <style lang="scss" scoped>

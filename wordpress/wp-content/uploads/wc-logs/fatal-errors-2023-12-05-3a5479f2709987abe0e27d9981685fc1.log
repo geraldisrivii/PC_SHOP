@@ -1,0 +1,639 @@
+2023-12-05T09:44:43+00:00 CRITICAL Uncaught Error: Call to a member function get_matched_route() on null in /var/www/html/wp-includes/rest-api.php:823
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): rest_send_allow_header(NULL, Object(WP_REST_Server), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(454): apply_filters('rest_post_dispa...', Object(WP_REST_Response), Object(WP_REST_Server), Object(WP_REST_Request))
+#3 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#4 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#5 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#6 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#7 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#8 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#9 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#10 /var/www/html/wp-blog-header.php(16): wp()
+#11 /var/www/html/index.php(17): require('/var/www/html/w...')
+#12 {main}
+  thrown в /var/www/html/wp-includes/rest-api.php на строке 823
+
+2023-12-05T09:47:37+00:00 CRITICAL Uncaught Error: Call to undefined method WP_REST_Request::get_matched_route() in /var/www/html/wp-includes/rest-api.php:823
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): rest_send_allow_header(Object(WP_REST_Request), Object(WP_REST_Server), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(WP_REST_Request), Array)
+#2 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(454): apply_filters('rest_post_dispa...', Object(WP_REST_Response), Object(WP_REST_Server), Object(WP_REST_Request))
+#3 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#4 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#5 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#6 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#7 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#8 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#9 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#10 /var/www/html/wp-blog-header.php(16): wp()
+#11 /var/www/html/index.php(17): require('/var/www/html/w...')
+#12 {main}
+  thrown в /var/www/html/wp-includes/rest-api.php на строке 823
+
+2023-12-05T09:48:02+00:00 CRITICAL Uncaught Error: Call to a member function get_matched_route() on string in /var/www/html/wp-includes/rest-api.php:823
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): rest_send_allow_header('{\n    "composit...', Object(WP_REST_Server), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters('{\n    "composit...', Array)
+#2 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(454): apply_filters('rest_post_dispa...', Object(WP_REST_Response), Object(WP_REST_Server), Object(WP_REST_Request))
+#3 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#4 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#5 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#6 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#7 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#8 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#9 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#10 /var/www/html/wp-blog-header.php(16): wp()
+#11 /var/www/html/index.php(17): require('/var/www/html/w...')
+#12 {main}
+  thrown в /var/www/html/wp-includes/rest-api.php на строке 823
+
+2023-12-05T09:48:03+00:00 CRITICAL Uncaught Error: Call to a member function get_matched_route() on string in /var/www/html/wp-includes/rest-api.php:823
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): rest_send_allow_header('{\n    "composit...', Object(WP_REST_Server), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters('{\n    "composit...', Array)
+#2 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(454): apply_filters('rest_post_dispa...', Object(WP_REST_Response), Object(WP_REST_Server), Object(WP_REST_Request))
+#3 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#4 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#5 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#6 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#7 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#8 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#9 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#10 /var/www/html/wp-blog-header.php(16): wp()
+#11 /var/www/html/index.php(17): require('/var/www/html/w...')
+#12 {main}
+  thrown в /var/www/html/wp-includes/rest-api.php на строке 823
+
+2023-12-05T09:49:14+00:00 CRITICAL Uncaught Error: Call to a member function get_matched_route() on array in /var/www/html/wp-includes/rest-api.php:823
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): rest_send_allow_header(Array, Object(WP_REST_Server), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(454): apply_filters('rest_post_dispa...', Object(WP_REST_Response), Object(WP_REST_Server), Object(WP_REST_Request))
+#3 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#4 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#5 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#6 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#7 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#8 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#9 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#10 /var/www/html/wp-blog-header.php(16): wp()
+#11 /var/www/html/index.php(17): require('/var/www/html/w...')
+#12 {main}
+  thrown в /var/www/html/wp-includes/rest-api.php на строке 823
+
+2023-12-05T09:49:15+00:00 CRITICAL Uncaught Error: Call to a member function get_matched_route() on array in /var/www/html/wp-includes/rest-api.php:823
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): rest_send_allow_header(Array, Object(WP_REST_Server), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(454): apply_filters('rest_post_dispa...', Object(WP_REST_Response), Object(WP_REST_Server), Object(WP_REST_Request))
+#3 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#4 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#5 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#6 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#7 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#8 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#9 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#10 /var/www/html/wp-blog-header.php(16): wp()
+#11 /var/www/html/index.php(17): require('/var/www/html/w...')
+#12 {main}
+  thrown в /var/www/html/wp-includes/rest-api.php на строке 823
+
+2023-12-05T09:49:16+00:00 CRITICAL Uncaught Error: Call to a member function get_matched_route() on array in /var/www/html/wp-includes/rest-api.php:823
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): rest_send_allow_header(Array, Object(WP_REST_Server), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(454): apply_filters('rest_post_dispa...', Object(WP_REST_Response), Object(WP_REST_Server), Object(WP_REST_Request))
+#3 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#4 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#5 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#6 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#7 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#8 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#9 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#10 /var/www/html/wp-blog-header.php(16): wp()
+#11 /var/www/html/index.php(17): require('/var/www/html/w...')
+#12 {main}
+  thrown в /var/www/html/wp-includes/rest-api.php на строке 823
+
+2023-12-05T09:49:47+00:00 CRITICAL Uncaught Error: Call to a member function get_matched_route() on array in /var/www/html/wp-includes/rest-api.php:823
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): rest_send_allow_header(Array, Object(WP_REST_Server), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(454): apply_filters('rest_post_dispa...', Object(WP_REST_Response), Object(WP_REST_Server), Object(WP_REST_Request))
+#3 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#4 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#5 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#6 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#7 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#8 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#9 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#10 /var/www/html/wp-blog-header.php(16): wp()
+#11 /var/www/html/index.php(17): require('/var/www/html/w...')
+#12 {main}
+  thrown в /var/www/html/wp-includes/rest-api.php на строке 823
+
+2023-12-05T09:55:13+00:00 CRITICAL Uncaught Error: Call to a member function get_matched_route() on array in /var/www/html/wp-includes/rest-api.php:823
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): rest_send_allow_header(Array, Object(WP_REST_Server), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(454): apply_filters('rest_post_dispa...', Object(WP_REST_Response), Object(WP_REST_Server), Object(WP_REST_Request))
+#3 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#4 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#5 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#6 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#7 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#8 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#9 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#10 /var/www/html/wp-blog-header.php(16): wp()
+#11 /var/www/html/index.php(17): require('/var/www/html/w...')
+#12 {main}
+  thrown в /var/www/html/wp-includes/rest-api.php на строке 823
+
+2023-12-05T10:04:51+00:00 CRITICAL syntax error, unexpected token "return" в /var/www/html/wp-content/themes/my-theme/functions.php на строке 142
+
+2023-12-05T10:04:52+00:00 CRITICAL syntax error, unexpected token "return" в /var/www/html/wp-content/themes/my-theme/functions.php на строке 142
+
+2023-12-05T10:05:15+00:00 CRITICAL syntax error, unexpected token "return" в /var/www/html/wp-content/themes/my-theme/functions.php на строке 142
+
+2023-12-05T10:08:53+00:00 CRITICAL Uncaught Error: Cannot use object of type WP_Term as array in /var/www/html/wp-content/themes/my-theme/functions.php:142
+Stack trace:
+#0 [internal function]: {closure}(Object(WP_Term))
+#1 /var/www/html/wp-content/themes/my-theme/functions.php(147): array_filter(Array, Object(Closure))
+#2 [internal function]: {closure}(Array)
+#3 /var/www/html/wp-content/themes/my-theme/functions.php(148): array_filter(Array, Object(Closure))
+#4 /var/www/html/wp-includes/class-wp-hook.php(324): filter_products(Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(WP_REST_Response), Array)
+#6 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#7 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#9 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#10 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#11 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#12 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#13 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#14 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#15 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#16 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#17 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#18 /var/www/html/wp-blog-header.php(16): wp()
+#19 /var/www/html/index.php(17): require('/var/www/html/w...')
+#20 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/functions.php на строке 142
+
+2023-12-05T10:08:55+00:00 CRITICAL Uncaught Error: Cannot use object of type WP_Term as array in /var/www/html/wp-content/themes/my-theme/functions.php:142
+Stack trace:
+#0 [internal function]: {closure}(Object(WP_Term))
+#1 /var/www/html/wp-content/themes/my-theme/functions.php(147): array_filter(Array, Object(Closure))
+#2 [internal function]: {closure}(Array)
+#3 /var/www/html/wp-content/themes/my-theme/functions.php(148): array_filter(Array, Object(Closure))
+#4 /var/www/html/wp-includes/class-wp-hook.php(324): filter_products(Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(WP_REST_Response), Array)
+#6 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#7 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#9 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#10 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#11 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#12 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#13 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#14 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#15 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#16 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#17 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#18 /var/www/html/wp-blog-header.php(16): wp()
+#19 /var/www/html/index.php(17): require('/var/www/html/w...')
+#20 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/functions.php на строке 142
+
+2023-12-05T10:50:04+00:00 CRITICAL Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, class WP_Hook does not have a method "someFilter" in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(WP_REST_Response), Array)
+#1 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(454): apply_filters('rest_post_dispa...', Object(WP_REST_Response), Object(WP_REST_Server), Object(WP_REST_Request))
+#2 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#7 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#8 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#9 /var/www/html/wp-blog-header.php(16): wp()
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown в /var/www/html/wp-includes/class-wp-hook.php на строке 324
+
+2023-12-05T10:50:37+00:00 CRITICAL Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, class "ProductFilter" not found in /var/www/html/wp-includes/class-wp-hook.php:324
+Stack trace:
+#0 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(WP_REST_Response), Array)
+#1 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(454): apply_filters('rest_post_dispa...', Object(WP_REST_Response), Object(WP_REST_Server), Object(WP_REST_Request))
+#2 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#3 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#4 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#6 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#7 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#8 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#9 /var/www/html/wp-blog-header.php(16): wp()
+#10 /var/www/html/index.php(17): require('/var/www/html/w...')
+#11 {main}
+  thrown в /var/www/html/wp-includes/class-wp-hook.php на строке 324
+
+2023-12-05T10:51:17+00:00 CRITICAL syntax error, unexpected token "public", expecting "," or ";" в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 14
+
+2023-12-05T11:14:17+00:00 CRITICAL Cannot redeclare App\Filters\ProductFilter::someFilter() в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 34
+
+2023-12-05T11:18:55+00:00 CRITICAL Uncaught TypeError: App\Filters\ProductFilter::unsetMetadata(): Argument #1 ($response) must be of type WP_REST_Response, null given, called in /var/www/html/wp-includes/class-wp-hook.php on line 324 and defined in /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php:36
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): App\Filters\ProductFilter::unsetMetadata(NULL, Object(WC_Product_Grouped), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 36
+
+2023-12-05T11:19:13+00:00 CRITICAL Uncaught TypeError: App\Filters\ProductFilter::unsetMetadata(): Argument #1 ($response) must be of type WP_REST_Response, null given, called in /var/www/html/wp-includes/class-wp-hook.php on line 324 and defined in /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php:36
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): App\Filters\ProductFilter::unsetMetadata(NULL, Object(WC_Product_Grouped), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 36
+
+2023-12-05T11:19:55+00:00 CRITICAL Uncaught TypeError: App\Filters\ProductFilter::unsetMetadata(): Argument #1 ($response) must be of type WP_REST_Response, null given, called in /var/www/html/wp-includes/class-wp-hook.php on line 324 and defined in /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php:36
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): App\Filters\ProductFilter::unsetMetadata(NULL, Object(WC_Product_Grouped), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 36
+
+2023-12-05T11:20:07+00:00 CRITICAL Uncaught TypeError: App\Filters\ProductFilter::unsetMetadata(): Argument #1 ($response) must be of type WP_REST_Response, null given, called in /var/www/html/wp-includes/class-wp-hook.php on line 324 and defined in /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php:36
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): App\Filters\ProductFilter::unsetMetadata(NULL, Object(WC_Product_Grouped), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 36
+
+2023-12-05T11:20:36+00:00 CRITICAL Uncaught TypeError: App\Filters\ProductFilter::unsetMetadata(): Argument #1 ($response) must be of type WP_REST_Response, null given, called in /var/www/html/wp-includes/class-wp-hook.php on line 324 and defined in /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php:36
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): App\Filters\ProductFilter::unsetMetadata(NULL, Object(WC_Product_Grouped), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 36
+
+2023-12-05T11:20:37+00:00 CRITICAL Uncaught TypeError: App\Filters\ProductFilter::unsetMetadata(): Argument #1 ($response) must be of type WP_REST_Response, null given, called in /var/www/html/wp-includes/class-wp-hook.php on line 324 and defined in /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php:36
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): App\Filters\ProductFilter::unsetMetadata(NULL, Object(WC_Product_Grouped), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 36
+
+2023-12-05T11:20:47+00:00 CRITICAL Uncaught TypeError: add_custom_price_to_groupped_response(): Argument #1 ($response) must be of type WP_REST_Response, array given, called in /var/www/html/wp-includes/class-wp-hook.php on line 324 and defined in /var/www/html/wp-content/themes/my-theme/functions.php:80
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): add_custom_price_to_groupped_response(Array, Object(WC_Product_Simple), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Simple), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Simple), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/functions.php на строке 80
+
+2023-12-05T11:20:52+00:00 CRITICAL Uncaught TypeError: filter_products(): Argument #1 ($response) must be of type WP_REST_Response, array given, called in /var/www/html/wp-includes/class-wp-hook.php on line 324 and defined in /var/www/html/wp-content/themes/my-theme/functions.php:130
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): filter_products(Array, Object(WC_Product_Simple), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Simple), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Simple), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/functions.php на строке 130
+
+2023-12-05T11:20:57+00:00 CRITICAL Uncaught TypeError: App\Filters\ProductFilter::unsetMetadata(): Argument #1 ($response) must be of type WP_REST_Response, null given, called in /var/www/html/wp-includes/class-wp-hook.php on line 324 and defined in /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php:36
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): App\Filters\ProductFilter::unsetMetadata(NULL, Object(WC_Product_Grouped), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 36
+
+2023-12-05T11:20:57+00:00 CRITICAL Uncaught TypeError: App\Filters\ProductFilter::unsetMetadata(): Argument #1 ($response) must be of type WP_REST_Response, null given, called in /var/www/html/wp-includes/class-wp-hook.php on line 324 and defined in /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php:36
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): App\Filters\ProductFilter::unsetMetadata(NULL, Object(WC_Product_Grouped), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 36
+
+2023-12-05T11:21:01+00:00 CRITICAL Uncaught Error: Attempt to modify property "data" on array in /var/www/html/wp-content/plugins/cfs-rest-api/cfs-rest-api.php:106
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): add_custom_fields_to_api_response(Array, Object(WC_Product_Simple), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Simple), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Simple), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/plugins/cfs-rest-api/cfs-rest-api.php на строке 106
+
+2023-12-05T11:21:02+00:00 CRITICAL Uncaught Error: Attempt to modify property "data" on array in /var/www/html/wp-content/plugins/cfs-rest-api/cfs-rest-api.php:106
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): add_custom_fields_to_api_response(Array, Object(WC_Product_Simple), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Simple), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Simple), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/plugins/cfs-rest-api/cfs-rest-api.php на строке 106
+
+2023-12-05T11:21:05+00:00 CRITICAL Uncaught TypeError: App\Filters\ProductFilter::unsetMetadata(): Argument #1 ($response) must be of type WP_REST_Response, null given, called in /var/www/html/wp-includes/class-wp-hook.php on line 324 and defined in /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php:36
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): App\Filters\ProductFilter::unsetMetadata(NULL, Object(WC_Product_Grouped), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 36
+
+2023-12-05T11:21:22+00:00 CRITICAL Uncaught TypeError: App\Filters\ProductFilter::unsetMetadata(): Argument #1 ($response) must be of type WP_REST_Response, null given, called in /var/www/html/wp-includes/class-wp-hook.php on line 324 and defined in /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php:36
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): App\Filters\ProductFilter::unsetMetadata(NULL, Object(WC_Product_Grouped), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 36
+
+2023-12-05T11:22:01+00:00 CRITICAL Uncaught TypeError: App\Filters\ProductFilter::unsetMetadata(): Argument #1 ($response) must be of type WP_REST_Response, null given, called in /var/www/html/wp-includes/class-wp-hook.php on line 324 and defined in /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php:36
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): App\Filters\ProductFilter::unsetMetadata(NULL, Object(WC_Product_Grouped), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 36
+
+2023-12-05T11:22:02+00:00 CRITICAL Uncaught TypeError: App\Filters\ProductFilter::unsetMetadata(): Argument #1 ($response) must be of type WP_REST_Response, null given, called in /var/www/html/wp-includes/class-wp-hook.php on line 324 and defined in /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php:36
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): App\Filters\ProductFilter::unsetMetadata(NULL, Object(WC_Product_Grouped), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 36
+
+2023-12-05T11:24:46+00:00 CRITICAL Uncaught TypeError: App\Filters\ProductFilter::unsetMetadata(): Argument #1 ($response) must be of type WP_REST_Response, null given, called in /var/www/html/wp-includes/class-wp-hook.php on line 324 and defined in /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php:36
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): App\Filters\ProductFilter::unsetMetadata(NULL, Object(WC_Product_Grouped), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 36
+
+2023-12-05T11:25:20+00:00 CRITICAL Uncaught TypeError: App\Filters\ProductFilter::unsetMetadata(): Argument #1 ($response) must be of type WP_REST_Response, null given, called in /var/www/html/wp-includes/class-wp-hook.php on line 324 and defined in /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php:36
+Stack trace:
+#0 /var/www/html/wp-includes/class-wp-hook.php(324): App\Filters\ProductFilter::unsetMetadata(NULL, Object(WC_Product_Grouped), Object(WP_REST_Request))
+#1 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(NULL, Array)
+#2 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#3 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#6 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#7 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#8 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#9 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#10 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#11 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#12 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#13 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#14 /var/www/html/wp-blog-header.php(16): wp()
+#15 /var/www/html/index.php(17): require('/var/www/html/w...')
+#16 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 36
+
+2023-12-05T11:25:48+00:00 CRITICAL syntax error, unexpected token "=", expecting identifier or variable or "{" or "$" в /var/www/html/wp-content/themes/my-theme/functions.php на строке 136
+
+2023-12-05T11:25:56+00:00 CRITICAL Can't use method return value in write context в /var/www/html/wp-content/themes/my-theme/functions.php на строке 136
+
+2023-12-05T11:27:56+00:00 CRITICAL syntax error, unexpected token "return" в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 39
+
+2023-12-05T11:29:01+00:00 CRITICAL syntax error, unexpected token "unset" в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 39
+
+2023-12-05T11:29:13+00:00 CRITICAL syntax error, unexpected token "return" в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 40
+
+2023-12-05T11:29:18+00:00 CRITICAL syntax error, unexpected token "return" в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 40
+
+2023-12-05T11:29:44+00:00 CRITICAL syntax error, unexpected token "unset" в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 40
+
+2023-12-05T11:34:12+00:00 CRITICAL syntax error, unexpected token ")" в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 46
+

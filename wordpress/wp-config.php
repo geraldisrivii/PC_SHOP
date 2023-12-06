@@ -134,6 +134,8 @@ define('MAIL_SETTINGS', [
 
 // for admin panel
 define('GENERALY_SETTINGS_ID', 25);
+define('MAIN_SETTINGS_ID', 21);
+define('KATALOG_SETTINGS_ID', 190);
 
 define('PATHS_NAMES_ARRAY', [
 	'/' => '558',

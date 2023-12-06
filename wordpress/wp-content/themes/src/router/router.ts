@@ -32,15 +32,11 @@ declare var preloaderClose: () => void;
 
 
 router.afterEach((to, from) => {
-
-
     window.scrollTo(0, 0)
-    preloaderOpen();
-    if (to.name == from.name) {
-        setTimeout(() => {
-            preloaderClose()
-        }, 800)
+    if (to.fullPath == from.fullPath) {
+        return
     }
+    preloaderOpen();
 })
 
 export default router

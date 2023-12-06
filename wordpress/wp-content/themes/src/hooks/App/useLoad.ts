@@ -1,4 +1,4 @@
-import { Ref, ref, watch } from "vue";
+import { Ref, computed, ref, watch } from "vue";
 
 class Loader {
 
@@ -13,8 +13,16 @@ class Loader {
 
         this.afterLoad()
     }
+    public restart(count?: number): void {
+        if (count) {
+            this.counter = count
+        }
+
+        this.loadedCounter = 0;
+    }
     public onAllisLoaded: Function;
     private afterLoad(): void {
+
         if (this.loadedCounter != this.counter) {
             return;
         }
@@ -22,15 +30,17 @@ class Loader {
         if (this.onAllisLoaded) {
             return this.onAllisLoaded();
         }
+
+        console.log('all loaded')
     }
 }
 
 
 export const useLoad = (count: number) => {
 
-    const loader = new Loader(count);
+    const loader = ref(new Loader(count));
 
     return {
-        loader
+        loader,
     }
 }

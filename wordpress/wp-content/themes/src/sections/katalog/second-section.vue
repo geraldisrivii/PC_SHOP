@@ -1,7 +1,8 @@
 <template>
     <div class="second-section">
         <div class="filters-box">
-
+            <CustomSelect @update:chosen-delete="chosenCPU.splice(chosenCPU.indexOf($event), 1)"
+                @update:chosen-add="chosenCPU.push($event)" :title="'процессор'" :list="listCPU" :chosen="chosenCPU" />
         </div>
         <div class="products-box">
             <Product v-if="isDataLoaded" v-for="product in products" :key="product.id" :image-src="product.images[0].src"
@@ -16,6 +17,19 @@ import WOO from '@/axiosWoocomerce'
 import { Ref, onBeforeMount, onMounted, ref } from 'vue';
 import { IGrouppedProduct } from '@/types/Product';
 import { useRoute } from 'vue-router';
+import CustomSelect from '@/components/CustomSelect.vue';
+
+const chosenCPU = ref([])
+const listCPU = ref([
+    {
+        name: 'AMD',
+        label: 'компания AMD'
+    },
+    {
+        name: 'INTEL',
+        label: 'компания INTEL'
+    },
+])
 
 const route = useRoute();
 
@@ -57,6 +71,10 @@ onBeforeMount(async () => {
     background-color: #141414;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
 }
 
 .products-box {

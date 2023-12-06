@@ -20,29 +20,30 @@ import { useLoad } from '@/hooks/App/useLoad';
 import { usePageSettings } from '@/hooks/App/usePageSettings';
 import store from '@/store';
 import imagesLoaded from 'imagesloaded';
-import { Ref, onMounted, ref } from 'vue';
-
+import { Ref, onMounted, onUpdated, ref } from 'vue';
 
 let { page } = usePageSettings(store)
 
+const emit = defineEmits<{
+    (e: 'load'): void
+}>()
 
-let { loader } = useLoad(2)
-
-loader.onAllisLoaded = () => {
-    console.log('all is loaded')
-}
-
-
+// refs
 const box: Ref<HTMLElement | null> = ref(null)
 const image: Ref<HTMLElement | null> = ref(null)
 
 
-onMounted(() => {
-    imagesLoaded(box.value, image.value, () => {
-        loader.load()
-    })
+let { loader } = useLoad(1)
 
-    setTimeout(() => loader.load(), 2000)
+loader.value.onAllisLoaded = () => {
+    emit('load')
+}
+
+
+onMounted(() => {
+    imagesLoaded([box.value, image.value], () => {
+        loader.value.load()
+    })
 })
 
 
