@@ -4,7 +4,7 @@ use App\Classes\Session;
 
 function session(){
 
-    $session = new Session();
+    $session = Session::getInstance();
 
     return  $session;
 

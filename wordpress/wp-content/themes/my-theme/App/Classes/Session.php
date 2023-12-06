@@ -6,7 +6,16 @@ class Session
 {
     private static string $tableName = 'wp_sessions';
 
-    private static $instance;
+    private static $instance; // Singleton
+
+    public static function getInstance() // Singleton
+    {
+        if (is_null(self::$instance)) {
+            self::$instance = new self;
+        }
+        return self::$instance;
+    }
+
 
     private static function getCookieAuth()
     {
@@ -18,9 +27,6 @@ class Session
 
     public function __construct()
     {
-        if(Session::$instance){
-            return Session::$instance;
-        }
         global $wpdb;
 
         $db_name = $wpdb->dbname;
@@ -29,7 +35,7 @@ class Session
 
         $result = false;
 
-        
+
         if ($wpdb->get_row("SHOW TABLES FROM $db_name LIKE '$tableName'")) {
             $result = true;
         } else {

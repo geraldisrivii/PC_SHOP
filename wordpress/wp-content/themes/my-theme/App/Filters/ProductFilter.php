@@ -26,7 +26,7 @@ class ProductFilter extends Filter
     public static function someFilter(WP_REST_Response $response, $handler, WP_REST_Request $request)
     {
         foreach ($response->data as $key => $field) {
-            if ($field == null) {
+            if ($field === null) {
                 unset($response->data[$key]);
             }
         }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 use App\Classes\Router;
 
@@ -13,11 +13,11 @@ add_action('rest_api_init', function () {
 	Router::post('/sessions', 'SessionController@create');
 
 	// User
-	Router::post('/users/signup', 'UserController@signup', 'HasCookieMiddleware');
-	Router::post('/users/signin', 'UserController@signin', 'HasCookieMiddleware');
+	Router::post('/users/signup', 'UserController@signup', 'HasCookieMiddleware', 'UserRequest');
+	Router::post('/users/signin', 'UserController@signin', 'HasCookieMiddleware', 'UserRequest');
 	Router::delete('/users/signout', 'UserController@signout', 'HasCookieMiddleware');
 	Router::get('/users/check_by_field', 'UserController@checkExistingUser');
-	
+
 	Router::get('/users/current', 'UserController@getCurrentUser', 'HasCookieMiddleware');
 
 	// Mail
