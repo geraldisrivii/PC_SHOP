@@ -3,6 +3,7 @@
 
 namespace App\Controllers;
 
+use App\Models\UserModel;
 use \WP_REST_Request;
 use \WP_REST_Response;
 use \WP_User;
@@ -109,7 +110,7 @@ class UserController
             ];
         }
 
-        $user = session()->get('user');
+        $user = UserModel::getCurrentUser();
 
         if ($user) {
             $response->set_status(400);
@@ -161,7 +162,7 @@ class UserController
     {
         $response = new WP_REST_Response();
 
-        $user = session()->get('user');
+        $user = UserModel::getCurrentUser();
 
         if (!$user) {
             return $response->data = [
