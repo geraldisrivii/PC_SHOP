@@ -6,18 +6,21 @@ use YooKassa\Client;
 
 class YookassaServise
 {
-
-    private static YookassaServise $instance;
-
     private $client;
+
+    private static $instance; // Singleton
+
+    public static function getInstance() // Singleton
+    {
+        if (is_null(self::$instance)) {
+            self::$instance = new self;
+        }
+        return self::$instance;
+    }
+
 
     public function __construct()
     {
-        if (isset(YookassaServise::$instance)) {
-            return YookassaServise::$instance;
-        }
-
-        // var_dump(SHOP_ID);
         $client = new Client();
         $client->setAuth(SHOP_ID, SHOP_KEY);
         $this->client = $client;
@@ -47,14 +50,5 @@ class YookassaServise
     public function getInfo(string $id)
     {
         return $this->client->getPaymentInfo($id);
-    }
-
-    public function addWebhook(string $event)
-    {
-        // $this->client->setAuthToken('Basic YWxleGFuZGVyLmZyZWVsYW5jZXI6b1NBOSB5TFRWIHlHYWIgTGprTCA3aDBpIGxoTnE=');
-        return $this->client->addWebhook([
-            "event" => $event,
-            "url" => "http://localhost/wp-json/wp/v2/payments/webhook",
-        ]);
     }
 }

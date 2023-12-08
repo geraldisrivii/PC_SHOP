@@ -25,10 +25,7 @@ import { useRoute } from 'vue-router';
 import CustomSelect from '@/components/CustomSelect.vue';
 import { getProducts } from '@/api/Katalog/getProducts';
 
-const eliminate = (array: Array<any>, $event) => {
-    array.splice(array.indexOf($event), 1)
-}
-
+import { eliminate } from '@/helpers';
 
 const chosenFilters = ref({
     producer_cpu: [],
@@ -64,11 +61,14 @@ const filters = ref({
         }
     ],
 })
+
+
 const route = useRoute();
 
 let isDataLoaded: Ref<boolean> = ref(false)
 
 let products: Ref<Array<IGrouppedProduct>> = ref([])
+
 onBeforeMount(async () => {
     products.value = await getProducts(4, 16)
 

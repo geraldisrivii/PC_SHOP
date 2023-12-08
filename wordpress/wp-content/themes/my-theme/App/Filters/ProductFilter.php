@@ -2,6 +2,7 @@
 
 namespace App\Filters;
 
+use App\Models\ProductModel;
 use \WP_REST_Request;
 use \WP_REST_Response;
 use \WC_Product;
@@ -31,9 +32,9 @@ class ProductFilter extends Filter
             if ($value == null | $value == '' | $value == []) {
                 continue;
             }
-            if(gettype($key) != 'integer') {
+            if (gettype($key) != 'integer') {
                 $filteredArray[$key] = $value;
-            } else{
+            } else {
                 $filteredArray[] = $value;
             }
         }
@@ -75,7 +76,7 @@ class ProductFilter extends Filter
 
     public static function without_grouped_products(WP_REST_Response $response, WC_Product $product, WP_REST_Request $request)
     {
-        if ($request['without_grouped_products'] == true) {
+        if (((boolean) $request['without_grouped_products']) === true) {
             if ($product->has_child()) {
                 foreach ($response->get_links() as $key => $value) {
                     $response->remove_link($key);
