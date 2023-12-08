@@ -17,22 +17,32 @@ class ProductFilter extends Filter
         $namespaceOfClass = self::$namespaceOfClass;
 
 
-        add_filter('rest_post_dispatch', "{$namespaceOfClass}::someFilter", 12, 3);
-        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::unsetMetadata", 13, 3);
-        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::withoutLinks", 14, 3);
+        add_filter('rest_post_dispatch', "{$namespaceOfClass}::exludeEmpty", 12, 3);
+        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::unsetMetadata", 14, 3);
+        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::optimize", 15, 3);
+        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::without_grouped_products", 16, 3);
     }
 
 
-    public static function someFilter(WP_REST_Response $response, $handler, WP_REST_Request $request)
+    public static function exludeEmpty(WP_REST_Response $response, $handler, WP_REST_Request $request)
     {
-        foreach ($response->data as $key => $field) {
-            if ($field === null) {
-                unset($response->data[$key]);
+        $filteredArray = [];
+        foreach ($response->data as $key => $value) {
+            if ($value == null | $value == '' | $value == []) {
+                continue;
+            }
+            if(gettype($key) != 'integer') {
+                $filteredArray[$key] = $value;
+            } else{
+                $filteredArray[] = $value;
             }
         }
 
+        $response->data = $filteredArray;
+
         return $response;
     }
+
 
     public static function unsetMetadata(WP_REST_Response $response, WC_Product $product, WP_REST_Request $request)
     {
@@ -41,7 +51,7 @@ class ProductFilter extends Filter
         return $response;
     }
 
-    public static function withoutLinks(WP_REST_Response $response, WC_Product $product, WP_REST_Request $request)
+    public static function optimize(WP_REST_Response $response, WC_Product $product, WP_REST_Request $request)
     {
         if ($request['optimize'] == true) {
             foreach ($response->get_links() as $key => $value) {
@@ -58,6 +68,21 @@ class ProductFilter extends Filter
             unset($response->data['permalink_template']);
             unset($response->data['post_password']);
             unset($response->data['generated_slug']);
+        }
+
+        return $response;
+    }
+
+    public static function without_grouped_products(WP_REST_Response $response, WC_Product $product, WP_REST_Request $request)
+    {
+        if ($request['without_grouped_products'] == true) {
+            if ($product->has_child()) {
+                foreach ($response->get_links() as $key => $value) {
+                    $response->remove_link($key);
+                }
+                $response->data = null;
+                return $response;
+            }
         }
 
         return $response;

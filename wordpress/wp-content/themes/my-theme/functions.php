@@ -62,6 +62,7 @@ function wp_enqueue_scripts_func()
 
 
 }
+
 add_filter('wp_is_application_passwords_available', '__return_true');
 
 
@@ -124,25 +125,25 @@ function add_custom_price_to_groupped_response(WP_REST_Response $response, $prod
 }
 
 
-add_filter('woocommerce_rest_prepare_product_object', 'filter_products', 12, 3);
+// add_filter('woocommerce_rest_prepare_product_object', 'filter_products', 12, 3);
 
 
-function filter_products(WP_REST_Response $response, WC_Product $product, WP_REST_Request $request)
-{
-    if ($request['without_grouped_products'] == true) {
-        if ($product->has_child()) {
+// function filter_products(WP_REST_Response $response, WC_Product $product, WP_REST_Request $request)
+// {
+//     if ($request['without_grouped_products'] == true) {
+//         if ($product->has_child()) {
 
-            $response->data = null;
+//             $response->data = null;
             
-            foreach ($response->get_links() as $key => $value) {
-                $response->remove_link($key);
-            }
-            
-            return $response;
-        }
-    }
-    return $response;
-}
+//             foreach ($response->get_links() as $key => $value) {
+//                 $response->remove_link($key);
+//             }
+
+//             return $response;
+//         }
+//     }
+//     return $response;
+// }
 
 
 // add_filter('rest_post_dispatch', 'filter_products_by_parameter', 10, 3);

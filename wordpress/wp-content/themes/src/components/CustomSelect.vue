@@ -6,7 +6,7 @@
         </button>
         <div class="select__wrapper" :class="{ 'select__wrapper--open': isPanelOpen }">
             <ul class="select__list">
-                <li v-for="(item, index) in list" :key="index" class="select__item"
+                <li v-for="(item, index) in matchedList" :key="index" class="select__item"
                     :class="{ 'select__item--active': chosen.includes(item) }">
                     <button @click="choice(item)">
                         {{ labelName ? item[labelName] : item['label'] }}
@@ -20,7 +20,8 @@
 <script setup lang="ts">
 import { useAppSettings } from '@/hooks/App/useAppSettings';
 import { useVuex } from '@/store/useVuex';
-import { Ref, ref } from 'vue';
+import { IMatchingRule, TypeMatching } from '@/types/Katalog';
+import { Ref, computed, ref, watch } from 'vue';
 
 const store = useVuex()
 
@@ -33,22 +34,73 @@ interface Props {
     labelName?: string;
     valueName?: string;
     chosen: Array<Object>;
+    matchingRules?: Array<IMatchingRule>
 }
 
-const { title, list, multiple, labelName, valueName, chosen } = defineProps<Props>()
+const { title, list, multiple, labelName, valueName, chosen, matchingRules } = defineProps<Props>()
+
+// const computedMatchedList = computed(() => {
+//     let result = [];
+//     for (const item of chosen) {
+//         if (matchedList.value.includes(item)) {
+//             result.push(item)
+//         }
+//     }
+
+//     return result;
+// })
+
+const matchedList = computed(() => {
+    if (!matchingRules) {
+        return list
+    }
+
+    return list.filter(item => {
+        let matchingCount = 0
+        for (const rule of matchingRules) {
+            if (rule.value.length == 0) {
+                matchingCount++
+            }
+            let result = rule.value.find(obj => obj[rule.compareKey] == item[rule.key])
+            if (rule.type == 'matching' ? result : !result) {
+                matchingCount++;
+            }
+        }
+        if (matchingCount == matchingRules.length) {
+            return true
+        }
+
+        return false;
+    })
+})
+
+
+if (matchingRules) {
+    console.log(matchingRules)
+    watch(matchedList, () => {
+        for (const choice of chosen) {
+            if (!matchedList.value.includes(choice)) {
+                emit('update:chosen-delete', choice)
+            }
+        }
+    }, { deep: true })
+}
+
+
+
 
 let isPanelOpen: Ref<boolean> = ref(false)
 
 
 interface Emits {
-    (e: 'update:chosen-add', item: Object): void
-    (e: 'update:chosen-delete', item: Object): void
+    (e: 'update:chosen-add', item: object): void
+    (e: 'update:chosen-delete', item: object): void
 }
 const emit = defineEmits<Emits>()
 
-const choice = (item: Object) => {
-
+const choice = (item: object) => {
     if (chosen.includes(item)) {
+        console.log(item)
         emit('update:chosen-delete', item)
         return;
     }
@@ -60,6 +112,7 @@ const choice = (item: Object) => {
 <style lang="scss" scoped>
 .select {
     width: 100%;
+
     &__panel {
         width: 100%;
         padding: 16px 18px;
@@ -74,7 +127,7 @@ const choice = (item: Object) => {
     &__title {
         text-transform: uppercase;
         font-size: 16px;
-        font-weight: 300;
+        font-weight: 400;
         color: #FFF;
     }
 

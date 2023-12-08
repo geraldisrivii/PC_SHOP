@@ -24,6 +24,7 @@ add_action('rest_api_init', function () {
 	Router::post('/mails', 'MailController@create', 'HasCookieMiddleware');
 	Router::post('/mails/check', 'MailController@checkCode', 'HasCookieMiddleware');
 
+
 });
 
 
