@@ -39,17 +39,6 @@ interface Props {
 
 const { title, list, multiple, labelName, valueName, chosen, matchingRules } = defineProps<Props>()
 
-// const computedMatchedList = computed(() => {
-//     let result = [];
-//     for (const item of chosen) {
-//         if (matchedList.value.includes(item)) {
-//             result.push(item)
-//         }
-//     }
-
-//     return result;
-// })
-
 const matchedList = computed(() => {
     if (!matchingRules) {
         return list

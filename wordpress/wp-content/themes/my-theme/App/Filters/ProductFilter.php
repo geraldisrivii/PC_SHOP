@@ -17,32 +17,13 @@ class ProductFilter extends Filter
     {
         $namespaceOfClass = self::$namespaceOfClass;
 
-
-        add_filter('rest_post_dispatch', "{$namespaceOfClass}::exludeEmpty", 12, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::unsetMetadata", 14, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::optimize", 15, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::without_grouped_products", 16, 3);
     }
 
 
-    public static function exludeEmpty(WP_REST_Response $response, $handler, WP_REST_Request $request)
-    {
-        $filteredArray = [];
-        foreach ($response->data as $key => $value) {
-            if ($value == null | $value == '' | $value == []) {
-                continue;
-            }
-            if (gettype($key) != 'integer') {
-                $filteredArray[$key] = $value;
-            } else {
-                $filteredArray[] = $value;
-            }
-        }
-
-        $response->data = $filteredArray;
-
-        return $response;
-    }
+    
 
 
     public static function unsetMetadata(WP_REST_Response $response, WC_Product $product, WP_REST_Request $request)
