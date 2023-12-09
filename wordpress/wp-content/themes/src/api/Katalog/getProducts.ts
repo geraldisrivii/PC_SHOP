@@ -1,7 +1,7 @@
 import WOO from '@/axiosWoocomerce'
 import { IProduct } from '@/types/Product';
 
-export const getProducts = async (per_page: number, category_id: number) => {
+export const getProducts = async (per_page: number, category_id?: number) => {
     let products = []
     let page = 0;
     while (true) {
@@ -13,7 +13,7 @@ export const getProducts = async (per_page: number, category_id: number) => {
         let fetchedProducts = await WOO.get('products', {
             params: {
                 per_page: per_page,
-                category: category_id,
+                category: category_id ?? null,
                 page: page
             }
         });

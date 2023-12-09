@@ -33,11 +33,12 @@ interface Props {
     multiple?: boolean;
     labelName?: string;
     valueName?: string;
+    labelLevel?: number;
     chosen: Array<Object>;
     matchingRules?: Array<IMatchingRule>
 }
 
-const { title, list, multiple, labelName, valueName, chosen, matchingRules } = defineProps<Props>()
+const { title, list, multiple, labelName, valueName, labelLevel, chosen, matchingRules } = defineProps<Props>()
 
 const matchedList = computed(() => {
     if (!matchingRules) {

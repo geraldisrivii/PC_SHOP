@@ -1,13 +1,18 @@
 <template>
     <div class="second-section">
         <div class="filters-box">
-            <CustomSelect @update:chosen-delete="eliminate(chosenFilters.producer_cpu, $event)"
-                @update:chosen-add="chosenFilters.producer_cpu.push($event)" :title="'Производитель процессора'"
-                :list="filters.producer_cpu" :chosen="chosenFilters.producer_cpu" />
-            <CustomSelect @update:chosen-delete="eliminate(chosenFilters.model_cpu, $event)"
-                @update:chosen-add="chosenFilters.model_cpu.push($event)" :title="'Модель процессора'"
-                :matching-rules="[{ key: 'producer', type: 'matching', value: chosenFilters.producer_cpu, compareKey: 'name' }]"
-                :list="filters.model_cpu" :chosen="chosenFilters.model_cpu" />
+            <template v-if="isDataLoaded">
+                <CustomSelect @update:chosen-delete="eliminate(chosenFilters.producer_cpu, $event)"
+                    @update:chosen-add="chosenFilters.producer_cpu.push($event)" :title="'Производитель процессора'"
+                    :list="filters.producer_cpu" :chosen="chosenFilters.producer_cpu" :labelName="'name'" />
+                <CustomSelect @update:chosen-delete="eliminate(chosenFilters.producer_cpu, $event)"
+                    @update:chosen-add="chosenFilters.producer_cpu.push($event)" :title="'Производитель процессора'"
+                    :list="filters.producer_cpu" :chosen="chosenFilters.producer_cpu" :labelName="'name'" />
+                <CustomSelect @update:chosen-delete="eliminate(chosenFilters.model_cpu, $event)"
+                    @update:chosen-add="chosenFilters.model_cpu.push($event)" :title="'Модель процессора'"
+                    :matching-rules="[{ key: 'producer', type: 'matching', value: chosenFilters.producer_cpu, compareKey: 'name' }]"
+                    :list="filters.model_cpu" :chosen="chosenFilters.model_cpu" />
+            </template>
         </div>
         <div class="products-box">
             <Product v-if="isDataLoaded" v-for="product in products" :key="product.id" :image-src="product.images[0].src"
@@ -26,51 +31,53 @@ import CustomSelect from '@/components/CustomSelect.vue';
 import { getProducts } from '@/api/Katalog/getProducts';
 
 import { eliminate } from '@/helpers';
+import { useAppSettings } from '@/hooks/App/useAppSettings';
+import { useVuex } from '@/store/useVuex';
+import { usePageSettings } from '@/hooks/App/usePageSettings';
 
-const chosenFilters = ref({
+interface IFilters {
+    producer_cpu: Array<any>,
+    socket_cpu: Array<any>,
+    model_cpu: Array<any>,
+}
+
+const chosenFilters: Ref<IFilters> = ref({
     producer_cpu: [],
+    socket_cpu: [],
     model_cpu: [],
 })
 
-const filters = ref({
-    producer_cpu: [
-        {
-            name: 'AMD',
-            label: 'компания AMD'
-        },
-        {
-            name: 'INTEL',
-            label: 'компания INTEL'
-        },
-    ],
-    model_cpu: [
-        {
-            name: 'i5 1155G7',
-            label: 'i5 1155G7',
-            producer: 'INTEL',
-        },
-        {
-            name: 'i7 1165G7',
-            label: 'i7 1165G7',
-            producer: 'INTEL',
-        },
-        {
-            name: 'ryzen 5 5600G',
-            label: 'ryzen 5 5600G',
-            producer: 'AMD',
-        }
-    ],
+const filters: Ref<IFilters> = ref({
+    producer_cpu: [],
+    socket_cpu: [],
+    model_cpu: [],
 })
 
 
 const route = useRoute();
+
+const store = useVuex();
+
+const { page } = usePageSettings(store);
 
 let isDataLoaded: Ref<boolean> = ref(false)
 
 let products: Ref<Array<IGrouppedProduct>> = ref([])
 
 onBeforeMount(async () => {
+    filters.value.producer_cpu = page.value['filters_cpu-producer'];
+    filters.value.model_cpu = await getProducts(10, 21);
+    filters.value.socket_cpu = await page.value['filters_cpu-socket']
+    
+    filters.value.model_cpu.forEach(item => {
+        item.label = item.cfs.shortly_name
+        item.producer = item.cfs.producer
+    })
+
+    console.log(filters.value)
     products.value = await getProducts(4, 16)
+
+
 
     console.log(products.value)
 

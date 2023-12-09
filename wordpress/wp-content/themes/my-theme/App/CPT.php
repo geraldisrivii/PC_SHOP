@@ -4,36 +4,6 @@ add_action('init', 'register_post_types');
 
 function register_post_types()
 {
-	register_taxonomy('cpu_producer', ['post'], [
-		'label' => '', // определяется параметром $labels->name
-		'labels' => [
-			'name' => 'Производители CPU',
-			'singular_name' => 'Производитель CPU',
-			'search_items' => 'Найти производителя CPU',
-			'all_items' => 'Все производители CPU',
-			'view_item ' => 'Подробнее',
-			'parent_item' => 'Родитель',
-			'parent_item_colon' => 'Родитель:',
-			'edit_item' => 'Изменить свойство',
-			'update_item' => 'Обновить свойство',
-			'add_new_item' => 'Добавить свойство',
-			'new_item_name' => 'Новое свойство',
-			'menu_name' => 'Производители CPU',
-			'back_to_items' => '← Вернутся в производители CPU',
-		],
-		'description' => '', // описание таксономии
-		'public' => true,
-		// 'show_ui' => false, 
-		'show_in_menu' => false,
-		'hierarchical' => false,
-		'rewrite' => true,
-		'capabilities' => array(),
-		'meta_box_cb' => null, // html метабокса. callback: `post_categories_meta_box` или `post_tags_meta_box`. false — метабокс отключен.
-		'show_admin_column' => false, // авто-создание колонки таксы в таблице ассоциированного типа записи. (с версии 3.5)
-		'show_in_rest' => true, // добавить в REST API
-		'rest_base' => 'cpu_producer', // $taxonomy
-	]);
-
 	register_post_type('diginity', [
 		'label' => null,
 		'labels' => [

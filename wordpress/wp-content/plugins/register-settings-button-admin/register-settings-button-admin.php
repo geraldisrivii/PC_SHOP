@@ -7,40 +7,40 @@ Version: 1.0
 Author: Alexander Malstev
 */
 
-function custom_menu()
-{
-	add_menu_page(
-		'Заголовок меню', // Название страницы в меню
-		'Заголовок меню', // Название пункта меню
-		'manage_options', // Разрешения, необходимые для доступа к странице
-		'custom-menu-slug', // Уникальный идентификатор страницы
-		'custom_menu_page', // Функция, отображающая содержимое страницы
-		'dashicons-tickets', // URL иконки для пункта меню
-		30 // Позиция пункта меню
-	);
+// function custom_menu()
+// {
+// 	add_menu_page(
+// 		'Заголовок меню', // Название страницы в меню
+// 		'Заголовок меню', // Название пункта меню
+// 		'manage_options', // Разрешения, необходимые для доступа к странице
+// 		'custom-menu-slug', // Уникальный идентификатор страницы
+// 		'custom_menu_page', // Функция, отображающая содержимое страницы
+// 		'dashicons-tickets', // URL иконки для пункта меню
+// 		30 // Позиция пункта меню
+// 	);
 
-	// Добавление подпунктов
-	add_submenu_page(
-		'custom-menu-slug', // Родительский идентификатор страницы меню
-		'Производитель процессора', // Название подпункта меню
-		'Производитель процессора', // Название пункта навигации
-		'manage_options', // Разрешения, необходимые для доступа к странице
-		'cpu_producer-slug', // Уникальный идентификатор страницы подпункта
-		'submenu_page_callback' // Функция, отображающая содержимое страницы подпункта
-	);
-}
+// 	// Добавление подпунктов
+// 	add_submenu_page(
+// 		'custom-menu-slug', // Родительский идентификатор страницы меню
+// 		'Производитель процессора', // Название подпункта меню
+// 		'Производитель процессора', // Название пункта навигации
+// 		'manage_options', // Разрешения, необходимые для доступа к странице
+// 		'cpu_producer-slug', // Уникальный идентификатор страницы подпункта
+// 		'submenu_page_callback' // Функция, отображающая содержимое страницы подпункта
+// 	);
+// }
 
-add_action('admin_menu', 'custom_menu');
+// add_action('admin_menu', 'custom_menu');
 
-function custom_menu_page()
-{
+// function custom_menu_page()
+// {
 
-}
+// }
 
-function submenu_page_callback()
-{
-	wp_redirect(get_home_url() . "/wp-admin/edit-tags.php?taxonomy=cpu_producer");
-}
+// function submenu_page_callback()
+// {
+// 	wp_redirect(get_home_url() . "/wp-admin/edit-tags.php?taxonomy=cpu_producer");
+// }
 
 function settings_menu()
 {
