@@ -76,86 +76,49 @@ function disable_ssl_verification_for_local_development($permission, $context, $
 }
 
 
-add_filter('woocommerce_rest_prepare_product_object', 'add_custom_price_to_groupped_response', 11, 3);
+// add_filter('woocommerce_rest_prepare_product_object', 'add_custom_price_to_groupped_response', 11, 3);
 
-function add_custom_price_to_groupped_response(WP_REST_Response $response, $product)
-{
-    // Проверяем, является ли товар сгруппированным
-    if ($product->has_child()) {
-        // Получаем массив дочерних товаров
-        $children_ids = $product->get_children();
-        $childrenPrice = 0;
-
-        $children = [];
-
-        foreach ($children_ids as $child_id) {
-            // Получаем объект дочернего товара
-            $child = wc_get_product($child_id);
-
-            // Добавляем цену в массив
-            $childrenPrice += $child->get_price();
-
-            $childData = $child->get_data();
-
-            $cfsFields = CFS()->find_fields([
-                'post_id' => $child_id
-            ]);
-
-            foreach ($cfsFields as $key => $field) {
-                $childData['cfs'][$field['name']] = CFS()->get($field['name'], $child_id);
-            }
-
-            $categories = get_the_terms($child_id, 'product_cat');
-
-            $childData['categories'] = $categories;
-
-            unset($childData['category_ids']);
-
-            unset($childData['meta_data']);
-
-            $children[] = $childData;
-        }
-
-        // Добавляем массив дочерних товаров в данные ответа
-        $response->data['price'] = (string) ($childrenPrice);
-        $response->data['grouped_products'] = $children;
-    }
-
-    return $response;
-}
-
-
-// add_filter('woocommerce_rest_prepare_product_object', 'filter_products', 12, 3);
-
-
-// function filter_products(WP_REST_Response $response, WC_Product $product, WP_REST_Request $request)
+// function add_custom_price_to_groupped_response(WP_REST_Response $response, $product)
 // {
-//     if ($request['without_grouped_products'] == true) {
-//         if ($product->has_child()) {
+//     if ($product->has_child()) {
+//         $children_ids = $product->get_children();
+//         $childrenPrice = 0;
 
-//             $response->data = null;
-            
-//             foreach ($response->get_links() as $key => $value) {
-//                 $response->remove_link($key);
+//         $children = [];
+
+//         foreach ($children_ids as $child_id) {
+//             // Получаем объект дочернего товара
+//             $child = wc_get_product($child_id);
+
+//             // Добавляем цену в массив
+//             $childrenPrice += $child->get_price();
+
+//             $childData = $child->get_data();
+
+//             $cfsFields = CFS()->find_fields([
+//                 'post_id' => $child_id
+//             ]);
+
+//             foreach ($cfsFields as $key => $field) {
+//                 $childData['cfs'][$field['name']] = CFS()->get($field['name'], $child_id);
 //             }
 
-//             return $response;
+//             $categories = get_the_terms($child_id, 'product_cat');
+
+//             $childData['categories'] = $categories;
+
+//             unset($childData['category_ids']);
+
+//             unset($childData['meta_data']);
+
+//             $children[] = $childData;
 //         }
-//     }
-//     return $response;
-// }
 
-
-// add_filter('rest_post_dispatch', 'filter_products_by_parameter', 10, 3);
-
-// function filter_products_by_parameter(WP_REST_Response $response, $handler, WP_REST_Request $request)
-// {
-
-//     foreach ($response->data as $key => $field) {
-//         if ($field == null) {
-//             unset($response->data[$key]);
-//         }
+//         // Добавляем массив дочерних товаров в данные ответа
+//         $response->data['price'] = (string) ($childrenPrice);
+//         $response->data['grouped_products'] = $children;
 //     }
 
 //     return $response;
 // }
+
