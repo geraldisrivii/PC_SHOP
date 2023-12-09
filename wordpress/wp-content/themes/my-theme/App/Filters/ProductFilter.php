@@ -20,9 +20,71 @@ class ProductFilter extends Filter
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::without_grouped_products", 13, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::add_custom_price_to_groupped_response", 14, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::add_products_to_groupped_response", 15, 3);
+        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::cpu_producer_filter", 16, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::unsetMetadata", 20, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::optimize", 21, 3);
     }
+
+    public static function cpu_producer_filter(WP_REST_Response $response, WC_Product $groped_product, WP_REST_Request $request)
+    {
+        $producer = $request['cpu_producer'];
+
+        if (!isset($producer)) {
+            return $response;
+        }
+        $cpuProduct = getCpuProduct($groped_product);
+
+        if ($cpuProduct) {
+
+            $producerTermIds = CFS()->get('producer', $cpuProduct->get_id());
+    
+            $termProducer = get_term_by('id', $producerTermIds[0], 'cpu_producer');
+    
+            // Если он не определен не отображаем элемент так как не можем убедится в производителе
+            if (!$termProducer) {
+                $response->data = null;
+                return $response;
+            }
+    
+            // Если производитель процессора совпадает с запрошенным
+            if ($termProducer->slug == strtolower($producer)) {
+                return $response;
+            }
+        }
+        $response->data = null;
+        return $response;
+    }
+
+    public static function cpu_socket_filter(WP_REST_Response $response, WC_Product $groped_product, WP_REST_Request $request)
+    {
+        $socket = $request['cpu_socket'];
+
+        if (!isset($socket)) {
+            return $response;
+        }
+        $cpuProduct = getCpuProduct($groped_product);
+
+        if ($cpuProduct) {
+
+            $producerTermIds = CFS()->get('socket', $cpuProduct->get_id());
+    
+            $termSocket = get_term_by('id', $producerTermIds[0], 'cpu_socket');
+    
+            // Если он не определен не отображаем элемент так как не можем убедится в производителе
+            if (!$termSocket) {
+                $response->data = null;
+                return $response;
+            }
+    
+            // Если производитель процессора совпадает с запрошенным
+            if ($termSocket->slug == strtolower($socket)) {
+                return $response;
+            }
+        }
+        $response->data = null;
+        return $response;
+    }
+
 
 
     public static function without_grouped_products(WP_REST_Response $response, WC_Product $product, WP_REST_Request $request)
@@ -110,10 +172,10 @@ class ProductFilter extends Filter
 
     public static function optimize(WP_REST_Response $response, WC_Product $product, WP_REST_Request $request)
     {
+        foreach ($response->get_links() as $key => $value) {
+            $response->remove_link($key);
+        }
         if ($request['optimize'] == true) {
-            foreach ($response->get_links() as $key => $value) {
-                $response->remove_link($key);
-            }
 
             unset($response->data['related_ids']);
             unset($response->data['date_created']);

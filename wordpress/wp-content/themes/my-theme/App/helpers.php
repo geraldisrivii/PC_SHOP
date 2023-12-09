@@ -13,3 +13,5 @@ function yookassa(){
 
     return  $session;
 }
+
+require_once get_template_directory() . '/App/Helpers/getCpuProduct.php';
