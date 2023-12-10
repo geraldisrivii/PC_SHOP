@@ -81,7 +81,7 @@ watch(DataFields, () => {
 
 const validData = async () => {
     let validator = new Validator();
-    let rules = [
+    validator.setRules([
         {
             name: "password",
             rules: [
@@ -137,8 +137,7 @@ const validData = async () => {
                 },
             ]
         },
-    ];
-    validator.setRules(rules);
+    ]);
     let fields = {
         password: DataFields.value.password,
         login: DataFields.value.login,

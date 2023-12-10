@@ -1,24 +1,32 @@
+interface Rule {
+    type?: string;
+    value?: any;
+    message: string;
+    callback?: Function;
+    params?: Array<any>;
+    regexp?: string;
+}
+
+interface IRule {
+    name: string;
+    rules: Array<Rule>;
+}
+
 class Validator {
 
     #types = {
-        min: (str, minCount) => str.length >= Number(minCount),
-        max: (str, maxCount) => str.length <= Number(maxCount),
+        min: (str: string, minCount: string | number) => str.length >= (typeof minCount == 'number' ? minCount  :Number(minCount)),
+        max: (str: string, maxCount: string | number) => str.length <= (typeof maxCount == 'number' ? maxCount  :Number(maxCount)),
     }
 
-    #rules = [];
+    private rules = [];
 
-    #validFields = {};
+    private validFields = {};
 
-    #isntValidFields = {};
+    private isntValidFields = {};
 
-    constructor() {
-    }
-
-    setRules(rules) {
-        if (typeof rules != 'object') {
-            return false;
-        }
-        this.#rules = rules;
+    setRules(rules: Array<IRule>) {
+        this.rules = rules;
     }
 
 
@@ -28,7 +36,7 @@ class Validator {
         }
         for (const key in fields) {
 
-            let ruleForField = this.#rules.find(rule => rule.name == key);
+            let ruleForField = this.rules.find(rule => rule.name == key);
 
             if (!ruleForField) {
                 continue;
@@ -50,7 +58,7 @@ class Validator {
 
                     if (result == false) {
                         fieldIsVerified = false;
-                        this.#isntValidFields[key] = message
+                        this.isntValidFields[key] = message
                         break;
                     }
 
@@ -83,7 +91,7 @@ class Validator {
                 let returnedResult = {};
 
                 returnedResult[key] = message
-                this.#isntValidFields[key] = message
+                this.isntValidFields[key] = message
                 break;
             }
 
@@ -92,21 +100,21 @@ class Validator {
 
                 returnedResult[key] = fields[key]
 
-                this.#validFields[key] = fields[key]
+                this.validFields[key] = fields[key]
             }
 
         }
 
-        return this.#validFields;
+        return this.validFields;
     }
 
     getIsntValidFields() {
-        return this.#isntValidFields;
+        return this.isntValidFields;
     }
 
     isAllFieldsValid() {
         let hasOneElement = false
-        for (const key in this.#isntValidFields) {
+        for (const key in this.isntValidFields) {
             hasOneElement = true
         }
         return !hasOneElement
