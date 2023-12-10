@@ -1,12 +1,20 @@
 <template>
     <header class="header container">
         <div class="header-left">
-            <RouterLink :to="{name: 'main'}" class="header-left__title">INGC</RouterLink>
+            <RouterLink :to="{ name: 'main' }" class="header-left__title">INGC</RouterLink>
             <SiteMenu class="header-left__menu" />
         </div>
         <div class="header-right">
+
+            <ProfileButton v-if="store.state.user.user" @update:isProfileShow="updateProfileShow"
+                :isProfileShow="isProfileShow" />
+            <template v-else>
+                <ProfileAddButton :is-register-dialog-show="isRegisterDialogShow"
+                    @update:is-register-dialog-show="updateRegisterDialogShow" />
+                <ProfileLoginButton :is-login-dialog-show="isLoginDialogShow"
+                    @update:is-login-dialog-show="updateLoginDialogShow" />
+            </template>
             <BasketButton @update:isBasketShow="updateBasketShow" :isBasketShow="isBasketShow" />
-            <ProfileButton @update:isProfileShow="updateProfileShow" :isProfileShow="isProfileShow" />
         </div>
     </header>
 </template>
@@ -14,11 +22,19 @@
 <script setup lang="ts">
 import BasketButton from '@/components/BasketButton.vue';
 import ProfileButton from '@/components/ProfileButton.vue';
+import ProfileAddButton from '@/components/ProfileAddButton.vue';
+import ProfileLoginButton from '@/components/ProfileLoginButton.vue';
 import SiteMenu from '@/components/UI/SiteMenu.vue';
+import { useVuexWithRef } from '@/store/useVuex';
+
+
+let store = useVuexWithRef();
 
 interface Props {
-    isBasketShow: boolean,
-    isProfileShow: boolean
+    isBasketShow: boolean;
+    isProfileShow: boolean;
+    isRegisterDialogShow: boolean;
+    isLoginDialogShow: boolean;
 }
 
 const props = defineProps<Props>()
@@ -26,6 +42,8 @@ const props = defineProps<Props>()
 const emit = defineEmits<{
     (e: 'update:isBasketShow', status: boolean): void,
     (e: 'update:isProfileShow', status: boolean): void,
+    (e: 'update:isRegisterDialogShow', status: boolean): void,
+    (e: 'update:isLoginDialogShow', status: boolean): void,
 }>()
 
 const updateBasketShow = () => {
@@ -35,6 +53,16 @@ const updateBasketShow = () => {
 const updateProfileShow = () => {
     emit('update:isProfileShow', !props.isProfileShow)
 }
+
+const updateRegisterDialogShow = () => {
+    emit('update:isRegisterDialogShow', !props.isRegisterDialogShow)
+}
+
+const updateLoginDialogShow = () => {
+    emit('update:isLoginDialogShow', !props.isLoginDialogShow)
+}
+
+
 
 </script>
 
@@ -88,7 +116,7 @@ const updateProfileShow = () => {
     align-items: center;
     gap: 25px;
 
-    @include table{
+    @include table {
         gap: 20px;
     }
 }

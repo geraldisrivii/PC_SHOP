@@ -78,7 +78,7 @@ const productRam = computed(() => grouppedProductNames.value.find(item => item.c
 
     &__image {
         width: 100%;
-        height: 100%;
+        height: 280px;
         object-fit: contain;
     }
 

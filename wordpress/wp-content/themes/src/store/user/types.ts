@@ -1,3 +1,5 @@
+import { IUser } from "@/types/App";
+
 export interface UserState {
-    name: string
+    user: IUser | null
 }

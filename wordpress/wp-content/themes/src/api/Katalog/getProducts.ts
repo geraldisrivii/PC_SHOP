@@ -4,11 +4,10 @@ import { AxiosRequestConfig } from 'axios';
 
 export interface IParams {
     cpu_socket?: Array<string>;
-    category?: number;
-    cpu_producer?: string;
-    cpu_model?: number;
-    gpu_model?: number;
-    gpu_producer?: string;
+    cpu_producer?: Array<string>;
+    cpu_model?: Array<number>;
+    gpu_model?: Array<number>;
+    gpu_producer?: Array<string>;
     [key: string]: any;
 }
 

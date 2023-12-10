@@ -23,3 +23,8 @@ export interface ICategoryMainPage {
     product_cat: Array<IProductCategory>;
     price?: number | string;
 }
+
+
+export interface IUser{
+    
+}

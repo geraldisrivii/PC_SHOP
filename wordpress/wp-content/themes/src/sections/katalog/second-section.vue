@@ -10,12 +10,10 @@
                     :list="filters.socket_cpu" :chosen="chosenFilters.socket_cpu" :labelName="'name'"
                     :matching-rules="[{ key: 'producer', type: 'matching', value: chosenFilters.producer_cpu, compareKey: 'name' }]" />
                 <CustomSelect @update:chosen-delete="eliminate(chosenFilters.model_cpu, $event)"
-                    @update:chosen-add="chosenFilters.model_cpu.push($event)" :title="'Модель процессора'"
-                    :matching-rules="[
+                    @update:chosen-add="chosenFilters.model_cpu.push($event)" :title="'Модель процессора'" :matching-rules="[
                         { key: 'producer', type: 'matching', value: chosenFilters.producer_cpu, compareKey: 'name' },
                         { key: 'socket', type: 'matching', value: chosenFilters.socket_cpu, compareKey: 'name' },
-                    ]"
-                    :list="filters.model_cpu" :chosen="chosenFilters.model_cpu" />
+                    ]" :list="filters.model_cpu" :chosen="chosenFilters.model_cpu" />
 
                 <CustomSelect @update:chosen-delete="eliminate(chosenFilters.producer_gpu, $event)"
                     @update:chosen-add="chosenFilters.producer_gpu.push($event)" :title="'Производитель видеокарты'"
@@ -28,8 +26,11 @@
             </template>
         </div>
         <div class="products-box">
-            <Product v-if="isDataLoaded" v-for="product in products" :key="product.id" :image-src="product.images[0].src"
-                :name="product.name" :grouped_products="product.grouped_products" :price="product.price" />
+            <TransitionGroup name="list">
+                <Product v-if="isDataLoaded" v-for="product in products" :key="product.id"
+                    :image-src="product.images[0].src" :name="product.name" :grouped_products="product.grouped_products"
+                    :price="product.price" />
+            </TransitionGroup>
         </div>
     </div>
 </template>
@@ -37,7 +38,7 @@
 <script setup lang="ts">
 import Product from '@/components/Product.vue';
 import WOO from '@/axiosWoocomerce'
-import { Ref, onBeforeMount, onMounted, ref } from 'vue';
+import { Ref, computed, onBeforeMount, onMounted, ref, watch } from 'vue';
 import { IGrouppedProduct } from '@/types/Product';
 import { useRoute } from 'vue-router';
 import CustomSelect from '@/components/CustomSelect.vue';
@@ -47,37 +48,13 @@ import { eliminate } from '@/helpers';
 import { useAppSettings } from '@/hooks/App/useAppSettings';
 import { useVuex } from '@/store/useVuex';
 import { usePageSettings } from '@/hooks/App/usePageSettings';
+import { UseFilters } from '@/hooks/Katalog/UseFilters';
 
-interface IFilters {
-    producer_cpu: Array<any>,
-    socket_cpu: Array<any>,
-    model_cpu: Array<any>,
-    producer_gpu: Array<any>,
-    model_gpu: Array<any>,
+interface Emits {
+    (e: 'load'): void
 }
 
-const chosenFilters: Ref<IFilters> = ref({
-    producer_cpu: [],
-    socket_cpu: [],
-    model_cpu: [],
-    producer_gpu: [],
-    model_gpu: [],
-})
-
-const getRequestParams = (): IParams => {
-    return {
-        // cpu_socket: ['lga1700', 'am4']
-    }
-}
-
-const filters: Ref<IFilters> = ref({
-    producer_cpu: [],
-    socket_cpu: [],
-    model_cpu: [],
-    producer_gpu: [],
-    model_gpu: [],
-})
-
+const emit = defineEmits<Emits>()
 
 const route = useRoute();
 
@@ -85,35 +62,43 @@ const store = useVuex();
 
 const { page } = usePageSettings(store);
 
+const { filters, chosenFilters, getRequestParams, onMountedAction } = UseFilters(page);
+
 let isDataLoaded: Ref<boolean> = ref(false)
 
 let products: Ref<Array<IGrouppedProduct>> = ref([])
 
+watch(getRequestParams, async () => {
+    setTimeout(async () => {
+        products.value = await getProducts(6, category_ids[route.params.category as string], getRequestParams.value)
+        console.log(getRequestParams.value)
+    }, 100)
+}, { deep: true })
+
+const category_ids = {
+    laptop: 18,
+    gaming: 16,
+    workstation: 17
+}
+
+watch(route, async () => {
+    console.log(route.params.category)
+    products.value = await getProducts(6, category_ids[route.params.category as string], getRequestParams.value)
+    console.log(getRequestParams.value)
+    emit('load')
+}, { deep: true })
+
+
 onBeforeMount(async () => {
-    filters.value.producer_cpu = page.value['filters_cpu-producer'];
-    filters.value.model_cpu = await getProducts(10, 21);
-    filters.value.socket_cpu = page.value['filters_cpu-socket']
-    filters.value.producer_gpu = page.value['filters_gpu-producer']
+    onMountedAction();
 
-    filters.value.model_gpu = await getProducts(10, 20);
-
-    filters.value.model_cpu.forEach(item => {
-        item.label = item.cfs.shortly_name
-        item.producer = item.cfs.producer
-        item.socket = item.cfs.properties.find(item => item.key[0].slug = 'cpu_socket')?.value
-    })
-
-    filters.value.model_gpu.forEach(item => {
-        item.label = item.cfs.shortly_name
-        item.producer = item.cfs.producer
-    })
-
-    console.log(filters.value)
-
-    products.value = await getProducts(4, 16, getRequestParams())
+    products.value = await getProducts(6, category_ids[route.params.category as string], getRequestParams.value)
     console.log(products.value)
 
     isDataLoaded.value = true
+
+    emit('load')
+
 })
 
 </script>
@@ -150,6 +135,27 @@ onBeforeMount(async () => {
     display: grid;
     grid-template-columns: repeat(auto-fit, 310px);
     gap: 20px;
+    align-content: flex-start;
+    align-items: flex-start;
+}
 
+
+.list-move,
+/* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+    transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.list-leave-active {
+    position: absolute;
 }
 </style>

@@ -4,16 +4,14 @@ import router from './router/router'
 import store from './store'
 
 import VueCookies from 'vue-cookies'
+import MyDialog from './components/UI/MyDialog.vue'
 
-// import components from '@/components/UI/index'
 
 let app = createApp(App)
 
 // register globally
+app.component('my-dialog', MyDialog)
 
-// components.forEach(component => {
-//     app.component(component.name, component)
-// })
 
 app.use(VueCookies)
 

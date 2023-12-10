@@ -66,7 +66,6 @@ const matchedList = computed(() => {
 
 
 if (matchingRules) {
-    console.log(matchingRules)
     watch(matchedList, () => {
         for (const choice of chosen) {
             if (!matchedList.value.includes(choice)) {

@@ -6,6 +6,9 @@ import { UserState } from './types'
 
 export const user: Module<UserState, State> = {
     state: {
-        name: 'Alex'
+        user: null
     },
+    getters: {
+        
+    }
 }

@@ -90,15 +90,15 @@ class GroupedProductFilter extends Filter
                 return $response;
             }
         }
-        
+
         $response->data = null;
         return $response;
     }
     public static function cpu_producer_filter(WP_REST_Response $response, WC_Product $groped_product, WP_REST_Request $request)
     {
-        $producer = $request['cpu_producer'];
+        $producers = $request['cpu_producer'];
 
-        if (!isset($producer)) {
+        if (!isset($producers)) {
             return $response;
         }
         if (!$groped_product->has_child()) {
@@ -117,10 +117,11 @@ class GroupedProductFilter extends Filter
                 return $response;
             }
 
-
             // Если производитель процессора совпадает с запрошенным
-            if (strtolower($producer) == strtolower($producerCpu)) {
-                return $response;
+            foreach ($producers as $key => $producer) {
+                if (strtolower($producer) == strtolower($producerCpu)) {
+                    return $response;
+                }
             }
         }
         $response->data = null;
@@ -129,8 +130,8 @@ class GroupedProductFilter extends Filter
 
     public static function cpu_socket_filter(WP_REST_Response $response, WC_Product $groped_product, WP_REST_Request $request)
     {
-        $socket = $request['cpu_socket'];
-        if (!isset($socket)) {
+        $sockets = $request['cpu_socket'];
+        if (!isset($sockets)) {
             return $response;
         }
         $cpuProduct = getChildProductBy('cpu', $groped_product);
@@ -138,8 +139,10 @@ class GroupedProductFilter extends Filter
         if ($cpuProduct) {
             $socketValue = getProductProp($cpuProduct, 'cpu_socket');
 
-            if (strtolower($socketValue) == strtolower($socket)) {
-                return $response;
+            foreach ($sockets as $socket) {
+                if (strtolower($socketValue) == strtolower($socket)) {
+                    return $response;
+                }
             }
         }
         $response->data = null;

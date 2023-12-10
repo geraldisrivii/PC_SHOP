@@ -1,5 +1,10 @@
 <template>
-    <SiteHeader v-model:isProfileShow="isProfiletShow" v-model:isBasketShow="isBasketShow" v-if="isDataLoaded" />
+    <RegisterDialog v-model:isRegisterDialogShow="isRegisterDialogShow"/>
+    <SiteHeader 
+    v-model:isLoginDialogShow="isLoginDialogShow" 
+    v-model:isRegisterDialogShow="isRegisterDialogShow" 
+    v-model:isProfileShow="isProfileShow" 
+    v-model:isBasketShow="isBasketShow" v-if="isDataLoaded" />
     <router-view v-if="isDataLoaded"></router-view>
     <SiteFooter v-if="isDataLoaded" />
     <Preloader ref="preloader" />
@@ -16,11 +21,14 @@ import { useVuex } from './store/useVuex';
 import { useAppSettings } from './hooks/App/useAppSettings';
 import SiteFooter from './includes/SiteFooter.vue';
 import Preloader from './components/Preloader.vue';
+import RegisterDialog from './components/RegisterDialog.vue';
 
 // DATA
 let isDataLoaded: Ref<boolean> = ref(false);
 let isBasketShow: Ref<boolean> = ref(false)
-let isProfiletShow: Ref<boolean> = ref(false)
+let isProfileShow: Ref<boolean> = ref(false)
+let isRegisterDialogShow: Ref<boolean> = ref(true)
+let isLoginDialogShow: Ref<boolean> = ref(false)
 
 const preloader = ref<InstanceType<typeof Preloader> | null>(null)
 let store = useVuex();
@@ -112,6 +120,11 @@ input {
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     padding: 17px 34px;
     text-align: center;
+    transition: all .3s ease-in-out;
+    &:disabled{
+        background: #E4E4E4;
+        cursor: not-allowed;
+    }
 }
 
 .input {
