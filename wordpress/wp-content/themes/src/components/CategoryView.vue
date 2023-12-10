@@ -38,7 +38,7 @@ defineProps<Props>()
     &__image-box {
         width: 100%;
         height: 280px;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
     }
 
     &__image {

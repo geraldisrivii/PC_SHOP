@@ -1,9 +1,9 @@
 <template>
-    <div @click.stop="onClick" class="modal-wrapper">
-        <div @click.stop class="modal">
-            <slot></slot>
+        <div @click.stop="onClick" class="modal-wrapper" :class="{ 'modal-wrapper--show': isDialogShow }">
+            <div @click.stop class="modal">
+                <slot></slot>
+            </div>
         </div>
-    </div>
 </template>
 
 <script setup lang="ts">
@@ -21,15 +21,14 @@ interface Emits {
 const emit = defineEmits<Emits>()
 
 const onClick = () => {
-    console.log('click')
     emit('update:isDialogShow', !props.isDialogShow)
 }
-
 </script>
 
 <style lang="scss" scoped>
 @import '@/scss/base/mixins.scss';
 @import '@/scss/base/typography.scss';
+
 
 .modal-wrapper {
     position: fixed;
@@ -39,6 +38,17 @@ const onClick = () => {
     height: 100vh;
     z-index: 999;
     background-color: rgba($color: #474747, $alpha: 0.6);
+
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+    transform: translate(-5px, -5px);
+
+    &--show {
+        visibility: visible;
+        opacity: 1;
+        transform: translate(0px, 0px);
+    }
 }
 
 .modal {

@@ -3,12 +3,12 @@
         class="first-section">
         <div class="container first-section-container">
             <div class="first-section-left">
-                <p class="first-section-left__title">{{ page['first-section_title'] }}</p>
+                <p class="first-section-left__title" :class="{ 'first-section-left__title--animate': isAllLoaded }">{{ page['first-section_title'] }}</p>
                 <button @click="$router.push({ name: 'katalog' })" class="first-section-left__button button">{{
                     page['first-section_button_text'] }}</button>
             </div>
             <div class="first-section-right">
-                <img ref="image" :src="page['first-section_image']" alt="first-section_image">
+                <img v-if="page['first-section_image']" ref="image" :src="page['first-section_image']" alt="first-section_image">
             </div>
         </div>
     </div>
@@ -32,16 +32,19 @@ const emit = defineEmits<{
 const box: Ref<HTMLElement | null> = ref(null)
 const image: Ref<HTMLElement | null> = ref(null)
 
+const isAllLoaded = ref(false)
+
 
 let { loader } = useLoad(1)
 
 loader.value.onAllisLoaded = () => {
     emit('load')
+    isAllLoaded.value = true
 }
 
 
 onMounted(() => {
-    imagesLoaded([box.value, image.value], () => {
+    imagesLoaded(box, () => {
         loader.value.load()
     })
 })
@@ -54,6 +57,9 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 @import "@/scss/base/mixins.scss";
+@import "@/scss/base/keyframes.scss";
+
+
 
 .first-section {
     padding-top: 100px;
@@ -79,8 +85,9 @@ onMounted(() => {
     }
 
     &__title {
-
-
+        &--animate {
+            animation: leftToRight 1.2s ease-in-out;
+        }
         @include table {
             padding: 10px;
             background-color: rgba(41, 41, 41, 0.8);

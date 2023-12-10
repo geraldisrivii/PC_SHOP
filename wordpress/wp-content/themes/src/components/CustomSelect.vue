@@ -64,14 +64,27 @@ const matchedList = computed(() => {
     })
 })
 
+interface Emits {
+    (e: 'update:chosen-add', item: object): void
+    (e: 'update:chosen-delete', item: object): void
+}
+const emit = defineEmits<Emits>()
 
 if (matchingRules) {
     watch(matchedList, () => {
-        for (const choice of chosen) {
-            if (!matchedList.value.includes(choice)) {
-                emit('update:chosen-delete', choice)
+        console.log(matchedList.value)
+        debugger
+
+        let forDeleteArray = [];
+        chosen.forEach(item => {
+            if (!matchedList.value.includes(item)) {
+                forDeleteArray.push(item)
             }
-        }
+        })
+
+        forDeleteArray.forEach(item => {
+            emit('update:chosen-delete', item)
+        })
     }, { deep: true })
 }
 
@@ -81,15 +94,8 @@ if (matchingRules) {
 let isPanelOpen: Ref<boolean> = ref(false)
 
 
-interface Emits {
-    (e: 'update:chosen-add', item: object): void
-    (e: 'update:chosen-delete', item: object): void
-}
-const emit = defineEmits<Emits>()
-
 const choice = (item: object) => {
     if (chosen.includes(item)) {
-        console.log(item)
         emit('update:chosen-delete', item)
         return;
     }

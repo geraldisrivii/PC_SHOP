@@ -71,7 +71,6 @@ let products: Ref<Array<IGrouppedProduct>> = ref([])
 watch(getRequestParams, async () => {
     setTimeout(async () => {
         products.value = await getProducts(6, category_ids[route.params.category as string], getRequestParams.value)
-        console.log(getRequestParams.value)
     }, 100)
 }, { deep: true })
 
@@ -82,9 +81,7 @@ const category_ids = {
 }
 
 watch(route, async () => {
-    console.log(route.params.category)
     products.value = await getProducts(6, category_ids[route.params.category as string], getRequestParams.value)
-    console.log(getRequestParams.value)
     emit('load')
 }, { deep: true })
 
@@ -93,7 +90,6 @@ onBeforeMount(async () => {
     onMountedAction();
 
     products.value = await getProducts(6, category_ids[route.params.category as string], getRequestParams.value)
-    console.log(products.value)
 
     isDataLoaded.value = true
 

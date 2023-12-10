@@ -1,5 +1,5 @@
 <template>
-    <div class="register" :class="{ '--show': isRegisterDialogShow }">
+    <div class="register">
         <my-dialog :isDialogShow="isRegisterDialogShow" @update:isDialogShow="onUpdate">
             <form class="register__form">
                 <p class="register__title title">Регистрация</p>
@@ -34,131 +34,23 @@
 </template>
 
 <script setup lang="ts">
-import Validator from '@/classes/Validator';
+import WP from '@/axiosWP';
 import { Ref, ref, watch } from 'vue';
+import { useRegisterFields } from '@/hooks/User/useRegisterFields';
 
-interface Props {
-    isRegisterDialogShow: boolean
-}
+interface Props { isRegisterDialogShow: boolean }
+
 interface Emits {
     (e: 'update:isRegisterDialogShow', status: boolean): void
 }
+
 const { isRegisterDialogShow } = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
-const onUpdate = (newValue: boolean) => {
-    emit('update:isRegisterDialogShow', newValue)
-}
-interface Fields {
-    login: string | null;
-    password: string | null;
-    email: string | null
-}
-const DataFields: Ref<Fields> = ref({
-    login: '',
-    password: '',
-    email: ''
-})
 
-const isntValidFields: Ref<Fields> = ref({
-    login: null,
-    password: null,
-    email: null
-})
+const onUpdate = (newValue: boolean) => emit('update:isRegisterDialogShow', newValue)
 
-const ValidFields: Ref<Fields> = ref({
-    login: null,
-    password: null,
-    email: null
-})
-
-const isValidAll = ref(false)
-
-
-watch(DataFields, () => {
-    validData()
-}, { deep: true })
-
-const validData = async () => {
-    let validator = new Validator();
-    validator.setRules([
-        {
-            name: "password",
-            rules: [
-                { type: "min", value: 6, message: "Пароль должен быть хотя-бы 6 символов" },
-                { type: "max", value: 15, message: "Пароль должен быть не более 15 символов" },
-                { regexp: "/[0-9]+/i", message: "Пароль должен содержать хотя-бы одну цифру" },
-            ]
-        },
-        {
-            name: "login",
-            rules: [
-                { type: "min", value: 6, message: "Логин должен быть хотя-бы 6 символов" },
-                { type: "max", value: 15, message: "Логин должен быть не более 15 символов" },
-                {
-                    type: "custom",
-                    callback: async (login) => {
-                        // let response = await WP.get("/users/check_by_field", {
-                        //     params: {
-                        //         field: "login",
-                        //         value: login
-                        //     },
-                        //     withCredentials: true
-                        // });
-                        // return response.data.status;
-
-                        return true;
-                    },
-                    params: ["hello"],
-                    message: "Такой логин уже используется"
-                },
-            ]
-        },
-        {
-            name: "email",
-            rules: [
-                { regexp: "/^[a-z0-9_.+-]+@[a-z0-9-]+.[a-z0-9-.]+$/i", message: "Не валидный вариант электронной почтоы" },
-                {
-                    type: "custom",
-                    callback: async (email) => {
-                        // let response = await WP.get("/users/check_by_field", {
-                        //     params: {
-                        //         field: "email",
-                        //         value: email
-                        //     },
-                        //     withCredentials: true
-                        // });
-                        // return response.data.status;
-
-                        return true;
-                    },
-                    params: ["hello"],
-                    message: "Такая почта уже используется"
-                },
-            ]
-        },
-    ]);
-    let fields = {
-        password: DataFields.value.password,
-        login: DataFields.value.login,
-        email: DataFields.value.email,
-    };
-    let validFields = await validator.run(fields);
-
-    ValidFields.value = validFields as Fields;
-
-    isntValidFields.value = validator.getIsntValidFields() as Fields;
-
-    if (validator.isAllFieldsValid()) {
-        isValidAll.value = true
-    } else {
-        isValidAll.value = false
-    }
-    console.log(validFields);
-    console.log(isntValidFields.value);
-}
-
-
+const { DataFields, isntValidFields, ValidFields, validData, isValidAll } = useRegisterFields();
 
 </script>
 
@@ -167,15 +59,8 @@ const validData = async () => {
 @import '@/scss/base/typography.scss';
 
 .register {
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.4s ease;
+    transition: opacity 0.4s ease;
     z-index: 100;
-
-    &.--show {
-        opacity: 1;
-        visibility: visible;
-    }
 
     &__title {
         margin-bottom: 20px;

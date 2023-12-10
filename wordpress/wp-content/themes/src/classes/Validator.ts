@@ -12,29 +12,32 @@ interface IRule {
     rules: Array<Rule>;
 }
 
-class Validator {
+class Validator<T> {
 
-    #types = {
-        min: (str: string, minCount: string | number) => str.length >= (typeof minCount == 'number' ? minCount  :Number(minCount)),
-        max: (str: string, maxCount: string | number) => str.length <= (typeof maxCount == 'number' ? maxCount  :Number(maxCount)),
+    private types = {
+        min: (str: string, minCount: string | number) => str.length >= (typeof minCount == 'number' ? minCount : Number(minCount)),
+        max: (str: string, maxCount: string | number) => str.length <= (typeof maxCount == 'number' ? maxCount : Number(maxCount)),
     }
 
-    private rules = [];
+    constructor(fields: { [key: string]: string } & T) {
+        this.fields = fields
+    }
+
+    private rules: Array<IRule>;
+
+    private fields: { [key: string]: string } & T;
 
     private validFields = {};
 
     private isntValidFields = {};
 
-    setRules(rules: Array<IRule>) {
+    public setRules(rules: Array<IRule>) {
         this.rules = rules;
     }
 
+    public async run() {
 
-    async run(fields) {
-        if (typeof fields != 'object') {
-            return false;
-        }
-        for (const key in fields) {
+        for (const key in this.fields) {
 
             let ruleForField = this.rules.find(rule => rule.name == key);
 
@@ -51,9 +54,9 @@ class Validator {
                 if (rule.type) {
                     let result = false;
                     if (rule.type == 'custom') {
-                        result = await rule.callback(fields[key], ...rule.params)
+                        result = await rule.callback(this.fields[key], ...rule.params)
                     } else {
-                        result = await this.#types[rule.type](fields[key], rule.value)
+                        result = await this.types[rule.type](this.fields[key], rule.value)
                     }
 
                     if (result == false) {
@@ -66,18 +69,18 @@ class Validator {
                     continue;
                 }
                 // Декомпозиция обьекта
-                let regexp = rule.regexp;
+                let regexpStr = rule.regexp;
                 // Выделение отрицания из регулярного выражения
-                let isNegative = regexp.startsWith("!");
+                let isNegative = regexpStr.startsWith("!");
                 // приведение регулярного выражения к правильному виду
-                let pattern = regexp.slice(isNegative ? 2 : 1, regexp.lastIndexOf('/'));
+                let pattern = regexpStr.slice(isNegative ? 2 : 1, regexpStr.lastIndexOf('/'));
 
-                let flags = regexp.slice(regexp.lastIndexOf('/') + 1)
+                let flags = regexpStr.slice(regexpStr.lastIndexOf('/') + 1)
 
-                regexp = new RegExp(pattern, flags)
+                let regexp: RegExp = new RegExp(pattern, flags)
 
                 // проверка и применение отрицания если оно обозначено
-                let result = isNegative ? !(regexp.test(fields[key])) : regexp.test(fields[key])
+                let result = isNegative ? !(regexp.test(this.fields[key])) : regexp.test(this.fields[key])
 
                 // Если результат соответсвует то нужно проверить иные правила
                 if (result) {
@@ -98,21 +101,21 @@ class Validator {
             if (fieldIsVerified) {
                 let returnedResult = {};
 
-                returnedResult[key] = fields[key]
+                returnedResult[key] = this.fields[key]
 
-                this.validFields[key] = fields[key]
+                this.validFields[key] = this.fields[key]
             }
 
         }
 
-        return this.validFields;
+        return this.validFields as T;
     }
 
     getIsntValidFields() {
-        return this.isntValidFields;
+        return this.isntValidFields as T;
     }
 
-    isAllFieldsValid() {
+    isAllFieldsValid(): boolean {
         let hasOneElement = false
         for (const key in this.isntValidFields) {
             hasOneElement = true

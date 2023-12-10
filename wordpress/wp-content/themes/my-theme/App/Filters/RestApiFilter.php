@@ -26,7 +26,7 @@ class RestApiFilter extends Filter
     {
         $filteredArray = [];
         foreach ($response->data as $key => $value) {
-            if ($value == null | $value == '' | $value == []) {
+            if ($value === null | $value === '' | $value === []) {
                 continue;
             }
             if (gettype($key) != 'integer') {

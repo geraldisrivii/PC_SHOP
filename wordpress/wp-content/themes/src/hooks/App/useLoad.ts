@@ -30,8 +30,6 @@ class Loader {
         if (this.onAllisLoaded) {
             return this.onAllisLoaded();
         }
-
-        console.log('all loaded')
     }
 }
 

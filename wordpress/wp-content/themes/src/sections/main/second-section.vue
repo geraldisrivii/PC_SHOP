@@ -36,8 +36,8 @@ onMounted(async () => {
 @import "@/scss/base/mixins.scss";
 
 .second-section {
-    padding-top: 100px;
-    margin-bottom: 120px;
+    padding-top: 80px;
+    margin-bottom: 80px;
 }
 
 .second-section-container {

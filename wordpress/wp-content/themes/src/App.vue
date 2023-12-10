@@ -27,7 +27,7 @@ import RegisterDialog from './components/RegisterDialog.vue';
 let isDataLoaded: Ref<boolean> = ref(false);
 let isBasketShow: Ref<boolean> = ref(false)
 let isProfileShow: Ref<boolean> = ref(false)
-let isRegisterDialogShow: Ref<boolean> = ref(true)
+let isRegisterDialogShow: Ref<boolean> = ref(false)
 let isLoginDialogShow: Ref<boolean> = ref(false)
 
 const preloader = ref<InstanceType<typeof Preloader> | null>(null)

@@ -25,8 +25,6 @@ const store = useVuex();
 
 const { page } = usePageSettings(store);
 
-console.log(page);
-
 </script>
 
 <style lang="scss" scoped>
@@ -45,7 +43,7 @@ console.log(page);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 600px;
+    max-width: 600px;
 
     &__title {}
 
