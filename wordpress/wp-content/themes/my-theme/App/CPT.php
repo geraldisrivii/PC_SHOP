@@ -59,6 +59,36 @@ function register_post_types()
 		'query_var' => true,
 	]);
 
+	register_taxonomy('series', ['product'], [
+		'label' => '', // определяется параметром $labels->name
+		'labels' => [
+			'name' => 'Series',
+			'singular_name' => 'Series',
+			'search_items' => 'Series',
+			'all_items' => 'Series',
+			'view_item ' => 'Подробнее',
+			'parent_item' => 'Родитель',
+			'parent_item_colon' => 'Родитель:',
+			'edit_item' => 'Изменить свойство',
+			'update_item' => 'Обновить свойство',
+			'add_new_item' => 'Добавить свойство',
+			'new_item_name' => 'Новое свойство',
+			'menu_name' => 'Series',
+			'back_to_items' => '← Вернутся в Series',
+		],
+		'description' => '', // описание таксономии
+		'public' => true,
+		// 'show_ui' => false, 
+		// 'show_in_menu'
+		'hierarchical' => false,
+		'rewrite' => true,
+		'capabilities' => array(),
+		'meta_box_cb' => null, // html метабокса. callback: `post_categories_meta_box` или `post_tags_meta_box`. false — метабокс отключен.
+		'show_admin_column' => false, // авто-создание колонки таксы в таблице ассоциированного типа записи. (с версии 3.5)
+		'show_in_rest' => true, // добавить в REST API
+		'rest_base' => 'series', // $taxonomy
+	]);
+
 	register_taxonomy('gpu_props', ['post'], [
 		'label' => '', // определяется параметром $labels->name
 		'labels' => [

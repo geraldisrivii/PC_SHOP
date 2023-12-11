@@ -1,24 +1,24 @@
 import { Ref, ref, watch } from 'vue';
-import { Fields } from '@/types/User';
+import { LoginFields } from '@/types/User';
 import Validator from '@/classes/Validator';
-import RegisterRules from '@/Validation/RegisterRules';
+import LoginRules from '@/Validation/LoginRules';
 
 
-export const useRegisterFields = () => {
+export const useLoginFields = () => {
 
     const isValidAll = ref(false);
 
-    const DataFields: Ref<Fields> = ref({
+    const DataFields: Ref<LoginFields> = ref({
         login: '',
         password: '',
     })
 
-    const isntValidFields: Ref<Fields> = ref({
+    const isntValidFields: Ref<LoginFields> = ref({
         login: null,
         password: null,
     })
 
-    const ValidFields: Ref<Fields> = ref({
+    const ValidFields: Ref<LoginFields> = ref({
         login: null,
         password: null,
     })
@@ -26,13 +26,12 @@ export const useRegisterFields = () => {
 
     const validData = async () => {
 
-        let validator = new Validator<Fields>({
+        let validator = new Validator<LoginFields>({
             password: DataFields.value.password,
             login: DataFields.value.login,
-            email: DataFields.value.email,
         });
 
-        validator.setRules(RegisterRules);
+        validator.setRules(LoginRules);
 
         let validFields = await validator.run();
 

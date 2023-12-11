@@ -27,6 +27,9 @@ class UserController
             return $response;
         }
 
+
+        $userWP->data->is_email_verified = (boolean) get_metadata('user', $userWP->ID, 'isEmailVerified', true);
+
         $response->data = [
             'status' => true,
             'user' => $userWP,

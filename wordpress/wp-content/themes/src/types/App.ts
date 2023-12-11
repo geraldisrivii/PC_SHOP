@@ -25,6 +25,3 @@ export interface ICategoryMainPage {
 }
 
 
-export interface IUser{
-    
-}

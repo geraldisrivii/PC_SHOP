@@ -23,6 +23,7 @@ add_action('rest_api_init', function () {
 	// Mail
 	Router::post('/mails', 'MailController@create', 'HasCookieMiddleware');
 	Router::post('/mails/check', 'MailController@checkCode', 'HasCookieMiddleware');
+	Router::post('/mails/check', 'MailController@checkCode', 'HasCookieMiddleware');
 
 
 });

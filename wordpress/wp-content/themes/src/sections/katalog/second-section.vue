@@ -25,12 +25,14 @@
                     :matching-rules="[{ key: 'producer', type: 'matching', value: chosenFilters.producer_gpu, compareKey: 'name' }]" />
             </template>
         </div>
-        <div class="products-box">
-            <TransitionGroup name="list">
-                <Product v-if="isDataLoaded" v-for="product in products" :key="product.id"
-                    :image-src="product.images[0].src" :name="product.name" :grouped_products="product.grouped_products"
-                    :price="product.price" />
-            </TransitionGroup>
+        <div class="products-wrapper">
+            <div class="products-box">
+                <TransitionGroup name="list">
+                    <Product v-if="isDataLoaded" v-for="product in products" :key="product.id"
+                        :image-src="product.images[0].src" :name="product.name" :grouped_products="product.grouped_products"
+                        :price="product.price" />
+                </TransitionGroup>
+            </div>
         </div>
     </div>
 </template>
@@ -49,6 +51,7 @@ import { useAppSettings } from '@/hooks/App/useAppSettings';
 import { useVuex } from '@/store/useVuex';
 import { usePageSettings } from '@/hooks/App/usePageSettings';
 import { UseFilters } from '@/hooks/Katalog/UseFilters';
+import PaginateButtons from '@/components/PaginateButtons.vue';
 
 interface Emits {
     (e: 'load'): void
@@ -68,9 +71,10 @@ let isDataLoaded: Ref<boolean> = ref(false)
 
 let products: Ref<Array<IGrouppedProduct>> = ref([])
 
+
 watch(getRequestParams, async () => {
     setTimeout(async () => {
-        products.value = await getProducts(6, category_ids[route.params.category as string], getRequestParams.value)
+        products.value = await getProducts(20, category_ids[route.params.category as string], getRequestParams.value)
     }, 100)
 }, { deep: true })
 
@@ -81,15 +85,15 @@ const category_ids = {
 }
 
 watch(route, async () => {
-    products.value = await getProducts(6, category_ids[route.params.category as string], getRequestParams.value)
+    products.value = await getProducts(20, category_ids[route.params.category as string], getRequestParams.value)
     emit('load')
 }, { deep: true })
 
 
 onBeforeMount(async () => {
     onMountedAction();
-
-    products.value = await getProducts(6, category_ids[route.params.category as string], getRequestParams.value)
+    
+    products.value = await getProducts(20, category_ids[route.params.category as string], getRequestParams.value)
 
     isDataLoaded.value = true
 
@@ -102,6 +106,12 @@ onBeforeMount(async () => {
 <style lang="scss" scoped>
 @import '@/scss/base/mixins.scss';
 @import '@/scss/base/typography.scss';
+
+.paginate {
+    padding-top: 70px;
+    width: fit-content;
+    margin: 0 auto;
+}
 
 .second-section {
     display: grid;

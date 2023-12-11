@@ -1,7 +1,7 @@
 <template>
     <div class="register">
         <my-dialog :isDialogShow="isRegisterDialogShow" @update:isDialogShow="onUpdate">
-            <form class="register__form">
+            <form @submit.prevent="onSubmit" class="register__form">
                 <p class="register__title title">Регистрация</p>
                 <div class="register__input-box">
                     <input v-model="DataFields.login" class="register__input input" type="text" placeholder="Логин" />
@@ -30,6 +30,23 @@
                 <button :disabled="!isValidAll" type="submit" class="button register__button">Отправить</button>
             </form>
         </my-dialog>
+        <my-dialog v-model:isDialogShow="isCodeDialogShow">
+            <!-- <p class="register__title title">Потдверждение</p> -->
+            <form class="register__form register__code-form">
+                <p class="register__title title">Потдверждение</p>
+                <div class="register__input-box register__code-input-box">
+                    <input v-model="DataAprovedFields.code" class="register__input input" type="text"
+                        placeholder="Введите код" />
+                    <label class="register__label"
+                        :class="{ '--error': isntValidApprovedFields.code, '--success': ValidApprovedFields.code }">{{
+                            isntValidApprovedFields.code ??
+                            'Отлично' }}</label>
+                </div>
+                <p class="register__text">
+                    На вашу почту, которую вы указали при регистрации был выслан код подтверждения. Он состоит из 4-х цифр.
+                </p>
+            </form>
+        </my-dialog>
     </div>
 </template>
 
@@ -37,6 +54,9 @@
 import WP from '@/axiosWP';
 import { Ref, ref, watch } from 'vue';
 import { useRegisterFields } from '@/hooks/User/useRegisterFields';
+import { useStoreUser } from '@/hooks/User/useStoreUser';
+import { useVuex } from '@/store/useVuex';
+import { userApprovedFields } from '@/hooks/User/useApprovedFields';
 
 interface Props { isRegisterDialogShow: boolean }
 
@@ -47,10 +67,45 @@ interface Emits {
 const { isRegisterDialogShow } = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
+const isCodeDialogShow: Ref<boolean> = ref(false)
+
 
 const onUpdate = (newValue: boolean) => emit('update:isRegisterDialogShow', newValue)
 
+const onSubmit = async () => {
+    let response = await WP.post('users/signup', ValidFields.value, {
+        withCredentials: true,
+    })
+
+    user.value = response.data
+
+    let mailResponse = await WP.post('mails', {}, {
+        withCredentials: true
+    })
+
+    console.log(mailResponse.data)
+
+    if (mailResponse.status == 200) {
+        isCodeDialogShow.value = true;
+        onUpdate(false)
+    }
+
+}
+
 const { DataFields, isntValidFields, ValidFields, validData, isValidAll } = useRegisterFields();
+
+const { DataFields: DataAprovedFields, isntValidFields: isntValidApprovedFields, ValidFields: ValidApprovedFields, validData: validApprovedData, isValidAll: isValidApprovedAll } = userApprovedFields();
+
+
+watch(isValidApprovedAll, () => {
+    if (isValidAll.value) {
+        isCodeDialogShow.value = false;
+    }
+})
+
+const store = useVuex();
+
+const { user } = useStoreUser(store);
 
 </script>
 
@@ -74,6 +129,16 @@ const { DataFields, isntValidFields, ValidFields, validData, isValidAll } = useR
         padding: 20px;
     }
 
+    &__code-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        padding: 20px;
+        max-width: 460px;
+    }
+
+
     &__input-box {
         display: flex;
         flex-direction: column;
@@ -81,8 +146,18 @@ const { DataFields, isntValidFields, ValidFields, validData, isValidAll } = useR
         width: 100%;
     }
 
+    &__code-input-box {
+        margin-bottom: 20px;
+    }
+
     &__input {
         width: 100%;
+    }
+
+    &__text {
+        text-align: center;
+        font-weight: 300;
+        color: rgb(219, 219, 219);
     }
 
     &__button {

@@ -76,49 +76,25 @@ function disable_ssl_verification_for_local_development($permission, $context, $
 }
 
 
-// add_filter('woocommerce_rest_prepare_product_object', 'add_custom_price_to_groupped_response', 11, 3);
 
-// function add_custom_price_to_groupped_response(WP_REST_Response $response, $product)
-// {
-//     if ($product->has_child()) {
-//         $children_ids = $product->get_children();
-//         $childrenPrice = 0;
 
-//         $children = [];
+function custom_product_query(WP_Query $q)
+{
+    if(!isset($_GET['series'])){
+        return;
+    }
+    $series =  sanitize_text_field($_GET['series']);
 
-//         foreach ($children_ids as $child_id) {
-//             // Получаем объект дочернего товара
-//             $child = wc_get_product($child_id);
 
-//             // Добавляем цену в массив
-//             $childrenPrice += $child->get_price();
+    $tax_query = $q->get('tax_query');
 
-//             $childData = $child->get_data();
+    $tax_query[] = [
+        'taxonomy' => 'series',
+        'field' => 'slug',
+        'terms' => $series,
+    ];
 
-//             $cfsFields = CFS()->find_fields([
-//                 'post_id' => $child_id
-//             ]);
+    $q->set('tax_query', $tax_query);
+}
 
-//             foreach ($cfsFields as $key => $field) {
-//                 $childData['cfs'][$field['name']] = CFS()->get($field['name'], $child_id);
-//             }
-
-//             $categories = get_the_terms($child_id, 'product_cat');
-
-//             $childData['categories'] = $categories;
-
-//             unset($childData['category_ids']);
-
-//             unset($childData['meta_data']);
-
-//             $children[] = $childData;
-//         }
-
-//         // Добавляем массив дочерних товаров в данные ответа
-//         $response->data['price'] = (string) ($childrenPrice);
-//         $response->data['grouped_products'] = $children;
-//     }
-
-//     return $response;
-// }
-
+add_action('pre_get_posts', 'custom_product_query');

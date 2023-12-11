@@ -6,11 +6,21 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit6f49da5f70d7f40ada033c055afcbf3e
 {
+    public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'Y' => 
         array (
             'YooKassa\\Validator\\' => 19,
             'YooKassa\\' => 9,
+        ),
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Component\\VarDumper\\' => 28,
         ),
         'P' => 
         array (
@@ -35,6 +45,14 @@ class ComposerStaticInit6f49da5f70d7f40ada033c055afcbf3e
         'YooKassa\\' => 
         array (
             0 => __DIR__ . '/..' . '/yoomoney/yookassa-sdk-php/lib',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Component\\VarDumper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/var-dumper',
         ),
         'Psr\\Log\\' => 
         array (

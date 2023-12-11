@@ -1,3 +1,23 @@
+<?php
+$query = new WP_Query([
+    'post_type' => 'product',
+    'tax_query' => array(
+        [
+            'taxonomy' => 'product_type',
+            'field' => 'slug',
+            'terms' => 'grouped',
+        ],
+        [
+            'taxonomy' => 'series',
+            'field' => 'slug',
+            'terms' => 'fury',
+        ],
+    )
+    ]);
+
+
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,8 +48,8 @@
         z-index: 9999;
         transition: all 0.3s ease-in-out;
     }
-    
-    .close{
+
+    .close {
         visibility: hidden;
         /* display: none; */
         opacity: 0;

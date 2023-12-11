@@ -171,7 +171,7 @@ class GroupedProductFilter extends Filter
         return $response;
     }
 
-    public static function add_products_to_groupped_response(WP_REST_Response $response, $product)
+    public static function add_products_to_groupped_response(WP_REST_Response $response, $product, $request)
     {
         if ($product->has_child()) {
             $children_ids = $product->get_children();
@@ -183,23 +183,14 @@ class GroupedProductFilter extends Filter
 
                 $childData = $child->get_data();
 
-                $cfsFields = CFS()->find_fields([
-                    'post_id' => $child_id
-                ]);
+                $childResponse = apply_filters('woocommerce_rest_prepare_product_object', new WP_REST_Response($childData), $child, $request);
 
-                foreach ($cfsFields as $key => $field) {
-                    $childData['cfs'][$field['name']] = CFS()->get($field['name'], $child_id);
+                $categories = $child->get_category_ids();
+                foreach ($categories as $id) {
+                    $childResponse->data['categories'][] = get_term($id, 'product_cat');
                 }
-
-                $categories = get_the_terms($child_id, 'product_cat');
-
-                $childData['categories'] = $categories;
-
-                unset($childData['category_ids']);
-
-                unset($childData['meta_data']);
-
-                $children[] = $childData;
+                
+                $children[] = $childResponse->data;
             }
             $response->data['grouped_products'] = $children;
         }

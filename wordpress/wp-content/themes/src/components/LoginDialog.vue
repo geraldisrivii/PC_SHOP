@@ -1,8 +1,8 @@
 <template>
     <div class="register">
-        <my-dialog :isDialogShow="isRegisterDialogShow" @update:isDialogShow="onUpdate">
+        <my-dialog :isDialogShow="isLoginDialogShow" @update:isDialogShow="onUpdate">
             <form class="register__form">
-                <p class="register__title title">Регистрация</p>
+                <p class="register__title title">Авторизация</p>
                 <div class="register__input-box">
                     <input v-model="DataFields.login" class="register__input input" type="text" placeholder="Логин" />
                     <label class="register__label"
@@ -27,21 +27,21 @@
 <script setup lang="ts">
 import WP from '@/axiosWP';
 import { Ref, ref, watch } from 'vue';
-import { useRegisterFields } from '@/hooks/User/useRegisterFields';
+import { useLoginFields } from '@/hooks/User/useLoginFields';
 
-interface Props { isRegisterDialogShow: boolean }
+interface Props { isLoginDialogShow: boolean }
 
 interface Emits {
-    (e: 'update:isRegisterDialogShow', status: boolean): void
+    (e: 'update:isLoginDialogShow', status: boolean): void
 }
 
-const { isRegisterDialogShow } = defineProps<Props>()
+const { isLoginDialogShow } = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
 
-const onUpdate = (newValue: boolean) => emit('update:isRegisterDialogShow', newValue)
+const onUpdate = (newValue: boolean) => emit('update:isLoginDialogShow', newValue)
 
-const { DataFields, isntValidFields, ValidFields, validData, isValidAll } = useRegisterFields();
+const { DataFields, isntValidFields, ValidFields, validData, isValidAll } = useLoginFields();
 
 </script>
 

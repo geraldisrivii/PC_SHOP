@@ -1,10 +1,8 @@
 <template>
-    <RegisterDialog v-model:isRegisterDialogShow="isRegisterDialogShow"/>
-    <SiteHeader 
-    v-model:isLoginDialogShow="isLoginDialogShow" 
-    v-model:isRegisterDialogShow="isRegisterDialogShow" 
-    v-model:isProfileShow="isProfileShow" 
-    v-model:isBasketShow="isBasketShow" v-if="isDataLoaded" />
+    <RegisterDialog v-model:isRegisterDialogShow="isRegisterDialogShow" />
+    <LoginDialog v-model:isLoginDialogShow="isLoginDialogShow" />
+    <SiteHeader v-model:isLoginDialogShow="isLoginDialogShow" v-model:isRegisterDialogShow="isRegisterDialogShow"
+        v-model:isProfileShow="isProfileShow" v-model:isBasketShow="isBasketShow" v-if="isDataLoaded" />
     <router-view v-if="isDataLoaded"></router-view>
     <SiteFooter v-if="isDataLoaded" />
     <Preloader ref="preloader" />
@@ -22,6 +20,9 @@ import { useAppSettings } from './hooks/App/useAppSettings';
 import SiteFooter from './includes/SiteFooter.vue';
 import Preloader from './components/Preloader.vue';
 import RegisterDialog from './components/RegisterDialog.vue';
+import LoginDialog from './components/LoginDialog.vue';
+import WP from '@/axiosWP';
+import { useStoreUser } from '@/hooks/User/useStoreUser';
 
 // DATA
 let isDataLoaded: Ref<boolean> = ref(false);
@@ -37,6 +38,17 @@ const { app } = useAppSettings(store)
 
 onMounted(async () => {
     app.value = await getSettings()
+
+    await WP.post('sessions', {}, {
+        withCredentials: true
+    })
+    
+    const { user } = useStoreUser(store);
+
+    let response = await WP.get('users/current')
+
+    user.value = response.data.status == false ? null : response.data
+
     isDataLoaded.value = true
 })
 </script>
@@ -121,7 +133,8 @@ input {
     padding: 17px 34px;
     text-align: center;
     transition: all .3s ease-in-out;
-    &:disabled{
+
+    &:disabled {
         background: #E4E4E4;
         cursor: not-allowed;
     }
