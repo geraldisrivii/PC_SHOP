@@ -2,21 +2,33 @@
 $query = new WP_Query([
     'post_type' => 'product',
     'tax_query' => array(
+        // [
+        //     'taxonomy' => 'product_type',
+        //     'field' => 'slug',
+        //     'terms' => 'grouped',
+        // ],
+        // [
+        //     'taxonomy' => 'series',
+        //     'field' => 'slug',
+        //     'terms' => 'fury',
+        // ],
         [
-            'taxonomy' => 'product_type',
+            'taxonomy' => 'product_cat',
             'field' => 'slug',
-            'terms' => 'grouped',
+            'terms' => 'cpu',
         ],
+    ),
+    'meta_query' => [
         [
-            'taxonomy' => 'series',
-            'field' => 'slug',
-            'terms' => 'fury',
+            'prop' => 'prop',
+            'value' => "Тип памяти:DDR4",
+            'compare' => '=',
         ],
-    )
-    ]);
+    ]
+]);
 
 
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +42,14 @@ $query = new WP_Query([
 
 <body>
     <div id="app"></div>
+
+    <?php
+    // dd($query->posts);
+    // dd(array_map(function ($item) {
+    //     return CFS()->get('properties', $item->ID);
+    // }, $query->posts));
+
+    ?>
     <div id="preloader">
 
     </div>

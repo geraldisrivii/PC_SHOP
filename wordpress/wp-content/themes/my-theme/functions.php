@@ -76,25 +76,38 @@ function disable_ssl_verification_for_local_development($permission, $context, $
 }
 
 
-
-
-function custom_product_query(WP_Query $q)
+function filter_woocommerce_rest_tag_exclude($args, $request)
 {
-    if(!isset($_GET['series'])){
-        return;
+    if (!isset($_GET['series'])) {
+        return $args;
     }
-    $series =  sanitize_text_field($_GET['series']);
+    $series = sanitize_text_field($_GET['series']);
 
-
-    $tax_query = $q->get('tax_query');
-
-    $tax_query[] = [
+    $args['tax_query'][] = [
         'taxonomy' => 'series',
         'field' => 'slug',
         'terms' => $series,
     ];
-
-    $q->set('tax_query', $tax_query);
+    return $args;
 }
+add_filter("woocommerce_rest_product_object_query", 'filter_woocommerce_rest_tag_exclude', 10, 2);
 
-add_action('pre_get_posts', 'custom_product_query');
+
+
+add_action('woocommerce_process_product_meta', 'save_my_custom_settings');
+function save_my_custom_settings($post_id)
+{
+    $props = get_post_meta($post_id, 'prop', false);
+    $filteredProps = array_map(function ($prop) {
+        return trim(preg_replace('/(\s+)?:(\s+)?/', ':', $prop));
+    }, $props);
+
+    $result = [];
+    foreach ($filteredProps as $key => $filteredProp) {
+        $prop = $props[$key];
+
+        $result[] = update_post_meta($post_id, 'prop', $filteredProp, $prop);
+    }
+
+    dd($result);
+}

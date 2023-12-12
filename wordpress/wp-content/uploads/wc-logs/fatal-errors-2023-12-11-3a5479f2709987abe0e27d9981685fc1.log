@@ -120,3 +120,9 @@ Stack trace:
 #16 {main}
   thrown в /var/www/html/wp-content/plugins/register-settings-button-admin/register-settings-button-admin.php на строке 62
 
+2023-12-11T07:44:33+00:00 CRITICAL syntax error, unexpected token "}", expecting ";" в /var/www/html/wp-content/themes/my-theme/functions.php на строке 105
+
+2023-12-11T12:53:50+00:00 CRITICAL syntax error, unexpected token "}" в /var/www/html/wp-content/themes/my-theme/functions.php на строке 116
+
+2023-12-11T12:53:51+00:00 CRITICAL syntax error, unexpected token "}" в /var/www/html/wp-content/themes/my-theme/functions.php на строке 116
+
