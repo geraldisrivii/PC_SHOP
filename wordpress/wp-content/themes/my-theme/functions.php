@@ -102,12 +102,9 @@ function save_my_custom_settings($post_id)
         return trim(preg_replace('/(\s+)?:(\s+)?/', ':', $prop));
     }, $props);
 
-    $result = [];
     foreach ($filteredProps as $key => $filteredProp) {
         $prop = $props[$key];
 
         $result[] = update_post_meta($post_id, 'prop', $filteredProp, $prop);
     }
-
-    dd($result);
 }

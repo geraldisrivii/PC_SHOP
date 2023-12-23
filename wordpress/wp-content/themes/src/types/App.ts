@@ -1,4 +1,6 @@
+import { Ref } from 'vue';
 import { IProductCategory } from './Product';
+import SpecDialog from '@/components/SpecDialog.vue';
 
 
 export interface Settings {
@@ -9,7 +11,8 @@ export interface Settings {
 // store
 export interface State {
     app: Settings | null,
-    page: Settings | null
+    page: Settings | null,
+    spec_dialog: InstanceType<typeof SpecDialog> | null,
 }
 
 
@@ -25,3 +28,7 @@ export interface ICategoryMainPage {
 }
 
 
+export interface MenuButtonItem {
+    value: string | number;
+    label: string;
+}   

@@ -40,4 +40,5 @@ class RestApiFilter extends Filter
 
         return $response;
     }
+
 }

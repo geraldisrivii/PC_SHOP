@@ -17,12 +17,12 @@ class GroupedProductFilter extends Filter
         $namespaceOfClass = self::$namespaceOfClass;
 
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::add_custom_price_to_groupped_response", 14, 3);
-        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::add_products_to_groupped_response", 15, 3);
-        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::cpu_producer_filter", 16, 3);
-        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::cpu_socket_filter", 17, 3);
-        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::cpu_model_filter", 18, 3);
-        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::gpu_producer_filter", 19, 3);
-        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::gpu_model_filter", 20, 3);
+        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::add_products_to_groupped_response", 18, 3);
+        // add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::cpu_producer_filter", 16, 3);
+        // add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::cpu_socket_filter", 17, 3);
+        // add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::cpu_model_filter", 18, 3);
+        // add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::gpu_producer_filter", 19, 3);
+        // add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::gpu_model_filter", 20, 3);
     }
     public static function gpu_producer_filter(WP_REST_Response $response, WC_Product $groped_product, WP_REST_Request $request)
     {

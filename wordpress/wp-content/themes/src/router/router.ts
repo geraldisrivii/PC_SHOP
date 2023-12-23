@@ -12,6 +12,11 @@ const routes: Array<RouteRecordRaw> = [
         component: async () => import('@/views/katalog.vue'),
         name: 'katalog',
     },
+    {
+        path: '/katalog/:category/:product_slug',
+        component: async () => import('@/views/productPage.vue'),
+        name: 'product',
+    },
 ]
 
 const router = createRouter({

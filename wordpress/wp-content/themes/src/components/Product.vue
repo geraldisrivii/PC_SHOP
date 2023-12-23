@@ -1,5 +1,5 @@
 <template>
-    <div class="product">
+    <div @click="onClick" class="product">
         <img class="product__image" :src="imageSrc" :alt="name">
         <div class="product-description">
             <p class="product-description__name">{{ name }}</p>
@@ -22,11 +22,15 @@
 <script setup lang="ts">
 import { IProduct } from '@/types/Product';
 import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 
 
 interface Props {
     imageSrc: string;
     name: string;
+    id: number;
+    slug: string;
+    category_slug: string;
     grouped_products: IProduct[];
     price: string | number;
 }
@@ -34,7 +38,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const necessarySpecsSlugs = [
-    'cpu', 'gpu', 'ram'
+    'cpu', 'gpu', 'ram', 'cpu-laptop-specs', 'gpu-laptop-specs', 'ram-laptop-specs'
 ]
 const grouppedProductNames = computed(() => {
 
@@ -43,15 +47,31 @@ const grouppedProductNames = computed(() => {
     return filteredArray
 })
 
-const productCpu = computed(() => grouppedProductNames.value.find(item => item.categories.find(category => category.slug == 'cpu')))
+console.log(grouppedProductNames.value)
+const productCpu = computed(() => grouppedProductNames.value.find(item => item.categories.find(category => category.slug.includes('cpu'))))
 
-const productGpu = computed(() => grouppedProductNames.value.find(item => item.categories.find(category => category.slug == 'gpu')))
+const productGpu = computed(() => grouppedProductNames.value.find(item => item.categories.find(category => category.slug.includes('gpu'))))
 
-const productRam = computed(() => grouppedProductNames.value.find(item => item.categories.find(category => category.slug == 'ram')))
+const productRam = computed(() => grouppedProductNames.value.find(item => item.categories.find(category => category.slug.includes('ram'))))
+
+const router = useRouter()
+
+const onClick = () => {
+    router.push({
+        name: 'product',
+        params: {
+            product_slug: props.slug,
+            category: props.category_slug
+        },
+    })
+}
 
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/base/mixins.scss';
+@import '@/scss/base/typography.scss';
+
 .product {
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     padding-top: 15px;
@@ -71,6 +91,7 @@ const productRam = computed(() => grouppedProductNames.value.find(item => item.c
 
     transition: all 0.3s;
 
+
     &:hover {
         cursor: pointer;
         box-shadow: 0 0 10px #ffffff;
@@ -84,7 +105,7 @@ const productRam = computed(() => grouppedProductNames.value.find(item => item.c
 
     &__price {
         font-size: 18px;
-        font-weight: 500px;
+        font-weight: 500;
         text-transform: uppercase;
     }
 }

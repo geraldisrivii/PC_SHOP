@@ -2,5 +2,7 @@
   "main.js": "auto/assets/js/main.js",
   "assets/js/src_views_main_vue.js": "auto/assets/js/src_views_main_vue.js",
   "assets/js/src_views_katalog_vue.js": "auto/assets/js/src_views_katalog_vue.js",
-  "assets/js/vendors-node_modules_imagesloaded_imagesloaded_js.js": "auto/assets/js/vendors-node_modules_imagesloaded_imagesloaded_js.js"
+  "assets/js/src_views_productPage_vue.js": "auto/assets/js/src_views_productPage_vue.js",
+  "assets/js/vendors-node_modules_imagesloaded_imagesloaded_js.js": "auto/assets/js/vendors-node_modules_imagesloaded_imagesloaded_js.js",
+  "assets/js/vendors-node_modules_deep-equal_index_js.js": "auto/assets/js/vendors-node_modules_deep-equal_index_js.js"
 }

@@ -10,11 +10,11 @@
                 Рабочие станции
             </button>
         </li>
-        <!-- <li class="site-menu__item">
+        <li class="site-menu__item">
             <button @click=" $router.push({ name: 'katalog', params: { category: 'laptop' } })" class="site-menu__button">
                 Игровые ноутбуки
             </button>
-        </li> -->
+        </li>
     </ul>
 </template>
 
