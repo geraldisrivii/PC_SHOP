@@ -38,6 +38,7 @@ export const useProducts = () => {
                 series: key
             })
         }
+        
     }
 
     return {

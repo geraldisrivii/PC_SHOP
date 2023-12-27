@@ -97,14 +97,19 @@ add_filter("woocommerce_rest_product_object_query", 'filter_woocommerce_rest_tag
 add_action('woocommerce_process_product_meta', 'save_my_custom_settings');
 function save_my_custom_settings($post_id)
 {
-    $props = get_post_meta($post_id, 'prop', false);
-    $filteredProps = array_map(function ($prop) {
-        return trim(preg_replace('/(\s+)?:(\s+)?/', ':', $prop));
-    }, $props);
+    $properties = CFS()->get('properties');
 
-    foreach ($filteredProps as $key => $filteredProp) {
-        $prop = $props[$key];
+    delete_post_meta($post_id, 'prop');
 
-        $result[] = update_post_meta($post_id, 'prop', $filteredProp, $prop);
+    foreach ($properties as $prop) {
+
+        $term = get_term($prop['key'][0]);
+
+        $value = $prop['value'];
+
+        $termName = $term->name;
+        $termSlug = $term->slug;
+
+        add_post_meta($post_id, 'prop', "{$termSlug}:{$termName}:{$value}");
     }
 }

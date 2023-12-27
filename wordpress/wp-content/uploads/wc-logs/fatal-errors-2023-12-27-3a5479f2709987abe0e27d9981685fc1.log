@@ -1,0 +1,12 @@
+2023-12-27T09:31:05+00:00 CRITICAL Unclosed '{' on line 97 does not match ')' в /var/www/html/wp-content/themes/my-theme/functions.php на строке 99
+
+2023-12-27T09:35:50+00:00 CRITICAL syntax error, unexpected token "foreach" в /var/www/html/wp-content/themes/my-theme/functions.php на строке 103
+
+2023-12-27T09:50:03+00:00 CRITICAL syntax error, unexpected identifier "dump" в /var/www/html/wp-content/themes/my-theme/functions.php на строке 114
+
+2023-12-27T10:20:44+00:00 CRITICAL syntax error, unexpected token "}" в /var/www/html/wp-content/themes/my-theme/functions.php на строке 106
+
+2023-12-27T10:21:00+00:00 CRITICAL syntax error, unexpected token "}" в /var/www/html/wp-content/themes/my-theme/functions.php на строке 107
+
+2023-12-27T10:21:32+00:00 CRITICAL syntax error, unexpected token "}", expecting variable or "{" or "$" в /var/www/html/wp-content/themes/my-theme/functions.php на строке 111
+
