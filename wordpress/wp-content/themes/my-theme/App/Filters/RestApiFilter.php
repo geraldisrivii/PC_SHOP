@@ -16,6 +16,7 @@ class RestApiFilter extends Filter
         $namespaceOfClass = self::class;
 
         add_filter('rest_post_dispatch', "{$namespaceOfClass}::exludeEmpty", 12, 3);
+        add_filter('woocommerce_rest_check_permissions', "{$namespaceOfClass}::disable_ssl_verification_for_local_development", 10, 4);
     }
 
     public static function exludeEmpty(WP_REST_Response $response, $handler, WP_REST_Request $request)
@@ -36,5 +37,14 @@ class RestApiFilter extends Filter
 
         return $response;
     }
+
+    public static function disable_ssl_verification_for_local_development($permission, $context, $object_id, $post_type)
+    {
+        if (!is_ssl()) {
+            return true;
+        }
+        return $permission;
+    }
+
 
 }
