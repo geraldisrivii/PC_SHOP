@@ -1,5 +1,5 @@
 <template>
-    <SpecDialog ref="spec_dialog_instance"/>
+    <SpecDialog ref="spec_dialog_instance" />
     <RegisterDialog v-model:isRegisterDialogShow="isRegisterDialogShow" />
     <LoginDialog v-model:isLoginDialogShow="isLoginDialogShow" />
     <SiteHeader v-model:isLoginDialogShow="isLoginDialogShow" v-model:isRegisterDialogShow="isRegisterDialogShow"
@@ -18,7 +18,6 @@ import SiteHeader from './includes/SiteHeader.vue';
 import { useVuex } from './store/useVuex';
 import { useAppSettings } from './hooks/App/useAppSettings';
 import SiteFooter from './includes/SiteFooter.vue';
-import Preloader from './components/Preloader.vue';
 import RegisterDialog from './components/RegisterDialog.vue';
 import LoginDialog from './components/LoginDialog.vue';
 import WP from '@/axiosWP';
@@ -70,6 +69,25 @@ onMounted(async () => {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #858585;
+        border-radius: 100px;
+        cursor: pointer;
+    }
+
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
 }
 
 html {
@@ -180,6 +198,38 @@ input {
         font-weight: 300;
         line-height: normal;
         letter-spacing: 0.18px;
+    }
+}
+
+.text-area {
+    padding: 15px 21px;
+    border-radius: 5px;
+    background-color: #E4E4E4;
+
+    font-family: Rubik;
+    font-size: 18px;
+
+    font-weight: 500;
+
+    resize: none;
+
+    outline-offset: 0px;
+
+    &::placeholder {
+        color: #000;
+        font-family: Rubik;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+        letter-spacing: 0.18px;
+
+    }
+
+    &:focus-visible {
+        border: none;
+        outline: none;
+        transform: none;
     }
 }
 

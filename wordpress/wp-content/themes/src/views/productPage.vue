@@ -31,7 +31,9 @@ let { loader } = useLoad(1)
 const product: Ref<IGrouppedProduct | null> = ref(null)
 
 loader.value.onAllisLoaded = () => {
-    preloaderClose();
+    setTimeout(() => {
+        preloaderClose();
+    }, 1000)
 }
 
 onBeforeMount(async () => {

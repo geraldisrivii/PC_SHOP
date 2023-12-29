@@ -6,7 +6,7 @@
         </div>
         <div class="review-description-box">
             <p class="review-description-box__title">{{ title }}</p>
-            <p class="review-description-box__text">{{ text }}</p>
+            <div class="review-description-box__text" v-html="text"></div>
         </div>
         <div class="review-images">
             <button v-for="image in images" class="review-images__button">

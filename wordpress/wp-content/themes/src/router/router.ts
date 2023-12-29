@@ -33,14 +33,13 @@ const router = createRouter({
 })
 
 declare var preloaderOpen: () => void;
-declare var preloaderClose: () => void;
 
 
 router.afterEach((to, from) => {
     window.scrollTo(0, 0)
-    if (to.fullPath == from.fullPath) {
-        return
-    }
+    // if (to.fullPath == from.fullPath) {
+    //     return
+    // }
     preloaderOpen();
 })
 

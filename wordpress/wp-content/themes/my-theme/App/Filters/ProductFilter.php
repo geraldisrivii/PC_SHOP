@@ -54,7 +54,12 @@ class ProductFilter extends Filter
                 return $response;
             }
 
-            $response->data['images'][]['src'] = wp_get_attachment_image_src($product->get_image_id(), 'full')[0];
+            $attachmentImage = [
+                'src' => wp_get_attachment_image_src($product->get_image_id(), 'full')[0],
+                'name' => $product->get_image_id()
+            ];
+
+            $response->data['images'][] = $attachmentImage;
 
             if(empty($product->get_gallery_image_ids())){
                 return $response;

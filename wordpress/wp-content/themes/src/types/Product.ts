@@ -1,8 +1,7 @@
-export interface IProductCategory {
-    term_id: number;
-    name: string;
-    slug: string;
-    [key: string]: any;
+import { Term } from "./App";
+
+export interface IProductCategory extends Term {
+    
 }
 
 export interface IProduct {
@@ -10,7 +9,7 @@ export interface IProduct {
     name: string;
     cfs: {
         shortly_name: string;
-        properties: Array<{prop: string}>;
+        properties: Array<{key: Array<Term>, value: string}>;
         [key: string]: any;
     }
     price: string | number;

@@ -10,8 +10,8 @@
             </div>
             <div class="spec-dialog-specs-box">
                 <Spec v-for="prop in spec.cfs.properties"
-                    :specValue="prop.prop.slice(prop.prop.lastIndexOf(':') + 1, prop.prop.length)"
-                    :specLabel="prop.prop.slice(prop.prop.indexOf(':') + 1, prop.prop.lastIndexOf(':') + 1)" />
+                    :specValue="prop.value"
+                    :specLabel="prop.key[0].name + ':'" />
             </div>
         </div>
     </my-dialog>

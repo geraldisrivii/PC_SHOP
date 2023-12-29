@@ -22,7 +22,7 @@
             <MenuButtons :items="menuItems" v-model:chosenItem="chosenMenuItem" />
         </div>
     </div>
-    <AddReviewDialog v-model:is-add-review-dialog-show="isAddReviewDialogShow" />
+    <AddReviewDialog :product-id="product.id" v-model:is-add-review-dialog-show="isAddReviewDialogShow" />
 </template>
 
 <script setup lang="ts">
@@ -59,7 +59,7 @@ const chosenMenuItem: Ref<MenuButtonItem> = ref({
 
 const reviews: Ref<Array<IProductReview>> = ref([])
 
-const isAddReviewDialogShow: Ref<boolean> = ref(false)
+const isAddReviewDialogShow: Ref<boolean> = ref(true)
 
 const getProductReviews = async () => {
     reviews.value = (await WOO.get('products/reviews', {
@@ -87,6 +87,7 @@ onMounted(async () => {
 .second-section-description {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .second-section {
@@ -113,6 +114,11 @@ onMounted(async () => {
 }
 
 .second-section-reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     width: 100%;
+    height: 400px;
+    overflow-y: scroll;
 }
 </style>

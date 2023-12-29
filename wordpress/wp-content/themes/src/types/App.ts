@@ -31,4 +31,18 @@ export interface ICategoryMainPage {
 export interface MenuButtonItem {
     value: string | number;
     label: string;
-}   
+}
+
+export interface Term {
+    term_id: number;
+    name: string;
+    slug: string;
+    [key: string]: any;
+}
+
+
+export interface ApiImage {
+    name: string;
+    src: string;
+    [key: string]: any;
+}
