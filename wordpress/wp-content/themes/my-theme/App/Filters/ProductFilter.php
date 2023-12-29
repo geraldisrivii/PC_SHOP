@@ -2,7 +2,6 @@
 
 namespace App\Filters;
 
-use App\Models\ProductModel;
 use \WP_REST_Request;
 use \WP_REST_Response;
 use \WC_Product;
@@ -12,10 +11,9 @@ use App\Filters\Filter;
 
 class ProductFilter extends Filter
 {
-    private static $namespaceOfClass = 'App\\Filters\\ProductFilter';
     public static function register()
     {
-        $namespaceOfClass = self::$namespaceOfClass;
+        $namespaceOfClass = self::class;
 
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::without_grouped_products", 13, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::add_images_to_response", 14, 3);

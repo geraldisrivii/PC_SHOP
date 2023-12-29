@@ -17,6 +17,22 @@ class GroupedProductFilter extends Filter
 
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::add_custom_price_to_groupped_response", 14, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::add_products_to_groupped_response", 18, 3);
+        add_filter("woocommerce_rest_product_object_query", "{$namespaceOfClass}::series_filter", 50, 2);
+    }
+
+    public static function series_filter($args, $request)
+    {
+        if (!isset($_GET['series'])) {
+            return $args;
+        }
+        $series = sanitize_text_field($_GET['series']);
+
+        $args['tax_query'][] = [
+            'taxonomy' => 'series',
+            'field' => 'slug',
+            'terms' => $series,
+        ];
+        return $args;
     }
 
     public static function add_custom_price_to_groupped_response(WP_REST_Response $response, $product)
@@ -58,7 +74,7 @@ class GroupedProductFilter extends Filter
                 foreach ($categories as $id) {
                     $childResponse->data['categories'][] = get_term($id, 'product_cat');
                 }
-                
+
                 $children[] = $childResponse->data;
             }
             $response->data['grouped_products'] = $children;

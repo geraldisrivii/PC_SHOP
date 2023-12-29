@@ -76,39 +76,3 @@ function disable_ssl_verification_for_local_development($permission, $context, $
 }
 
 
-function filter_woocommerce_rest_tag_exclude($args, $request)
-{
-    if (!isset($_GET['series'])) {
-        return $args;
-    }
-    $series = sanitize_text_field($_GET['series']);
-
-    $args['tax_query'][] = [
-        'taxonomy' => 'series',
-        'field' => 'slug',
-        'terms' => $series,
-    ];
-    return $args;
-}
-add_filter("woocommerce_rest_product_object_query", 'filter_woocommerce_rest_tag_exclude', 10, 2);
-
-
-
-add_action('woocommerce_process_product_meta', 'save_my_custom_settings');
-function save_my_custom_settings($post_id)
-{
-    $properties = CFS()->get('properties');
-
-    delete_post_meta($post_id, 'prop');
-
-    foreach ($properties as $prop) {
-
-        $term = get_term($prop['key'][0]);
-
-        $value = $prop['value'];
-
-        $termSlug = $term->slug;
-        
-        add_post_meta($post_id, 'prop', "{$termSlug}:{$value}");
-    }
-}

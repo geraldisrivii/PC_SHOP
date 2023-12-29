@@ -1,0 +1,58 @@
+2023-12-29T04:52:38+00:00 CRITICAL Uncaught Error: Class "App\Actions\ActionClass" not found in /var/www/html/wp-content/themes/my-theme/App/Actions/ProductActions.php:5
+Stack trace:
+#0 /var/www/html/wp-content/plugins/svg-support/vendor/composer/ClassLoader.php(444): include()
+#1 /var/www/html/wp-content/plugins/svg-support/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/var/www/html/w...')
+#2 /var/www/html/wp-content/themes/my-theme/App/actions.php(6): Composer\Autoload\ClassLoader->loadClass('App\\Actions\\Pro...')
+#3 /var/www/html/wp-content/themes/my-theme/App/index.php(15): require_once('/var/www/html/w...')
+#4 /var/www/html/wp-content/themes/my-theme/functions.php(6): require_once('/var/www/html/w...')
+#5 /var/www/html/wp-settings.php(611): include('/var/www/html/w...')
+#6 /var/www/html/wp-config.php(96): require_once('/var/www/html/w...')
+#7 /var/www/html/wp-load.php(50): require_once('/var/www/html/w...')
+#8 /var/www/html/wp-admin/admin.php(34): require_once('/var/www/html/w...')
+#9 /var/www/html/wp-admin/post.php(12): require_once('/var/www/html/w...')
+#10 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Actions/ProductActions.php на строке 5
+
+2023-12-29T04:52:38+00:00 CRITICAL Uncaught Error: Class "App\Actions\ActionClass" not found in /var/www/html/wp-content/themes/my-theme/App/Actions/ProductActions.php:5
+Stack trace:
+#0 /var/www/html/wp-content/plugins/svg-support/vendor/composer/ClassLoader.php(444): include()
+#1 /var/www/html/wp-content/plugins/svg-support/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/var/www/html/w...')
+#2 /var/www/html/wp-content/themes/my-theme/App/actions.php(6): Composer\Autoload\ClassLoader->loadClass('App\\Actions\\Pro...')
+#3 /var/www/html/wp-content/themes/my-theme/App/index.php(15): require_once('/var/www/html/w...')
+#4 /var/www/html/wp-content/themes/my-theme/functions.php(6): require_once('/var/www/html/w...')
+#5 /var/www/html/wp-settings.php(611): include('/var/www/html/w...')
+#6 /var/www/html/wp-config.php(96): require_once('/var/www/html/w...')
+#7 /var/www/html/wp-load.php(50): require_once('/var/www/html/w...')
+#8 /var/www/html/wp-admin/admin-ajax.php(22): require_once('/var/www/html/w...')
+#9 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Actions/ProductActions.php на строке 5
+
+2023-12-29T04:52:39+00:00 CRITICAL Uncaught Error: Class "App\Actions\ActionClass" not found in /var/www/html/wp-content/themes/my-theme/App/Actions/ProductActions.php:5
+Stack trace:
+#0 /var/www/html/wp-content/plugins/svg-support/vendor/composer/ClassLoader.php(444): include()
+#1 /var/www/html/wp-content/plugins/svg-support/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/var/www/html/w...')
+#2 /var/www/html/wp-content/themes/my-theme/App/actions.php(6): Composer\Autoload\ClassLoader->loadClass('App\\Actions\\Pro...')
+#3 /var/www/html/wp-content/themes/my-theme/App/index.php(15): require_once('/var/www/html/w...')
+#4 /var/www/html/wp-content/themes/my-theme/functions.php(6): require_once('/var/www/html/w...')
+#5 /var/www/html/wp-settings.php(611): include('/var/www/html/w...')
+#6 /var/www/html/wp-config.php(96): require_once('/var/www/html/w...')
+#7 /var/www/html/wp-load.php(50): require_once('/var/www/html/w...')
+#8 /var/www/html/wp-admin/admin.php(34): require_once('/var/www/html/w...')
+#9 /var/www/html/wp-admin/post.php(12): require_once('/var/www/html/w...')
+#10 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Actions/ProductActions.php на строке 5
+
+2023-12-29T04:53:13+00:00 CRITICAL Uncaught Error: Class "App\Actions\ActionsClass" not found in /var/www/html/wp-content/themes/my-theme/App/Actions/ProductActions.php:7
+Stack trace:
+#0 /var/www/html/wp-content/plugins/svg-support/vendor/composer/ClassLoader.php(444): include()
+#1 /var/www/html/wp-content/plugins/svg-support/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/var/www/html/w...')
+#2 /var/www/html/wp-content/themes/my-theme/App/actions.php(6): Composer\Autoload\ClassLoader->loadClass('App\\Actions\\Pro...')
+#3 /var/www/html/wp-content/themes/my-theme/App/index.php(15): require_once('/var/www/html/w...')
+#4 /var/www/html/wp-content/themes/my-theme/functions.php(6): require_once('/var/www/html/w...')
+#5 /var/www/html/wp-settings.php(611): include('/var/www/html/w...')
+#6 /var/www/html/wp-config.php(96): require_once('/var/www/html/w...')
+#7 /var/www/html/wp-load.php(50): require_once('/var/www/html/w...')
+#8 /var/www/html/wp-admin/admin-ajax.php(22): require_once('/var/www/html/w...')
+#9 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Actions/ProductActions.php на строке 7
+

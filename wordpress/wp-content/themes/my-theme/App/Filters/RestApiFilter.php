@@ -2,22 +2,18 @@
 
 namespace App\Filters;
 
-use App\Models\ProductModel;
 use \WP_REST_Request;
 use \WP_REST_Response;
-use \WC_Product;
 
 use App\Filters\Filter;
 
 
 class RestApiFilter extends Filter
 {
-    private static $namespaceOfClass = 'App\\Filters\\RestApiFilter';
 
     public static function register()
     {
-        $namespaceOfClass = self::$namespaceOfClass;
-
+        $namespaceOfClass = self::class;
 
         add_filter('rest_post_dispatch', "{$namespaceOfClass}::exludeEmpty", 12, 3);
     }

@@ -2,7 +2,7 @@
 
 namespace App\Actions;
 
-abstract class ActionClass
+abstract class ActionsClass
 {
     public static abstract function register();
 }
