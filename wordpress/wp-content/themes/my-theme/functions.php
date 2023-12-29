@@ -107,9 +107,8 @@ function save_my_custom_settings($post_id)
 
         $value = $prop['value'];
 
-        $termName = $term->name;
         $termSlug = $term->slug;
 
-        add_post_meta($post_id, 'prop', "{$termSlug}:{$termName}:{$value}");
+        add_post_meta($post_id, 'prop', "{$termSlug}:{$value}");
     }
 }
