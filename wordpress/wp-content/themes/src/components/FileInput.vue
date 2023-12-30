@@ -1,6 +1,6 @@
 <template>
     <div class="input-box">
-        <input ref="fileInput" @change="inputChange" style="display: none;" :multiple="isMultiple" type="file" />
+        <input :name="name + '[]'" ref="fileInput" @change="inputChange" style="display: none;" :multiple="isMultiple" type="file" />
         <button type="button" @click="inputOpen" class="button button_white button_around">{{ buttonText }}</button>
     </div>
 </template>
@@ -11,15 +11,16 @@ import { Ref, ref } from 'vue';
 
 
 interface Props {
-    images: Array<ApiImage>;
+    images: FileList;
     buttonText: string;
     isMultiple: boolean;
+    name: string;
 }
 
 const { images, buttonText, isMultiple } = defineProps<Props>()
 
 interface Emits {
-    (e: 'update:images', images: Array<ApiImage>): void;
+    (e: 'update:images', images: FileList): void;
 }
 
 const emit = defineEmits<Emits>();
@@ -28,16 +29,11 @@ const inputChange = (event: Event) => {
 
     let files = (event.target as HTMLInputElement).files;
 
-    let arrayOfFile = [];
-
     for (const file of files) {
-        arrayOfFile.push({
-            'src': URL.createObjectURL(file),
-            'name': file.name
-        })
+        file['src'] = URL.createObjectURL(file)
     }
-    console.log(arrayOfFile);
-    emit('update:images', arrayOfFile);
+    console.log(files);
+    emit('update:images', files);
 }
 
 const fileInput: Ref<HTMLInputElement | null> = ref(null)

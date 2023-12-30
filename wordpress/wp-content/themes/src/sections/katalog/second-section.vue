@@ -49,13 +49,13 @@ const { serieses, products, onMountedAction } = useProducts()
 
 
 watch(route, async () => {
-    onMountedAction(route.params.category as string)
+    await onMountedAction(route.params.category as string)
     emit('load')
 }, { deep: true })
 
 onBeforeMount(async () => {
 
-    onMountedAction(route.params.category as string)
+    await onMountedAction(route.params.category as string)
 
     isDataLoaded.value = true
 

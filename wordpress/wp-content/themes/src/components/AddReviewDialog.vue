@@ -13,7 +13,7 @@
                     placeholder="Текст коментария"></textarea>
                 <div class="add-review-action-box">
                     <FileInput :buttonText="'Загрузить изображения'" :isMultiple="true"
-                        v-model:images="requestReview.images" />
+                        v-model:images="requestReview.images" :name="'images'" />
                     <button class="button">Отправить</button>
                 </div>
 
@@ -38,7 +38,7 @@ import { useStoreUser } from '@/hooks/User/useStoreUser';
 import { ApiImage } from '@/types/App';
 
 const requestReview = ref({
-    images: [] as Array<ApiImage>,
+    images: [] as FileList & Array<ApiImage>,
     title: '',
     text: '',
     rating: 0
@@ -59,13 +59,12 @@ const emit = defineEmits<Emits>()
 
 const { user } = useStoreUser(store)
 
-const onSubmit = async () => {
-    let formData = new FormData()
+const onSubmit = async (event: Event) => {
+    let formData = new FormData(event.target as HTMLFormElement)
 
     formData.append('product_id', productId.toString())
     formData.append('reviewer', user.value == null ? 'someone' : user.value.data.user_login)
     formData.append('reviewer_email', user.value == null ? 'someone@example.com' : user.value.data.user_email)
-    formData.append('images', JSON.stringify(requestReview.value.images))
     formData.append('rating', requestReview.value.rating.toString())
     formData.append('title', requestReview.value.title)
     formData.append('review', requestReview.value.text)

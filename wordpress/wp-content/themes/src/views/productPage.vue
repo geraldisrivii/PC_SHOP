@@ -34,6 +34,7 @@ loader.value.onAllisLoaded = () => {
     setTimeout(() => {
         preloaderClose();
     }, 1000)
+    loader.value.restart()
 }
 
 onBeforeMount(async () => {

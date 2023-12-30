@@ -16,3 +16,4 @@ function yookassa(){
 
 require_once get_template_directory() . '/App/Helpers/getChildProductBy.php';
 require_once get_template_directory() . '/App/Helpers/getProductProp.php';
+require_once get_template_directory() . '/App/Helpers/reindexArrayOfAnyDeep.php';

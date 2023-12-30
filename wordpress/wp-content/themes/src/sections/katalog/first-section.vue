@@ -3,7 +3,7 @@
         :style="{ background: `url('${currentSettings.background}'), no-repeat center / cover` }">
         <div class="first-section-container container">
             <div class="image-box">
-                <img @load="updateImages" ref="image" :src="currentSettings.image" :alt="currentSettings.title">
+                <img ref="image" :src="currentSettings.image" :alt="currentSettings.title">
             </div>
             <div class="description-box">
                 <p class="description-box__title title">{{ currentSettings.title }}</p>
@@ -19,7 +19,7 @@ import { useLoad } from '@/hooks/App/useLoad';
 import { usePageSettings } from '@/hooks/App/usePageSettings';
 import { useVuex } from '@/store/useVuex';
 import { IFirstSectionSettings } from '@/types/Katalog';
-import { Ref, computed, onUpdated, ref, watch } from 'vue';
+import { Ref, computed, onMounted, onUpdated, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import imagesLoaded from 'imagesloaded';
 
@@ -53,12 +53,19 @@ loader.value.onAllisLoaded = () => {
     loader.value.restart()
 }
 
-const updateImages = () => {
+watch(route, async () => {
     imagesLoaded(box.value, () => {
+        console.log('first-section-images update 2')
         loader.value.load()
     })
-}
+}, { deep: true })
 
+onMounted(async () => {
+    imagesLoaded(box.value, () => {
+        console.log('first-section-images update 2')
+        loader.value.load()
+    })
+})
 </script>
 
 <style lang="scss" scoped>

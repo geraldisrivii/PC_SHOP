@@ -1,7 +1,19 @@
 import { Term } from "./App";
 
 export interface IProductCategory extends Term {
-    
+
+}
+
+export interface Game {
+    "game_name": string,
+    "game_statistic": [
+        {
+            "resolution": number[];
+            "fps": string;
+            value: number;
+            color: string;
+        },
+    ]
 }
 
 export interface IProduct {
@@ -9,7 +21,8 @@ export interface IProduct {
     name: string;
     cfs: {
         shortly_name: string;
-        properties: Array<{key: Array<Term>, value: string}>;
+        properties: Array<{ key: Array<Term>, value: string }>;
+        statistic_games: Array<Game>
         [key: string]: any;
     }
     price: string | number;
@@ -34,13 +47,13 @@ export interface ISeriesProducts {
     [key: string]: Array<IGrouppedProduct>
 }
 
-export interface IProductReviewImage{
+export interface IProductReviewImage {
     path: string;
     result: boolean;
 }
 
 
-export interface IProductReview{
+export interface IProductReview {
     id: number;
     product_id: number;
     rating: number;

@@ -1,7 +1,7 @@
 <template>
     <div class="second-section container">
         <div class="second-section-grid">
-            <div>
+            <div class="second-section-grid-left">
                 <div class="second-section-description">
                     <p class="second-section__title title title_secondary">{{ chosenMenuItem.label }}</p>
                     <button @click="addReview" v-if="chosenMenuItem.value === 'reviews'"
@@ -18,6 +18,15 @@
                     <ProductReview v-for="review in reviews" :key="review.id" :title="review.title" :text="review.review"
                         :images="review.images" :average_rating="review.rating" />
                 </div>
+                <div v-if="chosenMenuItem.value === 'stats' && isDataLoaded" class="stats-box">
+                    <div class="stats-box-graphs">
+                        <StatsGraph v-for="game in games" :values="game.game_statistic" :name="game.game_name" />
+                    </div>
+                    <div class="stats-box-assigns">
+                        <StatsAssign v-for="resolution in resolutions" :key="resolution.id" :color="resolution.cfs.color"
+                            :title="resolution.cfs.resolution" />
+                    </div>
+                </div>
             </div>
             <MenuButtons :items="menuItems" v-model:chosenItem="chosenMenuItem" />
         </div>
@@ -30,16 +39,25 @@ import ProductReview from '@/components/ProductReview.vue';
 import Spec from '@/components/Spec.vue';
 import MenuButtons from '@/components/UI/MenuButtons.vue';
 import { MenuButtonItem } from '@/types/App';
-import { IGrouppedProduct, IProductReview } from '@/types/Product';
-import { Ref, onMounted, ref } from 'vue';
+import { Game, IGrouppedProduct, IProductReview } from '@/types/Product';
+import { Ref, computed, onMounted, ref } from 'vue';
 import WP from '@/axiosWP'
 import WOO from '@/axiosWoocomerce'
 import AddReviewDialog from '@/components/AddReviewDialog.vue';
+import StatsGraph from '@/components/StatsGraph.vue';
+import StatsAssign from '@/components/StatsAssign.vue';
+import { useResolutions } from '@/hooks/Product/useResolutions';
+import { StatsGraphValues } from '@/types/Stats';
+import { useGames } from '@/hooks/Product/useGames';
 
 interface Props {
     product: IGrouppedProduct;
 }
 const { product } = defineProps<Props>();
+
+const { resolutions, onMountedAction } = useResolutions();
+
+const { games } = useGames(product, resolutions);
 
 const menuItems = <Ref<Array<MenuButtonItem>>>ref([
     {
@@ -49,6 +67,10 @@ const menuItems = <Ref<Array<MenuButtonItem>>>ref([
     {
         label: 'Отзывы',
         value: 'reviews'
+    },
+    {
+        label: 'ФПС в играх',
+        value: 'stats'
     }
 ])
 
@@ -73,8 +95,14 @@ const addReview = (event) => {
     isAddReviewDialogShow.value = true
 }
 
+const isDataLoaded = ref(false)
+
 onMounted(async () => {
     await getProductReviews()
+
+    await onMountedAction();
+
+    isDataLoaded.value = true
 })
 
 
@@ -120,5 +148,39 @@ onMounted(async () => {
     width: 100%;
     height: 400px;
     overflow-y: scroll;
+}
+
+.stats-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    align-items: center;
+    height: 450px;
+    padding: 20px 40px;
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #0C0C0C;
+}
+
+.stats-box-graphs {
+    height: 100%;
+    gap: 40px;
+    display: flex;
+    justify-content: center;
+    // align-items: self-start;
+    width: 100%;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+
+.stats-box-assigns {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.second-section-grid-left {
+    width: auto;
 }
 </style>

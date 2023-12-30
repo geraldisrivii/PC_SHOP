@@ -37,9 +37,11 @@ declare var preloaderOpen: () => void;
 
 router.afterEach((to, from) => {
     window.scrollTo(0, 0)
-    // if (to.fullPath == from.fullPath) {
-    //     return
-    // }
+    if (to.fullPath == from.fullPath) {
+        console.log(to.fullPath)
+        return
+    }
+
     preloaderOpen();
 })
 

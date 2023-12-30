@@ -2,7 +2,7 @@
 <template>
     <main v-if="isPageDataLoaded">
         <FirstSection :key="1" @load="loader.load()" />
-        <SecondSection :key="2" @load="loader.load()"/>
+        <SecondSection :key="2" @load="loader.load()" />
     </main>
 </template>
 
@@ -21,10 +21,10 @@ declare var preloaderClose: () => void;
 
 const store = useVuex()
 
-let {loader} = useLoad(2)
+let { loader } = useLoad(2)
 
 loader.value.onAllisLoaded = () => {
-    preloaderClose();
+    preloaderClose()
     loader.value.restart()
 }
 
