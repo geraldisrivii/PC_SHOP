@@ -16,12 +16,6 @@ class ProductActions extends ActionsClass
 
     public static function add_complementary_meta_data($post_id)
     {
-        $statistic_games = CFS()->get('statistic_games');
-
-        $statistic_games = array_values($statistic_games);
-
-        CFS()->save(['statistic_games' => $statistic_games], ['ID' => $post_id]);
-
         $properties = CFS()->get('properties');
 
         if ($properties == null || empty($properties)) {
@@ -45,11 +39,9 @@ class ProductActions extends ActionsClass
     public static function reindex_all_arrays_in_cfs($post_id)
     {
 
-        $fields = CFS()->find_fields([
-            'post_id' => $post_id
-        ]);
+        $fields = CFS()->find_fields(['post_id' => $post_id]);
 
-        foreach ($fields as $key => $field) {
+        foreach ($fields as $field) {
             if ($field['type'] == 'loop') {
 
                 $loopValues = CFS()->get($field['name'], $post_id);
@@ -59,21 +51,9 @@ class ProductActions extends ActionsClass
                 }
 
                 $loopValues = reindex_array_of_any_deep($loopValues);
+
+                CFS()->save([$field['name'] => $loopValues], ['ID' => $post_id]);
             }
         }
     }
-
-    // private static function reindex_array_of_any_deep(array $array)
-    // {
-
-    //     $array = array_values($array);
-
-    //     foreach ($array as $value) {
-    //         if (is_array($value)) {
-    //             self::reindex_array_of_any_deep($value);
-    //         }
-    //     }
-
-    //     return $array;
-    // }
 }
