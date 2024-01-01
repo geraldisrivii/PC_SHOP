@@ -1,5 +1,5 @@
 <template>
-    <div class="category-view">
+    <div @click="$router.push({name: 'katalog', params: {category: slug}})" class="category-view">
         <div class="category-view__image-box">
             <img class="category-view__image" :src="imageSrc" alt="">
         </div>
@@ -16,7 +16,8 @@ interface Props {
     imageSrc: string,
     title: string,
     price: string | number,
-    currency: string
+    currency: string;
+    slug: string;
 }
 
 defineProps<Props>()

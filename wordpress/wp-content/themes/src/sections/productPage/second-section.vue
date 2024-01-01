@@ -81,7 +81,7 @@ const chosenMenuItem: Ref<MenuButtonItem> = ref({
 
 const reviews: Ref<Array<IProductReview>> = ref([])
 
-const isAddReviewDialogShow: Ref<boolean> = ref(true)
+const isAddReviewDialogShow: Ref<boolean> = ref(false)
 
 const getProductReviews = async () => {
     reviews.value = (await WOO.get('products/reviews', {
@@ -132,6 +132,10 @@ onMounted(async () => {
     grid-template-columns: 6fr 3fr;
     align-items: flex-start;
     gap: 30px;
+
+    @include table {
+        grid-template-columns: 1fr;
+    }
 }
 
 .second-section-specs {
@@ -177,6 +181,7 @@ onMounted(async () => {
 .stats-box-assigns {
     display: flex;
     align-items: flex-start;
+    flex-wrap: wrap;
     gap: 30px;
 }
 

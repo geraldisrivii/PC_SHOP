@@ -1,8 +1,10 @@
 <template>
     <div class="spec">
         <p class="spec__label">{{ specLabel }}</p>
-        <p class="spec__value">{{ specValue }}</p>
-        <button v-if="spec" class="spec__button" @click="onClick">?</button>
+        <div class="spec-value-box">
+            <p class="spec__value">{{ specValue }}</p>
+            <button v-if="spec" class="spec__button" @click="onClick">?</button>
+        </div>
     </div>
 </template>
 
@@ -31,6 +33,9 @@ const onClick = () => {
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/base/mixins.scss';
+@import '@/scss/base/typography.scss';
+
 .spec {
     width: 100%;
     padding: 18px;
@@ -38,6 +43,11 @@ const onClick = () => {
     border-radius: 5px;
     display: flex;
     align-items: center;
+    position: relative;
+
+    @include table {
+        padding: 10px;
+    }
 
     &__label {
         color: #DBDBDB;
@@ -45,12 +55,21 @@ const onClick = () => {
         font-weight: 300;
         text-transform: uppercase;
         margin-right: 12px;
+
+        @include table {
+            font-size: 14px;
+            text-transform: none;
+        }
     }
 
     &__value {
         font-size: 16px;
         font-weight: 500;
         text-transform: uppercase;
+
+        @include table {
+            font-size: 14px;
+        }
     }
 
     &__button {
@@ -60,7 +79,14 @@ const onClick = () => {
         width: 20px;
         text-align: center;
         color: lightgray;
-        transform: translate(7px, -4px);
+        position: absolute;
+        top: -6px;
+        right: -24px;
+        // transform: translate(7px, -4px);
+    }
+
+    .spec-value-box {
+        position: relative;
     }
 }
 </style>

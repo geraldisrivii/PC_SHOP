@@ -153,5 +153,6 @@ const mouseEnter = (event, index: number) => {
     display: flex;
     align-items: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 </style>

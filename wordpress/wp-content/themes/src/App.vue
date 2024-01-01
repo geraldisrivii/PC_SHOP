@@ -1,4 +1,5 @@
 <template>
+    <StatusDialog v-if="isAppLoaded" ref="status_dialog_instance" />
     <SpecDialog ref="spec_dialog_instance" />
     <RegisterDialog v-model:isRegisterDialogShow="isRegisterDialogShow" />
     <LoginDialog v-model:isLoginDialogShow="isLoginDialogShow" />
@@ -24,10 +25,13 @@ import WP from '@/axiosWP';
 import { useStoreUser } from '@/hooks/User/useStoreUser';
 import SpecDialog from './components/SpecDialog.vue';
 import { useSpecDialog } from './hooks/App/useSpecDialog';
+import { useStatusDialog } from './hooks/App/useStatusDialog';
 import { Mutations } from './store';
+import StatusDialog from './components/UI/StatusDialog.vue';
 
 // DATA
 let isDataLoaded: Ref<boolean> = ref(false);
+let isAppLoaded: Ref<boolean> = ref(false);
 let isBasketShow: Ref<boolean> = ref(false)
 let isProfileShow: Ref<boolean> = ref(false)
 let isRegisterDialogShow: Ref<boolean> = ref(false)
@@ -35,12 +39,16 @@ let isLoginDialogShow: Ref<boolean> = ref(false)
 
 
 let store = useVuex();
-const { instance: spec_dialog_instance, specDialog: spec_dialog } = useSpecDialog(store)
+
+const { instance: spec_dialog_instance } = useSpecDialog(store)
+const { instance: status_dialog_instance } = useStatusDialog(store)
 
 const { app } = useAppSettings(store)
 
 onMounted(async () => {
     app.value = await getSettings()
+
+    isAppLoaded.value = true
 
     await WP.post('sessions', {}, {
         withCredentials: true
@@ -53,6 +61,7 @@ onMounted(async () => {
     user.value = response.data.status == false ? null : response.data
 
     store.commit(Mutations.SET_SPEC_DIALOG, spec_dialog_instance.value)
+    store.commit(Mutations.SET_STATUS_DIALOG, status_dialog_instance.value)
 
     isDataLoaded.value = true
 })

@@ -20,7 +20,8 @@
                     <div class="first-section__description" v-html="product.description"></div>
                     <div class="first-section__buttons">
                         <button class="button first-section__button">{{ page['first-section_button-text'] }}</button>
-                        <button class="button button_white first-section__button">{{ page['first-section_button-conf-text'] }}</button>
+                        <button class="button button_white first-section__button">{{ page['first-section_button-conf-text']
+                        }}</button>
                     </div>
                 </div>
             </div>
@@ -74,18 +75,31 @@ onMounted(() => {
 
     &__image-box {
         width: 100%;
+
+        display: flex;
+        justify-content: center;
     }
 
     &__image {
         width: 100%;
         height: 100%;
         object-fit: contain;
+
+        @include table {
+            width: 70%;
+            height: 70%;
+        }
     }
 
     &__description-box {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+
+        @include table {
+            align-items: center;
+            text-align: center;
+        }
     }
 
     &__title {
@@ -97,11 +111,16 @@ onMounted(() => {
     }
 
     &__button {}
+
     &__buttons {
         display: flex;
         align-items: center;
         gap: 15px;
         flex-wrap: wrap;
+
+        @include table {
+            justify-content: center;
+        }
     }
 
     &__price {
@@ -121,6 +140,11 @@ onMounted(() => {
     padding-bottom: 60px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+
+    @include table {
+        grid-template-columns: 1fr;
+    }
+
     align-items: center;
     gap: 80px;
 }

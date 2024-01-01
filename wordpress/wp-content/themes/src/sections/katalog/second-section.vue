@@ -6,11 +6,8 @@
                 <TransitionGroup name="list">
                     <Product v-if="isDataLoaded" v-for="product in products[series.slug]" :key="product.id"
                         :image-src="product.images[0].src" :name="product.name" :grouped_products="product.grouped_products"
-                        :price="product.price" 
-                        :id="product.id"
-                        :slug="product.slug"
-                        :category_slug="product.categories[0].slug"
-                        />
+                        :price="product.price" :id="product.id" :slug="product.slug"
+                        :category_slug="product.categories[0].slug" />
                 </TransitionGroup>
             </div>
         </div>
@@ -108,6 +105,11 @@ onBeforeMount(async () => {
 .products-box {
     display: grid;
     grid-template-columns: repeat(auto-fit, 330px);
+
+    @include table {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
     gap: 20px;
     align-content: flex-start;
     align-items: center;

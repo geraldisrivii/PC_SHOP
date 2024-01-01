@@ -1,6 +1,7 @@
 import { Ref } from 'vue';
 import { IProductCategory } from './Product';
 import SpecDialog from '@/components/SpecDialog.vue';
+import StatusDialog from '@/components/UI/StatusDialog.vue';
 
 
 export interface Settings {
@@ -10,9 +11,10 @@ export interface Settings {
 
 // store
 export interface State {
-    app: Settings | null,
-    page: Settings | null,
-    spec_dialog: InstanceType<typeof SpecDialog> | null,
+    app: Settings | null;
+    page: Settings | null;
+    spec_dialog: InstanceType<typeof SpecDialog> | null;
+    status_dialog: InstanceType<typeof StatusDialog> | null;
 }
 
 
@@ -46,3 +48,4 @@ export interface ApiImage {
     src: string;
     [key: string]: any;
 }
+

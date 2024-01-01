@@ -20,17 +20,17 @@ class UserModel
         $user = self::getCurrentUser();
 
         if ($user) {
-            throw new \Exception("User is already logged in", 1);
+            throw new \Exception(__("User is already logged in", 'my-theme'), 1);
         }
 
         $userWP = self::checkUserByField('login', $login);
 
         if ($userWP == false) {
-            throw new \Exception("User with passed login isnt found", 1);
+            throw new \Exception(__("User with passed login isnt found", 'my-theme'), 1);
         }
 
         if (!wp_check_password($password, $userWP->user_pass, $userWP->ID)) {
-            throw new \Exception("User with passed login, have another password", 1);
+            throw new \Exception(__("User with passed login, have another password", 'my-theme'), 1);
         }
 
         $result = session()->add('user', $userWP);
@@ -45,7 +45,7 @@ class UserModel
         $user = session()->get('user');
 
         if ($user) {
-            throw new \Exception("Preliminary you need to sign out", 1);
+            throw new \Exception(__('Preliminary you need to sign out', 'my-theme'), 1);
         }
 
         $user_id = wp_create_user($login, $password, $email);

@@ -3,7 +3,9 @@
         <div class="container second-section-container">
             <CategoryView class="category" v-if="isDataLoaded" v-for="(category, index) in categories" :key="index"
                 :image-src="category.image" :title="category.product_cat[0].name" :currency="'RUB'"
-                :price="category.price" />
+                :price="category.price"
+                :slug="category.product_cat[0].slug"
+                />
         </div>
     </div>
 </template>
@@ -27,6 +29,8 @@ onMounted(async () => {
     for (const category of categories.value) {
         category.price = await getCategoryPrice(category)
     }
+
+    console.log(categories.value)
     
     isDataLoaded.value = true
 })

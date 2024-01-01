@@ -42,14 +42,6 @@ $query = new WP_Query([
 
 <body>
     <div id="app"></div>
-
-    <?php
-    // dd($query->posts);
-    // dd(array_map(function ($item) {
-    //     return CFS()->get('properties', $item->ID);
-    // }, $query->posts));
-
-    ?>
     <div id="preloader">
 
     </div>

@@ -1,7 +1,7 @@
 <template>
     <div class="register">
         <my-dialog :isDialogShow="isLoginDialogShow" @update:isDialogShow="onUpdate">
-            <form class="register__form">
+            <form @submit.prevent="onSubmit" class="register__form">
                 <p class="register__title title">Авторизация</p>
                 <div class="register__input-box">
                     <input v-model="DataFields.login" class="register__input input" type="text" placeholder="Логин" />
@@ -28,6 +28,8 @@
 import WP from '@/axiosWP';
 import { Ref, ref, watch } from 'vue';
 import { useLoginFields } from '@/hooks/User/useLoginFields';
+import { useStatusDialog } from '@/hooks/App/useStatusDialog';
+import { useVuex } from '@/store/useVuex';
 
 interface Props { isLoginDialogShow: boolean }
 
@@ -41,7 +43,24 @@ const emit = defineEmits<Emits>()
 
 const onUpdate = (newValue: boolean) => emit('update:isLoginDialogShow', newValue)
 
+const store = useVuex();
+
 const { DataFields, isntValidFields, ValidFields, validData, isValidAll } = useLoginFields();
+
+const onSubmit = async (event: Event) => {
+    let responseLogin = await WP.post('/users/signin', {
+        'login': DataFields.value.login,
+        'password': DataFields.value.password
+    }, {
+        withCredentials: true
+    })
+
+    onUpdate(false)
+
+    const { statusDialog } = useStatusDialog(store)
+
+    statusDialog.value.open(responseLogin.data.status == true ? 'success' : 'error', responseLogin.data.message, null, 'Отлично!')
+}
 
 </script>
 

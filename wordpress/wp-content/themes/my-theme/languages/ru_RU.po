@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2024-01-01 18:07+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-KeywordsList: ;__;__e;esc_html__;esc_html_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: languages\n"
+"X-Poedit-SearchPath-1: App\n"
+"X-Poedit-SearchPath-2: libs\n"
+"X-Poedit-SearchPath-3: index.php\n"
+"X-Poedit-SearchPath-4: functions.php\n"
+
+#: App/Controllers/UserController.php:36
+msgid "Succesfuly registered"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: App/Controllers/UserController.php:59
+msgid "Succesfuly logged in"
+msgstr "Пользователь успешно авторизован"
+
+#: App/Models/UserModel.php:23
+msgid "User is already logged in"
+msgstr "Пользователь уже авторизован"
+
+#: App/Models/UserModel.php:29
+msgid "User with passed login isnt found"
+msgstr "Пользователь с данным логином не был найден"
+
+#: App/Models/UserModel.php:33
+msgid "User with passed login, have another password"
+msgstr "Пользователь с данным логином имеет другой пароль"
+
+#: App/Models/UserModel.php:48
+msgid "Preliminary you need to sign out"
+msgstr "Предварительно вам нужно выйти из учетной записи"

@@ -25,10 +25,10 @@ export default [
                         },
                         withCredentials: true
                     });
-                    return response.data.status;
+                    return !response.data.status;
                 },
                 params: [],
-                message: "Такой логин уже используется"
+                message: "Аккаунта с данным логином не существует"
             },
         ]
     },

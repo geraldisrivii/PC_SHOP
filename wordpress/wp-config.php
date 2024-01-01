@@ -149,3 +149,6 @@ define('WP_ENVIRONMENT_TYPE', 'local');
 define('SHOP_ID', '321321');
 define('SHOP_KEY', 'test_VmUiqwqcRNY8Kqk03ipeMBwrUt6ZpVB_ZZMHGvL8jtY');
 define('RETURNED_URL', 'http://localhost');
+
+
+define('WPLANG', 'ru_RU');

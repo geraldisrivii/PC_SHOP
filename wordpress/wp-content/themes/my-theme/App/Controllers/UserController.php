@@ -33,7 +33,7 @@ class UserController
         $response->data = [
             'status' => true,
             'user' => $userWP,
-            'message' => 'Succesfuly registered'
+            'message' => __('Succesfuly registered', 'my-theme'),
         ];
 
         return $response;
@@ -56,7 +56,7 @@ class UserController
 
         $response->data = [
             'status' => true,
-            'message' => 'Succesfuly logged in',
+            'message' => __('Succesfuly logged in', 'my-theme'),
             'user' => $userWP,
         ];
 
