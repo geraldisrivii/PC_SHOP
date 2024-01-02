@@ -11,13 +11,16 @@ services:
     depends_on:
       - wc_db
   nginx:
-    image: nginx:latest
+    build:
+      context: .
+      dockerfile: NginxDockerfile
     container_name: wc1_server
     volumes:
       - ./wordpress/:/var/www/html
       - ./nginx/nginx.conf/:/etc/nginx/nginx.conf
       - ./nginx/logs/:/var/log/nginx
       - ./etc/letsencrypt:/etc/nginx/ssl
+      - ./etc/geoip:/etc/geoip
     ports:
       - 80:80
     depends_on:

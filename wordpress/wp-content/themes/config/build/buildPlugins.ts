@@ -17,7 +17,7 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: [
                 '**/*', '!composer.json', '!composer.lock', '!vendor/**', '!App/**', '!functions.php',
-                '!style.css', '!index.php', '!libs/**',
+                '!style.css', '!index.php', '!libs/**', '!languages/**'
             ],
         }),
         // new HtmlWebpackPlugin({

@@ -3229,3 +3229,142 @@
 2024/01/01 11:28:53 [error] 26#26: *863 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
 2024/01/01 11:29:39 [error] 26#26: *869 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
 2024/01/01 11:31:45 [error] 29#29: *948 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2024/01/02 05:05:39 [error] 22#22: *5 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2024/01/02 05:11:41 [error] 23#23: *52 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 05:43:44 [emerg] 178#178: "load_module" directive is not allowed here in /etc/nginx/nginx.conf:11
+2024/01/02 05:44:04 [emerg] 179#179: "load_module" directive is specified too late in /etc/nginx/nginx.conf:6
+2024/01/02 05:44:19 [emerg] 180#180: "load_module" directive is not allowed here in /etc/nginx/nginx.conf:22
+2024/01/02 05:46:29 [emerg] 185#185: unknown directive "geoip_country" in /etc/nginx/nginx.conf:20
+2024/01/02 05:46:52 [emerg] 186#186: "load_module" directive is not allowed here in /etc/nginx/nginx.conf:20
+2024/01/02 05:48:26 [emerg] 187#187: "load_module" directive is not allowed here in /etc/nginx/nginx.conf:4
+2024/01/02 05:49:16 [notice] 188#188: signal process started
+2024/01/02 05:49:23 [notice] 198#198: signal process started
+2024/01/02 05:51:01 [notice] 208#208: signal process started
+2024/01/02 05:51:20 [notice] 218#218: signal process started
+2024/01/02 05:51:22 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:51:22 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:51:22 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:51:22 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:51:23 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:51:33 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:51:34 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:51:34 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:51:34 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:51:55 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:51:55 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:51:56 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:51:56 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:51:56 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:51:56 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:52:26 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:52:47 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:52:47 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:52:47 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:52:48 [error] 219#219: *120 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:53:14 [notice] 228#228: signal process started
+2024/01/02 05:53:16 [error] 229#229: *125 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 05:53:51 [notice] 238#238: signal process started
+2024/01/02 05:56:53 [emerg] 263#263: GeoIP_open("/etc/geoip/country.dat") failed in /etc/nginx/nginx.conf:21
+2024/01/02 05:57:27 [notice] 266#266: signal process started
+2024/01/02 05:57:56 [emerg] 276#276: unknown directive "geoip_country" in /etc/nginx/nginx.conf:21
+2024/01/02 05:58:00 [notice] 277#277: signal process started
+2024/01/02 06:02:29 [emerg] 457#457: unknown "geoip_country_code_by_ip" variable
+2024/01/02 06:02:39 [notice] 458#458: signal process started
+2024/01/02 06:04:48 [emerg] 470#470: unknown "geoip_city_code" variable
+2024/01/02 06:05:16 [notice] 471#471: signal process started
+2024/01/02 06:05:33 [notice] 481#481: signal process started
+2024/01/02 06:06:21 [notice] 491#491: signal process started
+2024/01/02 06:06:29 [notice] 501#501: signal process started
+2024/01/02 06:08:13 [emerg] 514#514: invalid number "auto" in /etc/nginx/nginx.conf:5
+2024/01/02 06:08:21 [emerg] 515#515: 1 worker_connections are not enough for 1 listening sockets
+2024/01/02 06:08:36 [notice] 516#516: signal process started
+2024/01/02 06:11:00 [notice] 531#531: signal process started
+2024/01/02 06:11:06 [error] 532#532: *220 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:11:07 [error] 532#532: *220 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:11:07 [error] 532#532: *220 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:11:07 [error] 532#532: *220 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:11:07 [error] 532#532: *220 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:11:08 [error] 532#532: *220 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:11:09 [error] 532#532: *220 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:11:09 [error] 532#532: *220 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:11:58 [emerg] 541#541: unexpected "}" in /etc/nginx/nginx.conf:97
+2024/01/02 06:12:03 [notice] 542#542: signal process started
+2024/01/02 06:12:07 [error] 549#549: *232 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:12:18 [error] 543#543: *226 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:12:42 [emerg] 552#552: unknown "geoip_country" variable
+2024/01/02 06:12:48 [notice] 553#553: signal process started
+2024/01/02 06:12:50 [error] 556#556: *251 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:13:45 [notice] 563#563: signal process started
+2024/01/02 06:13:55 [error] 567#567: *267 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:14:42 [error] 567#567: *267 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:15:31 [notice] 573#573: signal process started
+2024/01/02 06:15:33 [error] 575#575: *287 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:15:55 [notice] 583#583: signal process started
+2024/01/02 06:15:57 [error] 586#586: *306 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:16:56 [error] 585#585: *304 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:17:02 [error] 586#586: *306 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:17:20 [error] 586#586: *306 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:18:12 [notice] 593#593: signal process started
+2024/01/02 06:18:14 [error] 595#595: *345 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:18:22 [error] 594#594: *342 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:19:53 [notice] 603#603: signal process started
+2024/01/02 06:19:56 [error] 606#606: *369 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:20:24 [notice] 613#613: signal process started
+2024/01/02 06:20:25 [error] 615#615: *384 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:20:46 [notice] 623#623: signal process started
+2024/01/02 06:20:49 [error] 628#628: *401 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:21:36 [notice] 633#633: signal process started
+2024/01/02 06:23:22 [notice] 644#644: signal process started
+2024/01/02 06:23:26 [error] 647#647: *415 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:23:59 [notice] 654#654: signal process started
+2024/01/02 06:24:01 [error] 660#660: *432 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:24:32 [notice] 664#664: signal process started
+2024/01/02 06:24:34 [error] 665#665: *440 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:24:52 [notice] 674#674: signal process started
+2024/01/02 06:25:07 [emerg] 684#684: dlopen() "/etc/nginx/modules/ngx_http_geoip_odule.so" failed (/etc/nginx/modules/ngx_http_geoip_odule.so: cannot open shared object file: No such file or directory) in /etc/nginx/nginx.conf:1
+2024/01/02 06:25:13 [notice] 685#685: signal process started
+2024/01/02 06:25:20 [error] 689#689: *459 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:32:03 [notice] 698#698: signal process started
+2024/01/02 06:32:11 [error] 702#702: *480 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-600mx"
+2024/01/02 06:34:35 [error] 706#706: *493 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:35:08 [error] 701#701: *505 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:35:10 [error] 699#699: *496 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:35:11 [error] 701#701: *505 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:35:24 [notice] 708#708: signal process started
+2024/01/02 06:36:04 [notice] 718#718: signal process started
+2024/01/02 06:36:06 [error] 719#719: *536 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:36:06 [error] 719#719: *536 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:36:06 [error] 719#719: *536 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:36:06 [error] 719#719: *536 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:36:07 [error] 719#719: *536 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:36:07 [error] 719#719: *536 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:36:07 [error] 719#719: *536 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:36:27 [emerg] 728#728: invalid GeoIP database "/etc/geoip/city.dat" type:30 in /etc/nginx/nginx.conf:22
+2024/01/02 06:36:43 [notice] 729#729: signal process started
+2024/01/02 06:36:52 [notice] 739#739: signal process started
+2024/01/02 06:36:56 [emerg] 749#749: GeoIP_open("/etc/geoip/countr.dat") failed in /etc/nginx/nginx.conf:22
+2024/01/02 06:37:00 [notice] 750#750: signal process started
+2024/01/02 06:42:05 [error] 753#753: *541 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:42:05 [error] 753#753: *541 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:42:05 [error] 753#753: *541 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:42:06 [error] 753#753: *541 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/country"
+2024/01/02 06:42:15 [error] 757#757: *556 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2024/01/02 07:05:06 [notice] 791#791: signal process started
+2024/01/02 07:05:10 [error] 795#795: *604 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming"
+2024/01/02 07:08:30 [notice] 801#801: signal process started
+2024/01/02 07:12:17 [error] 803#803: *620 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.23.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.23.0.4:9000", host: "localhost"
+2024/01/02 07:12:18 [notice] 811#811: signal process started
+2024/01/02 07:12:23 [error] 804#804: *622 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.23.0.1, server: , request: "GET /country HTTP/1.1", upstream: "fastcgi://172.23.0.4:9000", host: "localhost"
+2024/01/02 07:12:43 [error] 814#814: *635 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2024/01/02 07:13:06 [error] 807#807: *628 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.23.0.1, server: , request: "GET /country HTTP/1.1", upstream: "fastcgi://172.23.0.4:9000", host: "localhost"
+2024/01/02 07:13:27 [error] 812#812: *630 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.23.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.23.0.4:9000", host: "localhost"
+2024/01/02 07:14:34 [error] 813#813: *632 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.23.0.1, server: , request: "GET / HTTP/1.1", upstream: "fastcgi://172.23.0.4:9000", host: "localhost"
+2024/01/02 07:15:24 [error] 815#815: *644 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2024/01/02 07:15:56 [error] 818#818: *653 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2024/01/02 07:16:25 [error] 819#819: *655 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2024/01/02 07:16:43 [error] 818#818: *653 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2024/01/02 07:23:34 [error] 812#812: *687 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "172.23.0.1", referrer: "http://172.23.0.1/"
+2024/01/02 07:33:54 [notice] 821#821: signal process started
+2024/01/02 07:51:56 [emerg] 1#1: GeoIP_open("/etc/geoip/country.dat") failed in /etc/nginx/nginx.conf:22
+2024/01/02 08:03:25 [notice] 51#51: signal process started
+2024/01/02 08:04:00 [notice] 61#61: signal process started

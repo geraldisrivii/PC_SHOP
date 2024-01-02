@@ -1,8 +1,11 @@
 {
   "main.js": "auto/assets/js/main.js",
-  "assets/js/src_views_main_vue.js": "auto/assets/js/src_views_main_vue.js",
-  "assets/js/src_views_katalog_vue.js": "auto/assets/js/src_views_katalog_vue.js",
-  "assets/js/src_views_productPage_vue.js": "auto/assets/js/src_views_productPage_vue.js",
-  "assets/js/vendors-node_modules_imagesloaded_imagesloaded_js.js": "auto/assets/js/vendors-node_modules_imagesloaded_imagesloaded_js.js",
-  "assets/js/vendors-node_modules_deep-equal_index_js.js": "auto/assets/js/vendors-node_modules_deep-equal_index_js.js"
+  "main.css": "auto/main.9b3e6e2c.css",
+  "assets/js/944.js": "auto/assets/js/944.js",
+  "css/944.39b38659.css": "auto/css/944.39b38659.css",
+  "assets/js/745.js": "auto/assets/js/745.js",
+  "css/745.9be37ea0.css": "auto/css/745.9be37ea0.css",
+  "assets/js/195.js": "auto/assets/js/195.js",
+  "css/195.6216c2be.css": "auto/css/195.6216c2be.css",
+  "assets/js/251.js": "auto/assets/js/251.js"
 }
