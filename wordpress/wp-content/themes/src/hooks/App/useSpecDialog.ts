@@ -1,5 +1,4 @@
 import SpecDialog from "@/components/SpecDialog.vue"
-import { Settings } from "http2"
 import { Ref, WritableComputedRef, computed, onMounted, ref } from "vue"
 import Store, { Mutations, mutations } from '@/store';
 

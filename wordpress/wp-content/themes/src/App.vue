@@ -99,8 +99,13 @@ onMounted(async () => {
     }
 }
 
+
+
 html {
     font-size: 62.5%;
+
+    scroll-behavior: smooth;
+
 
     @include min-table {
         font-size: 50%;

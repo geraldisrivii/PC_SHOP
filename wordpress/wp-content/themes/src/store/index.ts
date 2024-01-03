@@ -1,10 +1,12 @@
 import { ActionTree, GetterTree, MutationTree, StoreOptions, createStore } from 'vuex'
 import { Settings, State } from '@/types/App'
 import { user } from './user/index';
+import { products } from './products/index';
 import { UserState } from './user/types';
 import { Ref } from 'vue';
 import SpecDialog from '@/components/SpecDialog.vue';
 import StatusDialog from '@/components/UI/StatusDialog.vue';
+import { ProductState } from './products/types';
 
 
 
@@ -17,6 +19,7 @@ export enum Mutations {
 
 interface StoreWithModules extends State {
   user?: UserState
+  products? : ProductState
 }
 
 
@@ -49,7 +52,8 @@ export default createStore<StoreWithModules>({
   actions: {
   },
   modules: {
-    user
+    user,
+    products
   },
 })
 

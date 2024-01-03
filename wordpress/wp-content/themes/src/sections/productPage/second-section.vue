@@ -38,58 +38,28 @@
 import ProductReview from '@/components/ProductReview.vue';
 import Spec from '@/components/Spec.vue';
 import MenuButtons from '@/components/UI/MenuButtons.vue';
-import { MenuButtonItem } from '@/types/App';
-import { Game, IGrouppedProduct, IProductReview } from '@/types/Product';
 import { Ref, computed, onMounted, ref } from 'vue';
-import WP from '@/axiosWP'
-import WOO from '@/axiosWoocomerce'
 import AddReviewDialog from '@/components/AddReviewDialog.vue';
 import StatsGraph from '@/components/StatsGraph.vue';
 import StatsAssign from '@/components/StatsAssign.vue';
 import { useResolutions } from '@/hooks/Product/useResolutions';
-import { StatsGraphValues } from '@/types/Stats';
 import { useGames } from '@/hooks/Product/useGames';
+import { useCurrentProduct } from '@/hooks/Product/useCurrentProduct';
+import { useMenuItems } from '@/hooks/Product/useMenuItems';
+import { useProductReviews } from '@/hooks/Product/useProductReviews';
 
-interface Props {
-    product: IGrouppedProduct;
-}
-const { product } = defineProps<Props>();
+const { product } = useCurrentProduct()
 
 const { resolutions, onMountedAction } = useResolutions();
 
-const { games } = useGames(product, resolutions);
+const { games } = useGames(product.value, resolutions);
 
-const menuItems = <Ref<Array<MenuButtonItem>>>ref([
-    {
-        label: 'Характеристики',
-        value: 'specs'
-    },
-    {
-        label: 'Отзывы',
-        value: 'reviews'
-    },
-    {
-        label: 'ФПС в играх',
-        value: 'stats'
-    }
-])
+const { menuItems, chosenMenuItem } = useMenuItems()
 
-const chosenMenuItem: Ref<MenuButtonItem> = ref({
-    label: 'Характеристики',
-    value: 'specs'
-},)
-
-const reviews: Ref<Array<IProductReview>> = ref([])
 
 const isAddReviewDialogShow: Ref<boolean> = ref(false)
 
-const getProductReviews = async () => {
-    reviews.value = (await WOO.get('products/reviews', {
-        params: {
-            product: product.id
-        }
-    })).data
-}
+const {reviews, onMountedAction: getProductReviews} = useProductReviews(product)
 
 const addReview = (event) => {
     isAddReviewDialogShow.value = true

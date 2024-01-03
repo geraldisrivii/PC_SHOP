@@ -35,6 +35,9 @@ export interface IProduct {
         [key: string]: any;
     }>
     categories: IProductCategory[];
+    taxonomies: {
+        [key: string]: Term[]
+    };
     [key: string]: any;
 }
 

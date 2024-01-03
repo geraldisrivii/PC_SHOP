@@ -47,7 +47,6 @@ const grouppedProductNames = computed(() => {
     return filteredArray
 })
 
-console.log(grouppedProductNames.value)
 const productCpu = computed(() => grouppedProductNames.value.find(item => item.categories.find(category => category.slug.includes('cpu'))))
 
 const productGpu = computed(() => grouppedProductNames.value.find(item => item.categories.find(category => category.slug.includes('gpu'))))

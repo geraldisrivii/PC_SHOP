@@ -3,7 +3,8 @@
         <div class="first-section">
             <div class="first-section-container container">
                 <div class="first-section__image-box">
-                    <img :src="product.images[0].src" class="first-section__image" alt="first-section__image">
+                    <img @load="onImageLoaded" :src="product.images[0].src" class="first-section__image"
+                        alt="first-section__image">
                 </div>
                 <div class="first-section__description-box">
                     <div class="first-section__line line"></div>
@@ -32,18 +33,17 @@
 <script setup lang="ts">
 import { useAppSettings } from '@/hooks/App/useAppSettings';
 import { usePageSettings } from '@/hooks/App/usePageSettings';
+import { useCurrentProduct } from '@/hooks/Product/useCurrentProduct';
 import { useVuex } from '@/store/useVuex';
 import { IGrouppedProduct } from '@/types/Product';
-import { computed, ComputedRef, onMounted, ref, Ref } from 'vue';
+import { computed, ComputedRef, DeprecationTypes, onMounted, ref, Ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 interface Emits {
-    (e: 'load'): void
+    (e: 'load'): void;
 }
 
-interface Props {
-    product: IGrouppedProduct
-}
+const { product } = useCurrentProduct()
 
-const { product } = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
 const store = useVuex();
@@ -51,13 +51,31 @@ const store = useVuex();
 const { page } = usePageSettings(store)
 const { app } = useAppSettings(store)
 
-const rate: Ref<number> = ref(Math.floor(product.average_rating))
-
+const rate: ComputedRef<number> = computed(() => Math.floor(Number(product.value.average_rating)))
 const inRate: ComputedRef<number> = computed(() => 5 - rate.value)
 
-onMounted(() => {
+const previousImageSrc: Ref<string | null> = ref(null)
+
+const onImageLoaded = () => {
+    emit('load')
+
+    previousImageSrc.value = product.value.images[0].src
+}
+
+// const route = useRoute();
+
+
+watch(product, () => {
+    console.log(previousImageSrc.value)
+    if(!previousImageSrc.value){
+        return;
+    }
+    if(product.value.images[0].src != previousImageSrc.value){
+        return;
+    }
     emit('load')
 })
+
 
 </script>
 
