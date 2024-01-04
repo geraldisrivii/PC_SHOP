@@ -52,6 +52,7 @@ export interface ISeriesProducts {
 
 export interface IProductReviewImage {
     path: string;
+    name: string;
     result: boolean;
 }
 

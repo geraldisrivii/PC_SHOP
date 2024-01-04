@@ -52,10 +52,9 @@ const { product } = useCurrentProduct()
 
 const { resolutions, onMountedAction } = useResolutions();
 
-const { games } = useGames(product.value, resolutions);
+const { games } = useGames(product, resolutions);
 
 const { menuItems, chosenMenuItem } = useMenuItems()
-
 
 const isAddReviewDialogShow: Ref<boolean> = ref(false)
 

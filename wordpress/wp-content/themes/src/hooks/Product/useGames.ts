@@ -3,10 +3,10 @@ import { Resolutions, StatsGraphValues } from '@/types/Stats';
 import WP from '@/axiosWP'
 import { Game, IProduct } from '@/types/Product';
 
-export const useGames = (product: IProduct, resolutions: Ref<Resolutions[]>) => {
+export const useGames = (product: Ref<IProduct>, resolutions: Ref<Resolutions[]>) => {
 
     const games = computed(() => {
-        product.cfs.statistic_games.map((game: Game) => {
+        product.value.cfs.statistic_games.map((game: Game) => {
 
             let editedGameStatistic = game.game_statistic.map((statistic) => {
                 const resolution = resolutions.value.find(resolution => resolution.id == statistic.resolution[0])
@@ -20,7 +20,7 @@ export const useGames = (product: IProduct, resolutions: Ref<Resolutions[]>) => 
                 game_statistic: editedGameStatistic
             }
         })
-        return product.cfs.statistic_games as Array<Game & StatsGraphValues>
+        return product.value.cfs.statistic_games as Array<Game & StatsGraphValues>
     })
 
 

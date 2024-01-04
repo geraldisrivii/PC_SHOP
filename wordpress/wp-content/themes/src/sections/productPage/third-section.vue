@@ -19,7 +19,7 @@ import { useCurrentProduct } from '@/hooks/Product/useCurrentProduct';
 
 const { product: currentProduct } = useCurrentProduct()
 
-const { sameProducts, sameProductsLoaded, onMountedAction } = useSameProducts(currentProduct.value)
+const { sameProducts, sameProductsLoaded, onMountedAction } = useSameProducts(currentProduct)
 
 
 onMounted(async () => {

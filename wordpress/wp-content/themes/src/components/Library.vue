@@ -1,0 +1,68 @@
+<template>
+    <div class="slider-images-box">
+        <div @click="isLibraryShow = false" v-show="isLibraryShow" class="slider-images">
+            <button v-if="imagesMoreOne" class="slider-images__button" @click.stop="swiperPrev">
+                <img :src="app['general_slider-button_left']" alt="button_left">
+            </button>
+            <div ref="swiper-container" class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div v-for="(image, index) in images" :key="index" class="swiper-slide">
+                        <img @click.stop class="slider-images__image" :src="image.path" :alt="image.name">
+                    </div>
+                </div>
+            </div>
+            <button v-if="imagesMoreOne" class="slider-images__button " @click.stop="swiperNext">
+                <img :src="app['general_slider-button_right']" alt="button_right">
+            </button>
+            <button @click="$emit('update:isSliderShow', false)" class="close-button">
+                <div class="close-button__line close-button__line_1"></div>
+                <div class="close-button__line close-button__line_2"></div>
+            </button>
+        </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { Ref, computed, ref } from 'vue';
+import Swiper from 'swiper';
+import { useAppSettings } from '@/hooks/App/useAppSettings';
+import { useVuex } from '@/store/useVuex';
+import { IProductReviewImage } from '@/types/Product';
+
+
+const swiperContainer: Ref<HTMLElement | null> = ref(null)
+
+let swiper: Ref<Swiper | null> = ref(null)
+
+let isLibraryShow: Ref<boolean> = ref(false)
+
+
+let images: Ref<Array<IProductReviewImage>> = ref([])
+
+const imagesMoreOne = computed(() => images.value.length > 1)
+
+const store = useVuex()
+
+const { app } = useAppSettings(store)
+
+const initializeSwiper = () => {
+    swiper.value = new Swiper(swiperContainer.value, {
+        loop: true,
+        slidesPerView: 1,
+    });
+}
+
+const swiperPrev = () => {
+    swiper.value.slidePrev();
+}
+const swiperNext = () => {
+    swiper.value.slideNext();
+}
+
+
+
+
+
+</script>
+
+<style scoped></style>
