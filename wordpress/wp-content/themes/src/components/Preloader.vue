@@ -1,6 +1,6 @@
 <template>
     <div class="preloader" :class="{ show: isPreloaderShow }">
-        <!-- <img :src="app['general_preloader-icon']" alt="preloader-icon"> -->
+        <img :src="app['general_preloader-icon']" alt="preloader-icon">
     </div>
 </template>
 
@@ -34,21 +34,31 @@ defineExpose({
 <style lang="scss" scoped>
 .preloader {
     z-index: 100;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    border-radius: 10px;
     transition: all 0.3s ease;
 
     background-color: #1C1C1C;
     opacity: 0;
-    display: none;
+    display: flex;
+    visibility: hidden;
+
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+    }
 }
 
 .show {
-    display: block;
-
+    visibility: visible;
     opacity: 1;
 }
 </style>

@@ -1,13 +1,16 @@
-import { ActionTree, GetterTree, MutationTree, StoreOptions, createStore } from 'vuex'
+import { MutationTree, createStore } from 'vuex'
 import { Settings, State } from '@/types/App'
 import { user } from './user/index';
 import { products } from './products/index';
 import { UserState } from './user/types';
-import { Ref } from 'vue';
 import SpecDialog from '@/components/SpecDialog.vue';
 import StatusDialog from '@/components/UI/StatusDialog.vue';
 import { ProductState } from './products/types';
+import Library from '@/components/Library.vue';
 
+import { basket, basketMutations } from './basket/index'
+import { BasketState } from './basket/types';
+import { basketGetters } from './basket/getters';
 
 
 export enum Mutations {
@@ -15,11 +18,13 @@ export enum Mutations {
   SET_PAGE_SETTINGS = 'SET_PAGE_SETTINGS',
   SET_SPEC_DIALOG = 'SET_SPEC_DIALOG',
   SET_STATUS_DIALOG = 'SET_STATUS_DIALOG',
+  SET_LIBRARY_DIALOG = 'SET_LIBRARY_DIALOG',
 }
 
-interface StoreWithModules extends State {
+interface StoreWithModules extends State  {
   user?: UserState
-  products? : ProductState
+  products?: ProductState,
+  basket?: BasketState
 }
 
 
@@ -36,24 +41,32 @@ export const mutations: MutationTree<State> = {
   [Mutations.SET_STATUS_DIALOG](state, instance: InstanceType<typeof StatusDialog>) {
     state.status_dialog = instance
   },
+  [Mutations.SET_LIBRARY_DIALOG](state, instance: InstanceType<typeof Library>) {
+    state.library_dialog = instance
+  },
 }
+
+
+
 
 export default createStore<StoreWithModules>({
   state: {
     app: null,
     page: null,
     spec_dialog: null,
-    status_dialog: null
+    status_dialog: null,
+    library_dialog: null
   },
+  mutations,
   getters: {
 
   },
-  mutations,
   actions: {
   },
   modules: {
     user,
-    products
+    products,
+    basket
   },
 })
 

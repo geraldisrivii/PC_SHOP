@@ -30,6 +30,7 @@ import { Ref, ref, watch } from 'vue';
 import { useLoginFields } from '@/hooks/User/useLoginFields';
 import { useStatusDialog } from '@/hooks/App/useStatusDialog';
 import { useVuex } from '@/store/useVuex';
+import { useStoreUser } from '@/hooks/User/useStoreUser';
 
 interface Props { isLoginDialogShow: boolean }
 
@@ -60,6 +61,13 @@ const onSubmit = async (event: Event) => {
     const { statusDialog } = useStatusDialog(store)
 
     statusDialog.value.open(responseLogin.data.status == true ? 'success' : 'error', responseLogin.data.message, null, 'Отлично!')
+
+    const { user } = useStoreUser(store)
+
+    if(responseLogin.data.status){
+        user.value = responseLogin.data.user
+    }
+
 }
 
 </script>

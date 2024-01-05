@@ -20,7 +20,8 @@
                     <p class="first-section__price">{{ product.price }} ₽</p>
                     <div class="first-section__description" v-html="product.description"></div>
                     <div class="first-section__buttons">
-                        <button class="button first-section__button">{{ page['first-section_button-text'] }}</button>
+                        
+                        <CartButton :product="product"/>
                         <button class="button button_white first-section__button">{{ page['first-section_button-conf-text']
                         }}</button>
                     </div>
@@ -34,8 +35,10 @@
 import { useAppSettings } from '@/hooks/App/useAppSettings';
 import { usePageSettings } from '@/hooks/App/usePageSettings';
 import { useCurrentProduct } from '@/hooks/Product/useCurrentProduct';
+import { Mutations } from '@/store/basket';
 import { useVuex } from '@/store/useVuex';
 import { IGrouppedProduct } from '@/types/Product';
+import CartButton from '@/components/CartButton.vue';
 import { computed, ComputedRef, DeprecationTypes, onMounted, ref, Ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 interface Emits {
@@ -65,12 +68,13 @@ const onImageLoaded = () => {
 // const route = useRoute();
 
 
+
 watch(product, () => {
     console.log(previousImageSrc.value)
-    if(!previousImageSrc.value){
+    if (!previousImageSrc.value) {
         return;
     }
-    if(product.value.images[0].src != previousImageSrc.value){
+    if (product.value.images[0].src != previousImageSrc.value) {
         return;
     }
     emit('load')

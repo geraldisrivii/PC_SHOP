@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2024-01-01 20:35+0700\n"
+"POT-Creation-Date: 2024-01-04 20:16+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,6 +19,19 @@ msgstr ""
 "X-Poedit-SearchPath-2: libs\n"
 "X-Poedit-SearchPath-3: index.php\n"
 "X-Poedit-SearchPath-4: functions.php\n"
+
+#: App/Controllers/MailController.php:54
+msgid "Email code isnt have in session"
+msgstr "Код подтверждения почты не найден в сессии"
+
+#: App/Controllers/MailController.php:61
+msgid "Code isnt match to code in session"
+msgstr ""
+"Код подтверждения почты не соответствует коду сохраненному в сессии"
+
+#: App/Controllers/MailController.php:71
+msgid "Email is successfully verified"
+msgstr "Электронная почта успешно подтверждена"
 
 #: App/Controllers/UserController.php:36
 msgid "Succesfuly registered"

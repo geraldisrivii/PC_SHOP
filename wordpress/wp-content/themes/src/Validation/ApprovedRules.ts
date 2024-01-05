@@ -1,4 +1,6 @@
 import WP from '@/axiosWP';
+import { useStatusDialog } from '@/hooks/App/useStatusDialog';
+import store from '@/store';
 
 
 export default [
@@ -15,6 +17,11 @@ export default [
                     }, {
                         withCredentials: true
                     });
+
+                    const { statusDialog } = useStatusDialog(store)
+
+                    statusDialog.value.open(response.data.status == true ? 'success' : 'error', response.data.message, null, 'Закрыть')
+
                     return response.data.status;
                 },
                 params: [],

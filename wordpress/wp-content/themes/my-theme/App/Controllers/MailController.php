@@ -28,7 +28,8 @@ class MailController{
             $mail->send('Код потдверждения', "Скопируйте и вставте в форму: {$code}", $to);
         } catch (\Throwable $th) {
             return $response->data = [
-                'status' => $th,
+                'status' => false,
+                'message' => $th->getMessage(),
             ];
         }
 
@@ -50,14 +51,14 @@ class MailController{
         if(!$code){
             return $response->data = [
                 'status' => false,
-                'message' => 'email code isnt have in session'
+                'message' => __('Email code isnt have in session', 'my-theme'),
             ];
         }
         
         if($requestedCode != $code){
             return $response->data = [
                 'status' => false,
-                'message' => 'code isnt match to code in session'
+                'message' => __('Code isnt match to code in session', 'my-theme'),
             ];
         }
     
@@ -67,6 +68,7 @@ class MailController{
     
         return $response->data = [
             'status' => true,
+            'message' => __('Email is successfully verified', 'my-theme'),
         ];
     }
 

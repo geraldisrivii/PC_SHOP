@@ -93,9 +93,13 @@ defineExpose({
         }
     }
 
-    &__title {}
+    &__title {
+        text-align: center;
+    }
 
-    &__text {}
+    &__text {
+        text-align: center;
+    }
 }
 
 .title {

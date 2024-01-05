@@ -1,7 +1,8 @@
 <template>
     <StatusDialog v-if="isAppLoaded" ref="status_dialog_instance" />
+    <Library v-if="isAppLoaded" ref="library" />
     <SpecDialog ref="spec_dialog_instance" />
-    <RegisterDialog v-model:isRegisterDialogShow="isRegisterDialogShow" />
+    <RegisterDialog v-if="isAppLoaded" v-model:isRegisterDialogShow="isRegisterDialogShow" />
     <LoginDialog v-model:isLoginDialogShow="isLoginDialogShow" />
     <SiteHeader v-model:isLoginDialogShow="isLoginDialogShow" v-model:isRegisterDialogShow="isRegisterDialogShow"
         v-model:isProfileShow="isProfileShow" v-model:isBasketShow="isBasketShow" v-if="isDataLoaded" />
@@ -28,6 +29,9 @@ import { useSpecDialog } from './hooks/App/useSpecDialog';
 import { useStatusDialog } from './hooks/App/useStatusDialog';
 import { Mutations } from './store';
 import StatusDialog from './components/UI/StatusDialog.vue';
+import Library from './components/Library.vue';
+import { useLibraryDialog } from './hooks/App/useLibraryDialog';
+import { useBasketItems } from './hooks/Product/useBasketItems';
 
 // DATA
 let isDataLoaded: Ref<boolean> = ref(false);
@@ -42,8 +46,17 @@ let store = useVuex();
 
 const { instance: spec_dialog_instance } = useSpecDialog(store)
 const { instance: status_dialog_instance } = useStatusDialog(store)
+const { instance: library } = useLibraryDialog(store)
 
 const { app } = useAppSettings(store)
+
+
+const { basketItems } = useBasketItems(store)
+
+watch(basketItems, () => {
+    console.log(basketItems.value)
+    localStorage.setItem('basket', JSON.stringify(basketItems.value))
+}, { deep: true })
 
 onMounted(async () => {
     app.value = await getSettings()
@@ -62,8 +75,15 @@ onMounted(async () => {
 
     store.commit(Mutations.SET_SPEC_DIALOG, spec_dialog_instance.value)
     store.commit(Mutations.SET_STATUS_DIALOG, status_dialog_instance.value)
+    store.commit(Mutations.SET_LIBRARY_DIALOG, library.value)
 
     isDataLoaded.value = true
+
+    // set basket items
+
+    let basketItemsLocalStorage = localStorage.getItem('basket')
+
+    basketItems.value = (basketItemsLocalStorage != null && basketItemsLocalStorage != 'undefined' ? JSON.parse(basketItemsLocalStorage) : [])
 })
 </script>
 <style lang="scss">

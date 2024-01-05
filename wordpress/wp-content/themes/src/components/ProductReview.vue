@@ -9,7 +9,7 @@
             <div class="review-description-box__text" v-html="text"></div>
         </div>
         <div class="review-images">
-            <button v-for="image in images" class="review-images__button">
+            <button @click="onImageClick" v-for="image in images" class="review-images__button">
                 <img class="review-images__image" :src="image.path" :alt="image.path">
             </button>
         </div>
@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import { useAppSettings } from '@/hooks/App/useAppSettings';
+import { useLibraryDialog } from '@/hooks/App/useLibraryDialog';
 import { useVuex } from '@/store/useVuex';
 import { IProductReview, IProductReviewImage } from '@/types/Product';
 import { Ref, ref, ComputedRef, computed } from 'vue';
@@ -32,7 +33,7 @@ interface Props {
     images: Array<IProductReviewImage>
 }
 
-const { average_rating } = defineProps<Props>()
+const { average_rating, title, text, images } = defineProps<Props>()
 
 const rate: Ref<number> = ref(Math.floor(average_rating))
 
@@ -42,6 +43,12 @@ const inRate: ComputedRef<number> = computed(() => 5 - rate.value)
 const store = useVuex();
 
 const { app } = useAppSettings(store)
+
+const { libraryDialog } = useLibraryDialog(store)
+
+const onImageClick = () => {
+    libraryDialog.value.open(images)
+}
 
 </script>
 
@@ -77,6 +84,8 @@ const { app } = useAppSettings(store)
     display: flex;
     gap: 10px;
     align-items: center;
+
+    flex-wrap: wrap;
 
     &__button {
         padding: 3px;

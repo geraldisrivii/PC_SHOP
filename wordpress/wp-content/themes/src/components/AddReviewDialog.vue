@@ -23,6 +23,7 @@
                     </div>
                 </div>
             </form>
+            <Preloader ref="preloader" />
         </my-dialog>
     </div>
 </template>
@@ -32,10 +33,12 @@
 import WOO from '@/axiosWoocomerce'
 import { useAppSettings } from '@/hooks/App/useAppSettings';
 import store from '@/store';
-import { Ref, computed, ref } from 'vue';
+import { Ref, computed, onMounted, ref } from 'vue';
 import FileInput from './FileInput.vue';
 import { useStoreUser } from '@/hooks/User/useStoreUser';
 import { ApiImage } from '@/types/App';
+import { useStatusDialog } from '@/hooks/App/useStatusDialog';
+import Preloader from '@/components/Preloader.vue';
 
 const requestReview = ref({
     images: [] as FileList & Array<ApiImage>,
@@ -59,7 +62,13 @@ const emit = defineEmits<Emits>()
 
 const { user } = useStoreUser(store)
 
+const { statusDialog } = useStatusDialog(store)
+
+const preloader = ref<InstanceType<typeof Preloader> | null>(null)
+
+
 const onSubmit = async (event: Event) => {
+    
     let formData = new FormData(event.target as HTMLFormElement)
 
     formData.append('product_id', productId.toString())
@@ -69,9 +78,20 @@ const onSubmit = async (event: Event) => {
     formData.append('title', requestReview.value.title)
     formData.append('review', requestReview.value.text)
 
-    let data = await WOO.post('products/reviews', formData).then(response => response.data)
+    preloader.value.open()
 
-    console.log(data);
+    const response = await WOO.post('products/reviews', formData, {
+        validateStatus: function (status) {
+            return status < 500;
+        }
+    })
+
+    preloader.value.close()
+
+    statusDialog.value.open(response.status == 201 ? 'success' : 'error', response.status == 201 ? 'Отзыв был добавлен' : response.data.message, null, 'Закрыть')
+
+
+    emit('update:isAddReviewDialogShow', false)
 }
 
 const onUpdate = (newValue: boolean) => {
@@ -93,6 +113,8 @@ const mouseEnter = (event, index: number) => {
     }
 }
 
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -100,7 +122,9 @@ const mouseEnter = (event, index: number) => {
 @import '@/scss/base/typography.scss';
 
 
-.add-review {}
+.add-review {
+    position: relative;
+}
 
 .add-review-form {
     display: flex;

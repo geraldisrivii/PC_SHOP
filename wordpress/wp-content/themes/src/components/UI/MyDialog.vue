@@ -1,9 +1,9 @@
 <template>
-        <div @click.stop="onClick" class="modal-wrapper" :class="{ 'modal-wrapper--show': isDialogShow }">
-            <div @click.stop class="modal">
-                <slot></slot>
-            </div>
+    <div @click.stop="onClick" class="modal-wrapper" :class="{ 'modal-wrapper--show': isDialogShow }">
+        <div @click.stop class="modal">
+            <slot></slot>
         </div>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -36,7 +36,7 @@ const onClick = () => {
     left: 0;
     width: 100%;
     height: 100vh;
-    z-index: 999;
+    z-index: -1;
     background-color: rgba($color: #474747, $alpha: 0.6);
 
     visibility: hidden;
@@ -47,6 +47,9 @@ const onClick = () => {
     &--show {
         visibility: visible;
         opacity: 1;
+        width: 100%;
+        height: 100vh;
+        z-index: 999;
         transform: translate(0px, 0px);
     }
 }

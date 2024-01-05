@@ -29,6 +29,7 @@
                 </div>
                 <button :disabled="!isValidAll" type="submit" class="button register__button">Отправить</button>
             </form>
+            <Preloader ref="preloader" />
         </my-dialog>
         <my-dialog v-model:isDialogShow="isCodeDialogShow">
             <!-- <p class="register__title title">Потдверждение</p> -->
@@ -57,6 +58,8 @@ import { useRegisterFields } from '@/hooks/User/useRegisterFields';
 import { useStoreUser } from '@/hooks/User/useStoreUser';
 import { useVuex } from '@/store/useVuex';
 import { userApprovedFields } from '@/hooks/User/useApprovedFields';
+import Preloader from './Preloader.vue';
+import { useStatusDialog } from '@/hooks/App/useStatusDialog';
 
 interface Props { isRegisterDialogShow: boolean }
 
@@ -72,6 +75,10 @@ const isCodeDialogShow: Ref<boolean> = ref(false)
 
 const onUpdate = (newValue: boolean) => emit('update:isRegisterDialogShow', newValue)
 
+
+const preloader = ref<InstanceType<typeof Preloader> | null>(null)
+
+
 const onSubmit = async () => {
     let response = await WP.post('users/signup', ValidFields.value, {
         withCredentials: true,
@@ -79,11 +86,16 @@ const onSubmit = async () => {
 
     user.value = response.data
 
+    preloader.value.open()
+
     let mailResponse = await WP.post('mails', {}, {
         withCredentials: true
     })
 
+    preloader.value.close()
+
     console.log(mailResponse.data)
+
 
     if (mailResponse.status == 200) {
         isCodeDialogShow.value = true;
@@ -98,7 +110,7 @@ const { DataFields: DataAprovedFields, isntValidFields: isntValidApprovedFields,
 
 
 watch(isValidApprovedAll, () => {
-    if (isValidAll.value) {
+    if (isValidApprovedAll.value) {
         isCodeDialogShow.value = false;
     }
 })

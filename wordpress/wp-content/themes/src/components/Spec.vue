@@ -56,6 +56,9 @@ const onClick = () => {
         text-transform: uppercase;
         margin-right: 12px;
 
+        text-wrap: nowrap;
+        width: max-content;
+
         @include table {
             font-size: 14px;
             text-transform: none;
@@ -66,9 +69,11 @@ const onClick = () => {
         font-size: 16px;
         font-weight: 500;
         text-transform: uppercase;
-
+        width: fit-content;
+        
         @include table {
             font-size: 14px;
+            margin-right: 20px;
         }
     }
 
@@ -83,6 +88,10 @@ const onClick = () => {
         top: -6px;
         right: -24px;
         // transform: translate(7px, -4px);
+
+        @include table {
+            right: 0px;
+        }
     }
 
     .spec-value-box {
