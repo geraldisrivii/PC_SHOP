@@ -6,7 +6,7 @@ import { Getters } from '@/store/basket/types';
 
 export const useBasketItems = (store: typeof Store) => {
     
-    let basketItems: WritableComputedRef<Object> = computed({
+    let basketItems: WritableComputedRef<Array<IGrouppedProduct>> = computed({
         get: () => store.getters['basket/' + Getters.GET_BASKET_ITEMS],
         set: (value: Array<IGrouppedProduct>) => store.commit('basket/' + Mutations.SET_BASKET_ELEMENTS, value),
     })
