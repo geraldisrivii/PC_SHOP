@@ -7,4 +7,5 @@ export interface BasketState {
 export enum Getters {
     GET_COUNT_ELEMENTS = 'GET_COUNT_ELEMENTS',
     GET_BASKET_ITEMS = 'GET_BASKET_ITEMS',
+    GET_BASKET_ITEMS_GROUPED = 'GET_BASKET_ITEMS_GROUPED',
 }

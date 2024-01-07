@@ -21,7 +21,7 @@
                     <div class="first-section__description" v-html="product.description"></div>
                     <div class="first-section__buttons">
                         
-                        <CartButton :product="product"/>
+                        <CartButton/>
                         <button class="button button_white first-section__button">{{ page['first-section_button-conf-text']
                         }}</button>
                     </div>
@@ -65,12 +65,10 @@ const onImageLoaded = () => {
     previousImageSrc.value = product.value.images[0].src
 }
 
-// const route = useRoute();
 
 
 
 watch(product, () => {
-    console.log(previousImageSrc.value)
     if (!previousImageSrc.value) {
         return;
     }

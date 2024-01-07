@@ -60,6 +60,7 @@ function update_custom_field_after_insert_product_review($comment, $request)
 		$returnedData[] = [
 			'path' =>  $uploads_url . '/' . $file_name . substr($images['name'][$key], mb_strrpos($images['name'][$key], '.')),
 			'result' => $result,
+			'name' => $images['name'][$key]
 		];
 
 		$results[] = $result;

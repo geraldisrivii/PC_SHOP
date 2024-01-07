@@ -1,4 +1,5 @@
 <template>
+    <CartDialog ref="cart_dialog_instance" />
     <StatusDialog v-if="isAppLoaded" ref="status_dialog_instance" />
     <Library v-if="isAppLoaded" ref="library" />
     <SpecDialog ref="spec_dialog_instance" />
@@ -32,6 +33,8 @@ import StatusDialog from './components/UI/StatusDialog.vue';
 import Library from './components/Library.vue';
 import { useLibraryDialog } from './hooks/App/useLibraryDialog';
 import { useBasketItems } from './hooks/Product/useBasketItems';
+import CartDialog from './components/CartDialog.vue';
+import { useCartDialog } from './hooks/App/useCartDialog';
 
 // DATA
 let isDataLoaded: Ref<boolean> = ref(false);
@@ -42,11 +45,14 @@ let isRegisterDialogShow: Ref<boolean> = ref(false)
 let isLoginDialogShow: Ref<boolean> = ref(false)
 
 
+let someDialogShow: Ref<boolean> = ref(false)
+
 let store = useVuex();
 
 const { instance: spec_dialog_instance } = useSpecDialog(store)
 const { instance: status_dialog_instance } = useStatusDialog(store)
 const { instance: library } = useLibraryDialog(store)
+const { instance: cart_dialog_instance } = useCartDialog(store)
 
 const { app } = useAppSettings(store)
 
@@ -76,6 +82,7 @@ onMounted(async () => {
     store.commit(Mutations.SET_SPEC_DIALOG, spec_dialog_instance.value)
     store.commit(Mutations.SET_STATUS_DIALOG, status_dialog_instance.value)
     store.commit(Mutations.SET_LIBRARY_DIALOG, library.value)
+    store.commit(Mutations.SET_CART_DIALOG, cart_dialog_instance.value)
 
     isDataLoaded.value = true
 
@@ -271,5 +278,31 @@ input {
     width: 50px;
     height: 7px;
     background-color: white;
+}
+
+
+
+.close-button {
+    position: relative;
+    height: 40px;
+    width: 40px;
+
+    &__line {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 40px;
+        width: 2px;
+        background-color: white;
+        border-radius: 2px;
+
+        &_1 {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        &_2 {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+    }
 }
 </style>

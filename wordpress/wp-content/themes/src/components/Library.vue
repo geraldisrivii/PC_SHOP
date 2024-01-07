@@ -14,10 +14,12 @@
             <button v-if="imagesMoreOne" class="slider-images__button " @click.stop="swiperNext">
                 <img :src="app['general_slider-button_right']" alt="button_right">
             </button>
-            <button @click="$emit('update:isSliderShow', false)" class="close-button">
-                <div class="close-button__line close-button__line_1"></div>
-                <div class="close-button__line close-button__line_2"></div>
-            </button>
+            <div class="close-button-wrapper">
+                <button @click="$emit('update:isSliderShow', false)" class="close-button">
+                    <div class="close-button__line close-button__line_1"></div>
+                    <div class="close-button__line close-button__line_2"></div>
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -123,7 +125,7 @@ defineExpose({
         width: 50px;
         height: 50px;
 
-        img{
+        img {
             width: 100%;
             height: 100%;
             object-fit: contain;
@@ -131,30 +133,9 @@ defineExpose({
     }
 }
 
-.close-button {
+.close-button-wrapper {
     position: fixed;
     top: 50px;
     right: 80px;
-    height: 40px;
-    width: 40px;
-
-    &__line {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        height: 40px;
-        width: 2px;
-        background-color: white;
-        border-radius: 2px;
-
-        &_1 {
-            transform: rotate(45deg);
-        }
-
-        &_2 {
-            transform: rotate(-45deg);
-        }
-    }
 }
 </style>

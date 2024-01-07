@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2024-01-04 20:16+0700\n"
+"POT-Creation-Date: 2024-01-07 11:56+0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -26,8 +26,7 @@ msgstr "Код подтверждения почты не найден в сес
 
 #: App/Controllers/MailController.php:61
 msgid "Code isnt match to code in session"
-msgstr ""
-"Код подтверждения почты не соответствует коду сохраненному в сессии"
+msgstr "Код подтверждения почты не соответствует коду сохраненному в сессии"
 
 #: App/Controllers/MailController.php:71
 msgid "Email is successfully verified"

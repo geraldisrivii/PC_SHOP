@@ -3,6 +3,7 @@ import { IProductCategory } from './Product';
 import SpecDialog from '@/components/SpecDialog.vue';
 import StatusDialog from '@/components/UI/StatusDialog.vue';
 import Library from '@/components/Library.vue';
+import CartDialog from '@/components/CartDialog.vue';
 
 
 export interface Settings {
@@ -16,6 +17,7 @@ export interface State {
     page: Settings | null;
     spec_dialog: InstanceType<typeof SpecDialog> | null;
     status_dialog: InstanceType<typeof StatusDialog> | null;
+    cart_dialog: InstanceType<typeof CartDialog> | null;
     library_dialog: InstanceType<typeof Library> | null;
 }
 

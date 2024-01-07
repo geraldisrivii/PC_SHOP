@@ -1,8 +1,9 @@
 <?php
 
-add_action('wp_enqueue_scripts', 'wp_enqueue_scripts_func');
+add_action('wp_enqueue_scripts', 'wp_enqueue_scripts_func', 999);
 function wp_enqueue_scripts_func()
 {
+
     $partOfUri = $_SERVER['REQUEST_URI'];
 
     $pathsNames = PATHS_NAMES_ARRAY;
