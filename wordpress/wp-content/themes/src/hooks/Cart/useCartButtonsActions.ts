@@ -1,10 +1,10 @@
+import { IGrouppedProduct } from '@/types/Product'
+import { ComputedRef, WritableComputedRef } from 'vue'
 
+export const useCartButtonsActions = (basketItems: WritableComputedRef<Array<IGrouppedProduct>>, product: WritableComputedRef<IGrouppedProduct>) => {
 
-export const useCartButtonsActions = () => {
     const addToCart = () => {
         basketItems.value.push(product.value)
-
-        console.log(BasketItemsGrouped.value)
     }
 
     const removeOfCart = () => {
@@ -15,5 +15,10 @@ export const useCartButtonsActions = () => {
         }
 
         basketItems.value.splice(index, 1)
+    }
+
+    return {
+        addToCart,
+        removeOfCart
     }
 }

@@ -12,27 +12,49 @@
 
 <script setup lang="ts">
 import { useAppSettings } from '@/hooks/App/useAppSettings';
+import { useCartButtonsActions } from '@/hooks/Cart/useCartButtonsActions';
 import { useBasketItems } from '@/hooks/Product/useBasketItems';
 import { useBasketItemsGrouped } from '@/hooks/Product/useBasketItemsGrouped';
+import { useCurrentProduct } from '@/hooks/Product/useCurrentProduct';
 import { useVuex } from '@/store/useVuex';
 import { IGrouppedProduct } from '@/types/Product';
-import { computed } from 'vue';
+import { WritableComputedRef, computed } from 'vue';
 
 
 interface Props {
-    product: IGrouppedProduct
+    product?: IGrouppedProduct
 }
 
 const { product } = defineProps<Props>()
 
+const currentProduct = computed((): IGrouppedProduct => {
+    if(!product){
+        return useCurrentProduct().product.value
+    }
+    return product
+})
+
+
 const store = useVuex()
 
-const { basketItems, addToCart, removeOfCart } = useBasketItems(store, product)
+const { basketItems } = useBasketItems(store)
 
-const { BasketItemsGrouped, quantity } = useBasketItemsGrouped(store, product)
+const { addToCart, removeOfCart } = useCartButtonsActions(basketItems, currentProduct)
+
+const { BasketItemsGrouped } = useBasketItemsGrouped(store)
 
 
 const { app } = useAppSettings(store)
+
+const quantity = computed(() => {
+    const basketItem = BasketItemsGrouped.value.find(item => item.product.id == currentProduct.value.id)
+
+    if (!basketItem) {
+        return 0
+    }
+
+    return basketItem.quantity
+})
 
 const hasQuantity = computed(() => {
     return quantity.value > 0
@@ -41,4 +63,20 @@ const hasQuantity = computed(() => {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.cart-button-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: rgb(43, 43, 43);
+    border-radius: 5px;
+
+    padding: 13px 34px;
+
+    &__button {}
+
+
+    &__quantity {}
+}
+</style>

@@ -1,0 +1,1 @@
+export type SearchType = 'regexp' | 'no-search'

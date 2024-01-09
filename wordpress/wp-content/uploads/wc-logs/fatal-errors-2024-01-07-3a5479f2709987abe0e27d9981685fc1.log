@@ -1,0 +1,25 @@
+2024-01-07T11:01:02+00:00 CRITICAL Uncaught YooKassa\Validator\Exceptions\EmptyPropertyValueException: Empty amount value in /var/www/html/wp-content/themes/my-theme/vendor/yoomoney/yookassa-sdk-php/lib/Model/MonetaryAmount.php:112
+Stack trace:
+#0 /var/www/html/wp-content/themes/my-theme/vendor/yoomoney/yookassa-sdk-php/lib/Common/AbstractObject.php(182): YooKassa\Model\MonetaryAmount->setValue(NULL)
+#1 /var/www/html/wp-content/themes/my-theme/vendor/yoomoney/yookassa-sdk-php/lib/Common/AbstractObject.php(225): YooKassa\Common\AbstractObject->offsetSet('value', NULL)
+#2 /var/www/html/wp-content/themes/my-theme/vendor/yoomoney/yookassa-sdk-php/lib/Request/Payments/AbstractPaymentRequestBuilder.php(91): YooKassa\Common\AbstractObject->fromArray(Array)
+#3 /var/www/html/wp-content/themes/my-theme/vendor/yoomoney/yookassa-sdk-php/lib/Common/AbstractRequestBuilder.php(110): YooKassa\Request\Payments\AbstractPaymentRequestBuilder->setAmount(Array)
+#4 /var/www/html/wp-content/themes/my-theme/vendor/yoomoney/yookassa-sdk-php/lib/Request/Payments/CreatePaymentRequestBuilder.php(390): YooKassa\Common\AbstractRequestBuilder->setOptions(Array)
+#5 /var/www/html/wp-content/themes/my-theme/vendor/yoomoney/yookassa-sdk-php/lib/Client.php(228): YooKassa\Request\Payments\CreatePaymentRequestBuilder->build(Array)
+#6 /var/www/html/wp-content/themes/my-theme/App/Classes/YookassaServise.php(44): YooKassa\Client->createPayment(Array, '659a846e992d30....')
+#7 /var/www/html/wp-content/themes/my-theme/App/Controllers/PaymentController.php(21): App\Classes\YookassaServise->create_payment(NULL)
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): App\Controllers\PaymentController->create(Object(WP_REST_Request))
+#9 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/payments', Array, NULL)
+#10 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#11 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wp/v2/payments')
+#12 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#13 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#14 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#15 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#16 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#17 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#18 /var/www/html/wp-blog-header.php(16): wp()
+#19 /var/www/html/index.php(17): require('/var/www/html/w...')
+#20 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/vendor/yoomoney/yookassa-sdk-php/lib/Model/MonetaryAmount.php на строке 112
+

@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - WooCommerce - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-11-24 16:17:08+0000\n"
+"PO-Revision-Date: 2023-12-03 19:16:42+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -349,12 +349,12 @@ msgstr "Ответ от службы ИИ пуст или в нём отсутс
 #: packages/woocommerce-blocks/src/Patterns/ProductUpdater.php:46
 #: packages/woocommerce-blocks/src/Patterns/ProductUpdater.php:62
 msgid "Failed to fetch dummy products."
-msgstr "Не удалось получить демонтрационные товары."
+msgstr "Не удалось получить демонстрационные товары."
 
 #: packages/woocommerce-blocks/src/Patterns/ProductUpdater.php:24
 #: packages/woocommerce-blocks/src/Patterns/ProductUpdater.php:33
 msgid "No business description provided for generating AI content."
-msgstr "Для генерации ИИ-текста не представлено описание бизнеса."
+msgstr "Для генерации текста ИИ не представлено описание компании."
 
 #: packages/woocommerce-blocks/src/Patterns/PatternUpdater.php:52
 msgid "Failed to update patterns content."
@@ -894,25 +894,25 @@ msgstr "Средний рейтинг товара (бета-версия)"
 #: assets/client/admin/product-editor/blocks/product-fields/variation-options/block.json
 msgctxt "block description"
 msgid "The product variations options."
-msgstr "Опции вариантов товаров."
+msgstr "Опции вариаций товара."
 
 #: assets/client/admin/product-editor/blocks/product-fields/product-variations-options-field/block.json
 #: assets/client/admin/product-editor/blocks/product-fields/variation-options/block.json
 msgctxt "block title"
 msgid "Product variations options"
-msgstr "Опции вариантов товаров"
+msgstr "Опции вариаций товара"
 
 #: assets/client/admin/product-editor/blocks/product-fields/product-variation-items-field/block.json
 #: assets/client/admin/product-editor/blocks/product-fields/variation-items/block.json
 msgctxt "block description"
 msgid "The product variations items."
-msgstr "Артикулы вариантов товаров."
+msgstr "Элементы вариаций товара."
 
 #: assets/client/admin/product-editor/blocks/product-fields/product-variation-items-field/block.json
 #: assets/client/admin/product-editor/blocks/product-fields/variation-items/block.json
 msgctxt "block title"
 msgid "Product variations items"
-msgstr "Артикулы вариантов товаров"
+msgstr "Артикулы вариаций товаров"
 
 #: assets/client/admin/product-editor/blocks/product-fields/password/block.json
 #: assets/client/admin/product-editor/blocks/product-fields/product-password-field/block.json
@@ -992,7 +992,7 @@ msgstr "Перейти к вариациям"
 #: src/Admin/Features/ProductBlockEditor/ProductTemplates/SimpleProductTemplate.php:547
 #: src/Admin/Features/ProductBlockEditor/ProductTemplates/SimpleProductTemplate.php:761
 msgid "This product has options, such as size or color. You can now manage each variation's price and other details individually."
-msgstr "У товара имеются опции, такие как размер или цвет. Вы можете редактировать цену и другую информацию отдельно для каждого варианта товара."
+msgstr "У товара имеются опции, такие как размер или цвет. Вы можете менять цену и другую информацию отдельно для каждой вариации товара."
 
 #: src/Admin/Features/ProductBlockEditor/ProductTemplates/SimpleProductTemplate.php:354
 msgid "Require a password"
@@ -1093,7 +1093,7 @@ msgstr "Количество товара."
 
 #: packages/woocommerce-blocks/src/StoreApi/Schemas/V1/ItemSchema.php:29
 msgid "The item product or variation ID."
-msgstr "Идентификатор товара или варианта."
+msgstr "ID товара или вариации."
 
 #: packages/woocommerce-blocks/src/StoreApi/Schemas/V1/ItemSchema.php:17
 msgid "Unique identifier for the item."
@@ -1173,7 +1173,7 @@ msgstr "Пароль для записи."
 
 #: includes/rest-api/Controllers/Version3/class-wc-rest-product-variations-controller.php:48
 msgid "Deletes unused variations."
-msgstr "Удаляет неиспользуемые варианты."
+msgstr "Удаляет неиспользуемые вариации."
 
 #: includes/rest-api/Controllers/Telemetry/class-wc-rest-telemetry-controller.php:165
 msgid "Installation date of the WooCommerce mobile app."
@@ -2028,15 +2028,15 @@ msgstr "Выйти"
 
 #: includes/class-wc-product-variable.php:65
 msgid "This product has multiple variants. The options may be chosen on the product page"
-msgstr "Этот товар имеет несколько вариантов. Опции можно выбрать на странице товара"
+msgstr "Этот товар имеет несколько вариаций. Опции можно выбрать на странице товара."
 
 #. translators: %d: products count
 #: includes/admin/importers/views/html-csv-import-done.php:36
 msgid "%s variations imported"
 msgid_plural "%s variations imported"
-msgstr[0] "Импортирован %s вариант"
-msgstr[1] "Импортировано %s варианта"
-msgstr[2] "Импортировано %s вариантов"
+msgstr[0] "Импортирована %s вариация"
+msgstr[1] "Импортировано %s вариации"
+msgstr[2] "Импортировано %s вариаций"
 
 #: includes/admin/class-wc-admin-assets.php:438
 msgid "Adding new attribute failed."
@@ -2044,7 +2044,7 @@ msgstr "Не удалось добавить новый атрибут."
 
 #: includes/admin/class-wc-admin-assets.php:303
 msgid "%qty% variations added"
-msgstr "Добавлено вариантов: %qty%"
+msgstr "Вариации добавлены в количестве %qty% шт."
 
 #: packages/woocommerce-blocks/assets/js/blocks/single-product/block.json
 #: packages/woocommerce-blocks/build/single-product/block.json
@@ -3926,7 +3926,7 @@ msgstr "Содержит блоки, отображающие содержимо
 #: packages/woocommerce-blocks/build/featured-product/block.json
 msgctxt "block description"
 msgid "Highlight a product or variation."
-msgstr "Выделите товар или вариант."
+msgstr "Выделение товара или вариации."
 
 #: packages/woocommerce-blocks/assets/js/blocks/attribute-filter/block.json
 #: packages/woocommerce-blocks/build/attribute-filter/block.json
@@ -4076,11 +4076,11 @@ msgstr "Опишите этот товар. Что делает его уник�
 
 #: includes/admin/class-wc-admin-assets.php:431
 msgid "Product types define available product details and attributes, such as downloadable files and variations. They’re also used for analytics and inventory management."
-msgstr "Типы товара определяют доступные особенности товара и атрибуты, например загружаемые файлы и варианты. Они также используются для аналитики и управления запасами."
+msgstr "Типы товара определяют доступные особенности товара и атрибуты, например загружаемые файлы и вариации. Они также используются для аналитики и управления запасами."
 
 #: includes/admin/class-wc-admin-assets.php:430
 msgid "<b>Variable –</b> a product with variations, each of which may have a different SKU, price, stock option, etc. For example, a t-shirt available in different colors and/or sizes."
-msgstr "<b>С вариантами —</b> товар с вариантами, каждый из которых может иметь свой артикул, цену, опцион и т. д. Например, имеются футболки разного цвета и/или размера."
+msgstr "<b>Вариативный —</b> товар с вариациями, каждая из которых может иметь свои артикул, цену, опции и т. д. Например, футболки могут быть разных цветов и/или размеров."
 
 #: includes/admin/class-wc-admin-assets.php:429
 msgid "<b>External or Affiliate –</b> one that you list and describe on your website but is sold elsewhere."
@@ -4431,7 +4431,7 @@ msgstr "Используя WooPayments, вы соглашаетесь с эти�
 
 #: src/Admin/Features/OnboardingTasks/Tasks/ReviewShippingOptions.php:26
 msgid "Review shipping options"
-msgstr "Просмотр вариантов доставки"
+msgstr "Просмотр способов доставки"
 
 #: packages/woocommerce-blocks/src/Utils/BlockTemplateUtils.php:366
 msgid "Template used to display the Mini-Cart drawer."
@@ -5175,7 +5175,7 @@ msgstr "Использование пользовательских таблиц
 #: src/Admin/Features/OnboardingTasks/TaskLists.php:439
 msgctxt "Admin menu name"
 msgid "Home"
-msgstr "Обзор"
+msgstr "Главная"
 
 #: includes/rest-api/Controllers/Version3/class-wc-rest-products-controller.php:1476
 msgid "Limit results to those with a SKU that partial matches a string."
@@ -7572,7 +7572,7 @@ msgstr "Расширение Payfast для WooCommerce позволяет пр�
 
 #: src/Admin/API/Reports/Variations/Stats/Controller.php:140
 msgid "Number of variation items sold."
-msgstr "Количество проданных вариантов товара."
+msgstr "Количество проданных вариаций товара."
 
 #: src/Admin/API/Reports/Variations/Stats/Controller.php:139
 msgid "Variations Sold"
@@ -8027,7 +8027,7 @@ msgstr "Порог родительского товара (%d)"
 
 #: includes/admin/meta-boxes/views/html-product-data-inventory.php:104
 msgid "When product stock reaches this amount you will be notified by email. It is possible to define different values for each variation individually. The shop default value can be set in Settings > Products > Inventory."
-msgstr "Когда запас товара достигнет этого количества, вы получите уведомление по электронной почте. Можно определить разные значения для каждого варианта индивидуально. Стандартное значение для всего магазина можно установить в разделе Настройки > Товары > Запасы."
+msgstr "Когда запас товара достигнет этого количества, вы получите уведомление по электронной почте. Можно определить разные значения для каждой вариации индивидуально. Стандартное значение для всего магазина можно установить в разделе Настройки > Товары > Запасы."
 
 #. translators: %d: Amount of stock left
 #: includes/admin/meta-boxes/views/html-product-data-inventory.php:99
@@ -8704,11 +8704,11 @@ msgstr "Управляйте заказами на ходу"
 
 #: src/Admin/API/Reports/Controller.php:57
 msgid "Stats about variations."
-msgstr "Статистика вариантов."
+msgstr "Статистика по вариациями."
 
 #: src/Admin/API/Reports/Controller.php:53
 msgid "Variations detailed reports."
-msgstr "Подробные отчеты о вариантах."
+msgstr "Подробные отчёты о вариациях."
 
 #: src/Admin/API/Reports/Orders/Controller.php:325
 #: src/Admin/API/Reports/Orders/Stats/Controller.php:435
@@ -8722,19 +8722,19 @@ msgstr "Ограничить выборку товарами, которым н�
 
 #: src/Admin/API/Reports/Variations/Controller.php:362
 msgid "Limit result set to variations in the specified categories."
-msgstr "Ограничить выборку вариантами из указанных категорий."
+msgstr "Ограничить выборку вариациями из указанных категорий."
 
 #: src/Admin/API/Reports/Variations/Controller.php:353
 msgid "Limit result set to variations that don't include the specified attributes."
-msgstr "Ограничить выборку вариантами, которые не включают указанные атрибуты."
+msgstr "Ограничить выборку вариациями, которые не имеют указанные атрибуты."
 
 #: src/Admin/API/Reports/Variations/Controller.php:344
 msgid "Limit result set to variations that include the specified attributes."
-msgstr "Ограничить выборку только вариантами, которые включают указанные атрибуты."
+msgstr "Ограничить выборку только вариациями, которые включают указанные атрибуты."
 
 #: src/Admin/API/Reports/Variations/Controller.php:337
 msgid "Add additional piece of info about each variation to the report."
-msgstr "Добавьте в этот вариант дополнительную информацию о каждом варианте."
+msgstr "Добавить в отчёт дополнительную информацию о каждой вариации."
 
 #: src/Admin/API/Reports/Variations/Controller.php:318
 #: src/Admin/API/Reports/Variations/Stats/Controller.php:263
@@ -8749,7 +8749,7 @@ msgstr "Ограничить выборку товарами, у которых 
 #: src/Admin/API/Reports/Variations/Controller.php:371
 #: src/Admin/API/Reports/Variations/Stats/Controller.php:244
 msgid "Limit result set to variations not in the specified categories."
-msgstr "Ограничить выборку вариантами не из указанных категорий."
+msgstr "Ограничить выборку вариациями не из указанных категорий."
 
 #: src/Internal/Features/FeaturesController.php:170
 msgid "Add the new WooCommerce navigation experience to the dashboard"
@@ -10098,7 +10098,7 @@ msgstr "Адрар"
 
 #: includes/admin/views/html-quick-edit-product.php:185
 msgid "This will change the stock status of all variations."
-msgstr "Это приведет к изменению состояния запасов для всех вариантов."
+msgstr "Это приведет к изменению состояния запасов всех вариаций."
 
 #: includes/admin/class-wc-admin-assets.php:508
 msgid "Are you sure you want to run this tool?"
@@ -10860,7 +10860,7 @@ msgstr "Количество товара в наличии, если запас
 
 #: packages/woocommerce-blocks/src/StoreApi/Schemas/V1/ProductSchema.php:325
 msgid "List of variation IDs, if applicable."
-msgstr "Список ID вариантов, если есть."
+msgstr "Список ID вариации, если есть."
 
 #: packages/woocommerce-blocks/src/StoreApi/Schemas/V1/ProductSchema.php:162
 msgid "Price string formatted as HTML."
@@ -12396,7 +12396,7 @@ msgstr "Ограничить результат товарами из опред
 
 #: src/Admin/API/Reports/Products/Controller.php:212
 msgid "Product variations IDs."
-msgstr "ID вариантов товара."
+msgstr "ID вариаций товара."
 
 #: src/Admin/API/Reports/Products/Controller.php:188
 msgid "Product category IDs."
@@ -12691,7 +12691,7 @@ msgstr "Добавьте в отчет дополнительную информ
 #: src/Admin/API/Reports/Variations/Controller.php:328
 #: src/Admin/API/Reports/Variations/Stats/Controller.php:273
 msgid "Limit result to items with specified variation ids."
-msgstr "Ограничить набор результатов элементами, у которых есть указанные идентификаторы вариантов."
+msgstr "Ограничить результаты имеющими указанные ID вариаций."
 
 #: src/Admin/API/Reports/Products/Controller.php:263
 #: src/Admin/API/Reports/Products/Stats/Controller.php:231
@@ -14515,7 +14515,7 @@ msgstr "Приступить к покупкам"
 
 #: includes/admin/class-wc-admin-assets.php:308
 msgid "1 variation"
-msgstr "1 вариант"
+msgstr "1 вариация"
 
 #: packages/action-scheduler/classes/ActionScheduler_AdminView.php:237
 #: packages/woocommerce-blocks/build/all-products.js:21
@@ -22391,7 +22391,7 @@ msgstr "Показать только рекомендуемые товары."
 #: includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php:2230
 #: includes/rest-api/Controllers/Version3/class-wc-rest-products-controller.php:1386
 msgid "List of variations IDs."
-msgstr "Список ID вариантов."
+msgstr "Список ID вариаций."
 
 #: includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php:1717
 #: includes/rest-api/Controllers/Version3/class-wc-rest-products-controller.php:861
@@ -27204,7 +27204,7 @@ msgstr "Счётчик товаров"
 
 #: includes/admin/settings/class-wc-settings-shipping.php:360
 msgid "Edit failed. Please try again."
-msgstr "Редактирование не удалось. Попробуйте ещё раз."
+msgstr "Изменение не удалось. Попробуйте ещё раз."
 
 #: includes/admin/settings/class-wc-settings-shipping.php:353
 msgid "This shipping method does not have any settings to configure."
@@ -27360,7 +27360,7 @@ msgstr "Удалить позицию"
 
 #: includes/admin/meta-boxes/views/html-order-item.php:184
 msgid "Edit item"
-msgstr "Редактировать позицию"
+msgstr "Изменить товар"
 
 #: includes/admin/meta-boxes/views/html-order-download-permission.php:36
 msgid "Customer download link"
@@ -29261,7 +29261,7 @@ msgstr "Подтвердить заказ"
 #: includes/wc-template-functions.php:2345
 msgctxt "breadcrumb"
 msgid "Home"
-msgstr "Обзор"
+msgstr "Главная"
 
 #. translators: %s: reviews count
 #: includes/wc-template-functions.php:1909
@@ -30807,7 +30807,7 @@ msgstr "Обновить %s"
 #: assets/client/admin/product-editor/blocks/product-fields/downloads/edit-downloads-modal/edit-downloads-modal.js:1
 #: assets/client/admin/product-editor/index.js:2
 msgid "Edit %s"
-msgstr "Редактировать %s"
+msgstr "Изменить %s"
 
 #. translators: %s: attribute name
 #: includes/class-wc-post-types.php:238
@@ -37793,7 +37793,7 @@ msgstr "Уверены, что хотите удалить эту вариаци
 
 #: includes/admin/class-wc-admin-assets.php:302
 msgid "1 variation added"
-msgstr "Добавлен 1 вариант"
+msgstr "Добавлена 1 вариация"
 
 #: includes/admin/class-wc-admin-assets.php:301
 msgid "Set variation image"
@@ -37869,7 +37869,7 @@ msgstr "Вы можете выбрать не более %qty% товаров"
 #: includes/class-wc-frontend-scripts.php:604
 msgctxt "enhanced select"
 msgid "You can only select 1 item"
-msgstr "Вы можете выбрать лишь 1 вариант"
+msgstr "Вы можете выбрать лишь 1 вариацию"
 
 #: includes/admin/class-wc-admin-assets.php:164
 #: includes/class-wc-frontend-scripts.php:603
@@ -37960,7 +37960,7 @@ msgstr "Отозвать ключ API"
 
 #: includes/admin/class-wc-admin-api-keys-table-list.php:100
 msgid "View/Edit"
-msgstr "Просмотр/Правка"
+msgstr "Просмотр/правка"
 
 #. translators: %s: API key ID.
 #. translators: %s: webhook ID.

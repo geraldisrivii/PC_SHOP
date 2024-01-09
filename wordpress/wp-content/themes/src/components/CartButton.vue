@@ -1,17 +1,8 @@
 <template>
     <div class="cart-button">
-        <div v-show="hasQuantity" class="cart-button-buttons">
-            <button class="cart-button-buttons__button" @click="removeOfCart">
-                <img :src="app['general_slider-button_left']" alt="button_left">
-            </button>
-            <p class="cart-button-buttons__quantity">{{ quantity }}</p>
-            <button class="cart-button-buttons__button " @click="addToCart">
-                <img :src="app['general_slider-button_right']" alt="button_right">
-            </button>
-        </div>
-        <button v-show="!hasQuantity" @click="addToCart()" class="button cart-button__button">{{
-                page['first-section_button-text']
-            }}</button>
+        <CartButtonsQuantity v-show="hasQuantity" />
+        <button v-show="!hasQuantity" @click="addToCart"
+            class="button cart-button__button">{{ page['first-section_button-text'] }}</button>
     </div>
 </template>
 
@@ -21,9 +12,10 @@ import { usePageSettings } from '@/hooks/App/usePageSettings';
 import { useBasketItems } from '@/hooks/Product/useBasketItems';
 import { useBasketItemsGrouped } from '@/hooks/Product/useBasketItemsGrouped';
 import { useCurrentProduct } from '@/hooks/Product/useCurrentProduct';
-import { Mutations } from '@/store/basket';
 import { useVuex } from '@/store/useVuex';
 import { computed } from 'vue';
+import CartButtonsQuantity from './CartButtonsQuantity.vue';
+import { useCartButtonsActions } from '@/hooks/Cart/useCartButtonsActions';
 
 const store = useVuex()
 
@@ -31,9 +23,11 @@ const { page } = usePageSettings(store)
 
 const { product } = useCurrentProduct()
 
-const { BasketItemsGrouped, quantity } = useBasketItemsGrouped(store, product)
+const { BasketItemsGrouped } = useBasketItemsGrouped(store)
 
-const { basketItems, addToCart, removeOfCart } = useBasketItems(store, product)
+const { basketItems } = useBasketItems(store)
+
+const { addToCart } = useCartButtonsActions(basketItems, product)
 
 const { app } = useAppSettings(store)
 
@@ -42,24 +36,16 @@ const hasQuantity = computed(() => {
 })
 
 
+const quantity = computed(() => {
+    const basketItem = BasketItemsGrouped.value.find(item => item.product.id == product.value.id)
+
+    if (!basketItem) {
+        return 0
+    }
+
+    return basketItem.quantity
+})
+
 </script>
 
-<style lang="scss" scoped>
-
-
-
-.cart-button-buttons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background-color: rgb(43, 43, 43);
-    border-radius: 5px;
-
-    padding: 13px 34px;
-
-    &__button {}
-
-
-    &__quantity {}
-}
-</style>
+<style lang="scss" scoped></style>

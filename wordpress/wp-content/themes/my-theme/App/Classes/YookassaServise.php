@@ -36,7 +36,7 @@ class YookassaServise
                 ),
                 'confirmation' => array(
                     'type' => 'redirect',
-                    'return_url' => 'http://localhost:8080/katalog',
+                    'return_url' => RETURNED_URL,
                 ),
                 'capture' => true,
                 'description' => 'Hefd',
