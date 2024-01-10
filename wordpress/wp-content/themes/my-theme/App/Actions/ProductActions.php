@@ -11,7 +11,7 @@ class ProductActions extends ActionsClass
         $namespaceOfClass = self::class;
 
         add_action('woocommerce_process_product_meta', "{$namespaceOfClass}::add_complementary_meta_data", 10, 1);
-        add_action('woocommerce_process_product_meta', "{$namespaceOfClass}::reindex_all_arrays_in_cfs", 11, 1);
+        // add_action('woocommerce_process_product_meta', "{$namespaceOfClass}::reindex_all_arrays_in_cfs", 11, 1);
     }
 
     public static function add_complementary_meta_data($post_id)
