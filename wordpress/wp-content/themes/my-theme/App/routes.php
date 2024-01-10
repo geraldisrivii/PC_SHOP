@@ -5,7 +5,7 @@ use App\Classes\Router;
 
 add_action('rest_api_init', function () {
 	// Payments 
-	Router::post('/payments', 'PaymentController@create', 'HasCookieMiddleware');
+	Router::post('/payments', 'PaymentController@create', 'HasCookieMiddleware', 'PaymentRequest');
 	Router::post('/payments/webhook', 'PaymentController@webhookCallback');
 	// Admin
 	Router::get('/settings', 'AdminController@show');

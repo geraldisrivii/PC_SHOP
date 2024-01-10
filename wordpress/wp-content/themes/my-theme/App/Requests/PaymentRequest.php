@@ -21,6 +21,19 @@ class PaymentRequest
                 'required' => true,
                 'pattern' => '[А-Яа-яЁё0-9]+',
             ],
+            'email' => [
+                'type' => 'string',
+                'required' => true,
+                'pattern' => '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$',
+            ],
+            'address' => [
+                'type' => 'string',
+                'required' => true,
+            ],
+            'shipping_timezone_id' => [
+                'type' => 'number',
+                'required' => true,
+            ],
         ];
     }
 }

@@ -6,26 +6,17 @@
 
 <script setup lang="ts">
 import { useAppSettings } from '@/hooks/App/useAppSettings';
+import { useProfileDialog } from '@/hooks/App/useProfileDialog';
 import { useVuex } from '@/store/useVuex';
 
 let store = useVuex()
 
 let { app } = useAppSettings(store);
 
-
-interface Props {
-    isProfileShow: boolean
-}
-
-const props = defineProps<Props>()
-
-
-const emit = defineEmits<{
-    (e: 'update:isProfileShow', status: boolean): void
-}>()
+const { profileDialog } = useProfileDialog(store)
 
 const onClick = () => {
-    emit('update:isProfileShow', !props.isProfileShow)
+    profileDialog.value.open()
 }
 
 </script>

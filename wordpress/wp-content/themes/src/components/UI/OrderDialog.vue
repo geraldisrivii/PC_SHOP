@@ -5,8 +5,8 @@
                 <p class="order-dialog-form__title title">Данные заказа</p>
                 <div class="order-dialog-form__inputs">
                     <MySelect :placeholder="'Введите имя'" :options="names" v-model:choosenOptions="choosenNames"
-                        :labelName="'label'" :valueName="'value'" :isSearchable="true"
-                        v-model:search-value="serchOfNames" :search-type="'no-search'" />
+                        :labelName="'label'" :valueName="'value'" :isSearchable="true" v-model:search-value="serchOfNames"
+                        :search-type="'no-search'" />
                     <MySelect :placeholder="'Выберете регион'" :options="regions" v-model:choosenOptions="choosenRegions"
                         :labelName="'label'" :valueName="'value'" :isSearchable="true"
                         v-model:search-value="regionsSearchValue" :search-type="'no-search'" />
@@ -41,6 +41,7 @@ import WP from '@/axiosWP'
 import { ShippingTime } from '@/types/Basket';
 import { useSuggestionsOfName } from '@/hooks/Cart/useSuggestionsOfName';
 import { RequestData } from '@/types/components/cartDialog';
+import { useStoreUser } from '@/hooks/User/useStoreUser';
 
 interface Props {
     isOrderDialogShow: boolean
@@ -83,7 +84,7 @@ const getShippingTime = async () => {
     shippingTimes.value = (await WP.get('shipping_times')).data
 }
 
-const {names, choosenNames, serchOfNames} = useSuggestionsOfName()
+const { names, choosenNames, serchOfNames } = useSuggestionsOfName()
 
 
 onBeforeMount(async () => {
@@ -94,9 +95,16 @@ onBeforeMount(async () => {
     isDataLoaded.value = true
 })
 
+const { user } = useStoreUser(store)
+
 
 const onSubmit = () => {
-    emit('update:isOrderDialogShow', false)
+    emit('pay', {
+        first_name: choosenNames.value[0].label,
+        email: user.value.data.user_email,
+        address: choosenAddress.value[0].label,
+        shipping_timezone_id: choosenShipingSelectValue.value[0].value
+    })
 }
 
 

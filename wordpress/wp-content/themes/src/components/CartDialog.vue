@@ -7,11 +7,11 @@
             </div>
             <div class="cart-dialog-payment">
                 <p class="cart-dialog-payment__sum">Сумма к оплате: <span>{{ sum }}</span> руб</p>
-                <button @click="createPayment" class="button cart-dialog-payment__button">Оплатить</button>
+                <button @click="isOrderDialogShow = true" class="button cart-dialog-payment__button">Оплатить</button>
             </div>
         </div>
     </my-side-dialog>
-    <OrderDialog v-model:isOrderDialogShow="isOrderDialogShow"/>
+    <OrderDialog @pay="createPayment" v-model:isOrderDialogShow="isOrderDialogShow"/>
 </template>
 
 <script setup lang="ts">
@@ -22,11 +22,12 @@ import { useVuex } from '@/store/useVuex';
 import { useStoreUser } from '@/hooks/User/useStoreUser';
 import WP from '@/axiosWP'
 import OrderDialog from './UI/OrderDialog.vue';
+import { RequestData } from '@/types/components/cartDialog';
 
 
 const isDialogShow = ref(false)
 
-const isOrderDialogShow = ref(true)
+const isOrderDialogShow = ref(false)
 
 const open = () => {
     isDialogShow.value = true
@@ -55,21 +56,14 @@ const sum = computed((): number => {
     return sum
 })
 
-const createPayment = async () => {
-    let data = {
+const createPayment = async (data: RequestData) => {
+
+    let response = await WP.post('/payments', {
         amount: sum.value,
         items: BasketItemsGrouped.value,
-        shipping: {
-            first_name: user.value.data.user_nicename,
-            last_name: "",
-            address_1: "",
-            address_2: "",
-            city: "",
-            country: "RUSSIA"
-        },
-    }
-
-    let response = await WP.post('/payments', data, {
+        ...data
+    }, 
+    {
         withCredentials: true
     }).then(response => response.data)
 
@@ -85,12 +79,15 @@ const createPayment = async () => {
     display: grid;
     grid-template-columns: 5fr 2fr;
     gap: 30px;
+    height: 100%;
 }
 
 .cart-dialog-basket-items {
     display: flex;
     flex-direction: column;
     gap: 30px;
+    overflow-y: scroll;
+    height: 90%;
 }
 
 .cart-dialog-payment {

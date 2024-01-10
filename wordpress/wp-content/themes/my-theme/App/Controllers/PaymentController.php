@@ -35,19 +35,16 @@ class PaymentController
         }
 
 
-        $order->set_address(array(
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'email' => 'john.doe@example.com',
-            'phone' => '1234567890',
-            'address_1' => '123 Street',
-            'address_2' => 'Apartment 4',
-            'city' => 'City',
-            'state' => 'State',
-            'postcode' => '12345',
-            'country' => 'US'
+        $order->set_shipping(array(
+            'first_name' => $request['first_name'],
+            'email' => $request['email'],
+            'address_1' => $request['address'],
+            'country' => 'RU'
         ));
 
+        update_post_meta($order->id, 'shipping_timezone_id', $request['shipping_timezone_id']);
+
+        update_post_meta($order->id, 'code', random_int(random_int(0, 999) + (time() / 1000), 999999999) );
 
         $order->set_total($request['amount']);
 

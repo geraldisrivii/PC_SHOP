@@ -10,6 +10,7 @@
 <script setup lang="ts">
 import { MenuButtonItem } from '@/types/App';
 import deepEqual from 'deep-equal';
+import { toRefs } from 'vue';
 
 interface Props {
     chosenItem: MenuButtonItem;
@@ -18,7 +19,10 @@ interface Props {
 interface Emits {
     (e: 'update:chosenItem', item: MenuButtonItem): void
 }
-const { items, chosenItem } = defineProps<Props>()
+const props = defineProps<Props>()
+
+const { items, chosenItem } = toRefs(props)
+
 const emit = defineEmits<Emits>()
 
 const onClick = (item: MenuButtonItem) => {

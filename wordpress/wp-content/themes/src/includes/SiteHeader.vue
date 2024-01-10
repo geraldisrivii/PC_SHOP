@@ -6,15 +6,14 @@
         </div>
         <div class="header-right">
 
-            <ProfileButton v-if="store.state.user.user" @update:isProfileShow="updateProfileShow"
-                :isProfileShow="isProfileShow" />
+            <ProfileButton v-if="store.state.user.user" />
             <template v-else>
                 <ProfileAddButton :is-register-dialog-show="isRegisterDialogShow"
                     @update:is-register-dialog-show="updateRegisterDialogShow" />
                 <ProfileLoginButton :is-login-dialog-show="isLoginDialogShow"
                     @update:is-login-dialog-show="updateLoginDialogShow" />
             </template>
-            <BasketButton @update:isBasketShow="updateBasketShow" :isBasketShow="isBasketShow" />
+            <BasketButton />
         </div>
     </header>
 </template>
@@ -31,8 +30,6 @@ import { useVuexWithRef } from '@/store/useVuex';
 let store = useVuexWithRef();
 
 interface Props {
-    isBasketShow: boolean;
-    isProfileShow: boolean;
     isRegisterDialogShow: boolean;
     isLoginDialogShow: boolean;
 }
@@ -45,14 +42,6 @@ const emit = defineEmits<{
     (e: 'update:isRegisterDialogShow', status: boolean): void,
     (e: 'update:isLoginDialogShow', status: boolean): void,
 }>()
-
-const updateBasketShow = () => {
-    emit('update:isBasketShow', !props.isBasketShow)
-}
-
-const updateProfileShow = () => {
-    emit('update:isProfileShow', !props.isProfileShow)
-}
 
 const updateRegisterDialogShow = () => {
     emit('update:isRegisterDialogShow', !props.isRegisterDialogShow)

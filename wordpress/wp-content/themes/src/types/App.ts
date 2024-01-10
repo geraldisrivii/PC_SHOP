@@ -4,6 +4,7 @@ import SpecDialog from '@/components/SpecDialog.vue';
 import StatusDialog from '@/components/UI/StatusDialog.vue';
 import Library from '@/components/Library.vue';
 import CartDialog from '@/components/CartDialog.vue';
+import ProfileDialog from '@/components/ProfileDialog.vue';
 
 
 export interface Settings {
@@ -19,6 +20,7 @@ export interface State {
     status_dialog: InstanceType<typeof StatusDialog> | null;
     cart_dialog: InstanceType<typeof CartDialog> | null;
     library_dialog: InstanceType<typeof Library> | null;
+    profile_dialog: InstanceType<typeof ProfileDialog> | null;
 }
 
 
@@ -53,3 +55,7 @@ export interface ApiImage {
     [key: string]: any;
 }
 
+export interface IFormForUnregisteredUsers {
+    name: string | null,
+    tel: string | null,
+}

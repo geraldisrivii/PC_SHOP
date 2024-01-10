@@ -11,6 +11,7 @@ import Library from '@/components/Library.vue';
 import { basket, basketMutations } from './basket/index'
 import { BasketState } from './basket/types';
 import CartDialog from '@/components/CartDialog.vue';
+import ProfileDialog from '@/components/ProfileDialog.vue';
 
 
 export enum Mutations {
@@ -20,6 +21,7 @@ export enum Mutations {
   SET_STATUS_DIALOG = 'SET_STATUS_DIALOG',
   SET_LIBRARY_DIALOG = 'SET_LIBRARY_DIALOG',
   SET_CART_DIALOG = 'SET_CART_DIALOG',
+  SET_PROFILE_DIALOG = 'SET_PROFILE_DIALOG',
 }
 
 interface StoreWithModules extends State {
@@ -48,6 +50,9 @@ export const mutations: MutationTree<State> = {
   [Mutations.SET_CART_DIALOG](state, instance: InstanceType<typeof CartDialog>) {
     state.cart_dialog = instance
   },
+  [Mutations.SET_PROFILE_DIALOG](state, instance: InstanceType<typeof ProfileDialog>) {
+    state.profile_dialog = instance
+  },
 }
 
 
@@ -60,7 +65,8 @@ export default createStore<StoreWithModules>({
     spec_dialog: null,
     status_dialog: null,
     library_dialog: null,
-    cart_dialog: null
+    cart_dialog: null,
+    profile_dialog: null,
   },
   mutations,
   getters: {

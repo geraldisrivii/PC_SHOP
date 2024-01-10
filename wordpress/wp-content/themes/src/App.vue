@@ -1,4 +1,5 @@
 <template>
+    <ProfileDialog ref="profile_dialog_instance" />
     <CartDialog ref="cart_dialog_instance" />
     <StatusDialog v-if="isAppLoaded" ref="status_dialog_instance" />
     <Library v-if="isAppLoaded" ref="library" />
@@ -35,6 +36,8 @@ import { useLibraryDialog } from './hooks/App/useLibraryDialog';
 import { useBasketItems } from './hooks/Product/useBasketItems';
 import CartDialog from './components/CartDialog.vue';
 import { useCartDialog } from './hooks/App/useCartDialog';
+import ProfileDialog from './components/ProfileDialog.vue';
+import { useProfileDialog } from './hooks/App/useProfileDialog';
 
 // DATA
 let isDataLoaded: Ref<boolean> = ref(false);
@@ -53,6 +56,7 @@ const { instance: spec_dialog_instance } = useSpecDialog(store)
 const { instance: status_dialog_instance } = useStatusDialog(store)
 const { instance: library } = useLibraryDialog(store)
 const { instance: cart_dialog_instance } = useCartDialog(store)
+const { instance: profile_dialog_instance } = useProfileDialog(store)
 
 const { app } = useAppSettings(store)
 
@@ -83,6 +87,7 @@ onMounted(async () => {
     store.commit(Mutations.SET_STATUS_DIALOG, status_dialog_instance.value)
     store.commit(Mutations.SET_LIBRARY_DIALOG, library.value)
     store.commit(Mutations.SET_CART_DIALOG, cart_dialog_instance.value)
+    store.commit(Mutations.SET_PROFILE_DIALOG, profile_dialog_instance.value)
 
     isDataLoaded.value = true
 
