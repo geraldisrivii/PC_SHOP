@@ -39,6 +39,11 @@ class ProductActions extends ActionsClass
     public static function reindex_all_arrays_in_cfs($post_id)
     {
 
+        $properties = CFS()->get('properties', $post_id);
+        CFS()->save(['properties' => $properties], ['ID' => $post_id]);
+
+        dd('');
+
         $fields = CFS()->find_fields(['post_id' => $post_id]);
 
         foreach ($fields as $field) {
@@ -50,7 +55,11 @@ class ProductActions extends ActionsClass
                     continue;
                 }
 
-                $loopValues = reindex_array_of_any_deep($loopValues);
+                // $loopValues = reindex_array_of_any_deep($loopValues);
+                
+                dd($loopValues);
+
+                dd(CFS()->save([$field['name'] => CFS()->get($field['name'], $post_id)], ['ID' => $post_id])); 
 
                 CFS()->save([$field['name'] => $loopValues], ['ID' => $post_id]);
             }

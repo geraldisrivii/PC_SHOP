@@ -1,0 +1,31 @@
+2024-01-10T08:11:28+00:00 CRITICAL syntax error, unexpected identifier "CFS" в /var/www/html/wp-content/themes/my-theme/App/Actions/ProductActions.php на строке 57
+
+2024-01-10T08:11:39+00:00 CRITICAL syntax error, unexpected identifier "CFS" в /var/www/html/wp-content/themes/my-theme/App/Actions/ProductActions.php на строке 57
+
+2024-01-10T08:20:09+00:00 CRITICAL syntax error, unexpected variable "$fields" в /var/www/html/wp-content/themes/my-theme/App/Actions/ProductActions.php на строке 45
+
+2024-01-10T08:25:20+00:00 CRITICAL Uncaught TypeError: reindex_array_of_any_deep(): Argument #1 ($array) must be of type array, null given, called in /var/www/html/wp-content/plugins/cfs-rest-api/cfs-rest-api.php on line 82 and defined in /var/www/html/wp-content/themes/my-theme/App/Helpers/reindexArrayOfAnyDeep.php:3
+Stack trace:
+#0 /var/www/html/wp-content/plugins/cfs-rest-api/cfs-rest-api.php(82): reindex_array_of_any_deep(NULL)
+#1 /var/www/html/wp-includes/class-wp-hook.php(324): add_custom_fields_to_api_response(Object(WP_REST_Response), Object(WC_Product_Simple), Object(WP_REST_Request))
+#2 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(WP_REST_Response), Array)
+#3 /var/www/html/wp-content/themes/my-theme/App/Filters/GroupedProductFilter.php(71): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Simple), Object(WP_REST_Request))
+#4 /var/www/html/wp-includes/class-wp-hook.php(324): App\Filters\GroupedProductFilter::add_products_to_groupped_response(Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#5 /var/www/html/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(WP_REST_Response), Array)
+#6 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version2/class-wc-rest-products-v2-controller.php(192): apply_filters('woocommerce_res...', Object(WP_REST_Response), Object(WC_Product_Grouped), Object(WP_REST_Request))
+#7 /var/www/html/wp-content/plugins/woocommerce/includes/rest-api/Controllers/Version3/class-wc-rest-crud-controller.php(391): WC_REST_Products_V2_Controller->prepare_object_for_response(Object(WC_Product_Grouped), Object(WP_REST_Request))
+#8 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1193): WC_REST_CRUD_Controller->get_items(Object(WP_REST_Request))
+#9 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(1041): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wc/v3/products', Array, NULL)
+#10 /var/www/html/wp-includes/rest-api/class-wp-rest-server.php(431): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#11 /var/www/html/wp-includes/rest-api.php(424): WP_REST_Server->serve_request('/wc/v3/products')
+#12 /var/www/html/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#13 /var/www/html/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#14 /var/www/html/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#15 /var/www/html/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#16 /var/www/html/wp-includes/class-wp.php(813): WP->parse_request('')
+#17 /var/www/html/wp-includes/functions.php(1336): WP->main('')
+#18 /var/www/html/wp-blog-header.php(16): wp()
+#19 /var/www/html/index.php(17): require('/var/www/html/w...')
+#20 {main}
+  thrown в /var/www/html/wp-content/themes/my-theme/App/Helpers/reindexArrayOfAnyDeep.php на строке 3
+

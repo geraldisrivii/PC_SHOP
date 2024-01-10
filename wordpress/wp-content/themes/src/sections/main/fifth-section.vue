@@ -6,28 +6,6 @@
                 <p class="title fifth-section-description__title">{{ page['fifth-section_title'] }}</p>
                 <p class="fifth-section-description__text">{{ page['fifth-section_text'] }}</p>
                 <form class="fifth-section-form">
-                    <div class="register__input-box">
-                        <input 
-                        v-model="DataFields.login" 
-                        class="register__input input" 
-                        type="text" 
-                        :placeholder="page['fifth-section_name-placeholder']"
-                         />
-                        <label 
-                        class="register__label"
-                        :class="{ '--error': isntValidFields.login, '--success': ValidFields.login }"
-                        >{{isntValidFields.login ?? 'Отлично' }}
-                        </label>
-                    </div>
-
-                    <div class="register__input-box">
-                        <input v-model="DataFields.password" class="register__input input" type="text"
-                            placeholder="Пароль" />
-                        <label class="register__label"
-                            :class="{ '--error': isntValidFields.password, '--success': ValidFields.password }">{{
-                                isntValidFields.password ??
-                                'Отлично' }}</label>
-                    </div>
                     <input class="input" type="text" :placeholder="page['fifth-section_name-placeholder']">
                     <input class="input" type="text" :placeholder="page['fifth-section_tel-placeholder']">
                     <button class="fifth-section-form__button button">{{ page['fifth-section_button-text'] }}</button>
