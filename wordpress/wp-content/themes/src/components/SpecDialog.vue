@@ -6,7 +6,7 @@
             </div>
             <div class="spec-dialog-description-box">
                 <p class="spec-dialog-description-box__name title title_secondary">{{ spec.name }}</p>
-                <p class="spec-dialog-description-box__description">{{ spec.description }}</p>
+                <p class="spec-dialog-description-box__description" v-html="spec.description"></p>
             </div>
             <div class="spec-dialog-specs-box">
                 <Spec v-for="prop in spec.cfs.properties"
@@ -67,6 +67,7 @@ defineExpose({
 .spec-dialog-description-box {
     &__name {
         text-align: center;
+        margin-bottom: 12px;
     }
 
     &__description {

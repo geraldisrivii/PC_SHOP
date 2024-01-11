@@ -9,11 +9,9 @@
                 <p class="good-item-content__price">{{ product.price }} руб / шт</p>
             </div>
             <div class="good-item-content__quantity-box">
-                <CartButtonEasly
-                :product="product"
-                :adding-field="addingField"
-                @update:adding-field="emit('update:addingField', $event)"
-                />
+                <CartButtonEasly :product="product" :adding-field="addingField"
+                    @update:adding-field="emit('update:addingField', $event)" />
+                <p class="good-item-content__spec-button" @click="onClick">Подробнее</p>
             </div>
         </div>
     </div>
@@ -35,7 +33,7 @@ const props = defineProps<Props>()
 
 const { addingField, product } = toRefs(props)
 
-interface Emits{
+interface Emits {
     (e: 'update:addingField', value: object): void
 }
 
@@ -104,10 +102,20 @@ const { app } = useAppSettings(store)
 
     &__price {}
 
+    &__spec-button {
+        cursor: pointer;
+
+        transition: all .3s ease-in-out;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
 
     &__quantity-box {
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 13px;
     }
 

@@ -52,8 +52,6 @@ const initializeSwiper = () => {
     });
 }
 
-
-
 const swiperPrev = () => {
     swiper.value.slidePrev();
 }
