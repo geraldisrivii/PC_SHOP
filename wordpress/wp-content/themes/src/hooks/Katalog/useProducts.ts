@@ -34,7 +34,9 @@ export const useProducts = () => {
         }, {})
 
         for (const key in products.value) {
-            products.value[key] = await getProducts(20, category_ids[category_slug], {
+            products.value[key] = await getProducts({
+                category: category_ids[category_slug],
+                per_page: 20,
                 series: key
             })
         }

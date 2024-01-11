@@ -12,11 +12,9 @@ export interface IParams {
 }
 
 
-export const getProducts = async (per_page: number, category_id?: number, params?: IParams) => {
+export const getProducts = async (params?: IParams) => {
     let { data } = await WOO.get('products', {
         params: {
-            per_page: per_page,
-            category: category_id ?? null,
             ...params
         }
     });
