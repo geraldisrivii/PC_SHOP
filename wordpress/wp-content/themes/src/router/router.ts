@@ -17,6 +17,11 @@ const routes: Array<RouteRecordRaw> = [
         component: async () => import('@/views/productPage.vue'),
         name: 'product',
     },
+    {
+        path: '/configurator',
+        component: async () => import('@/views/configurator.vue'),
+        name: 'configurator',
+    },
 ]
 
 const router = createRouter({

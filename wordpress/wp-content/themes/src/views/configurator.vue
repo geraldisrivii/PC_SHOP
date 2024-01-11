@@ -27,9 +27,11 @@ loader.value.onAllisLoaded = () => {
 let { page } = usePageSettings(store)
 
 onMounted(async () => {
-    page.value = await getPageSettings(333)
+    page.value = await getPageSettings(331)
 
     isPageDataLoaded.value = true
+
+    preloaderClose()
 })
 
 </script>

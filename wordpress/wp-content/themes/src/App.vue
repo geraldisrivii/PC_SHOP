@@ -64,7 +64,6 @@ const { app } = useAppSettings(store)
 const { basketItems } = useBasketItems(store)
 
 watch(basketItems, () => {
-    console.log(basketItems.value)
     localStorage.setItem('basket', JSON.stringify(basketItems.value))
 }, { deep: true })
 

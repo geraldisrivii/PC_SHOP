@@ -90,8 +90,6 @@ const { names, choosenNames, serchOfNames } = useSuggestionsOfName()
 onBeforeMount(async () => {
     await getShippingTime()
 
-    console.log(shipingSelectValues.value)
-
     isDataLoaded.value = true
 })
 

@@ -1,8 +1,17 @@
-import { Term } from "./App";
+import { ApiImage, Term } from "./App";
 
 export interface IProductCategory extends Term {
 
 }
+export interface IProductCategoryResponse {
+    id: number;
+    name: string;
+    slug: string;
+    parant: number;
+    count: number;
+    image?: ApiImage;
+}
+
 
 export interface Game {
     "game_name": string,

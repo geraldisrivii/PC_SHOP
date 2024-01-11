@@ -1,0 +1,118 @@
+<template>
+    <div class="good-item">
+        <div class="good-item__image-box">
+            <img class="good-item__image" :src="product.images[0].src" :alt="product.name">
+        </div>
+        <div class="good-item-content">
+            <div class="good-item-content__description">
+                <p class="good-item-content__title">{{ product.name }}</p>
+                <p class="good-item-content__price">{{ product.price }} руб / шт</p>
+            </div>
+            <div class="good-item-content__quantity-box">
+                <CartButtonEasly
+                :product="product"
+                :adding-field="addingField"
+                @update:adding-field="emit('update:addingField', $event)"
+                />
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { useAppSettings } from '@/hooks/App/useAppSettings';
+import { useVuex } from '@/store/useVuex';
+import { IGrouppedProduct, IProduct } from '@/types/Product';
+import { toRefs, watch } from 'vue';
+import CartButtonEasly from './CartButtonEasly.vue';
+import { useSpecDialog } from '@/hooks/App/useSpecDialog';
+
+interface Props {
+    product: IProduct
+    addingField: object | null
+}
+const props = defineProps<Props>()
+
+const { addingField, product } = toRefs(props)
+
+interface Emits{
+    (e: 'update:addingField', value: object): void
+}
+
+const emit = defineEmits<Emits>()
+
+let store = useVuex();
+
+const { specDialog } = useSpecDialog(store)
+
+const onClick = () => {
+    specDialog.value.open(product.value)
+}
+
+
+const { app } = useAppSettings(store)
+
+</script>
+
+<style lang="scss" scoped>
+.good-item {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    padding: 17px 34px;
+    background-color: #181818;
+    border-radius: 5px;
+
+    &__image {
+        width: 90%;
+        height: 90%;
+        object-fit: contain;
+    }
+
+    &__image-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        height: 130px;
+        background-color: white;
+        border-radius: 5px;
+    }
+}
+
+.good-item-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    width: 100%;
+
+    &__description {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    &__title {
+        font-size: 18px;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    &__price {}
+
+
+    &__quantity-box {
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+    }
+
+    &__sum {
+        font-weight: 500;
+    }
+}
+</style>
