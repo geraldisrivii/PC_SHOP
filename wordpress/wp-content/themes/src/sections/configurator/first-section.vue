@@ -17,8 +17,7 @@
                 <div class="first-section-products-container">
                     <div class="first-section-goods">
                         <GoodItem v-for="product in products" :key="product.id"
-                        v-model:adding-field="ConfigureProduct[choosenCategory.slug]"
-                        :product="product" />
+                            v-model:adding-field="ConfigureProduct[choosenCategory.slug]" :product="product" />
                     </div>
                     <div class="first-section-filters">
                         <!-- <CustomSelect
@@ -40,24 +39,10 @@ import Swiper from 'swiper';
 import 'swiper/css';
 import GoodItem from '@/components/GoodItem.vue';
 import CustomSelect from '@/components/CustomSelect.vue';
+import { useSwiper } from '@/hooks/Libs/useSwiper'
+import { getCategories } from '@/api/Katalog/getCategories';
 
-let swiper: Ref<Swiper | null> = ref(null)
-
-const swiperContainer: Ref<HTMLElement | null> = ref(null)
-
-const initializeSwiper = () => {
-    swiper.value = new Swiper(swiperContainer.value, {
-        slidesPerView: 'auto',
-        spaceBetween: 30,
-    });
-}
-
-const swiperPrev = () => {
-    swiper.value.slidePrev();
-}
-const swiperNext = () => {
-    swiper.value.slideNext();
-}
+const { swiper, swiperContainer, initializeSwiper } = useSwiper()
 
 const categories: Ref<Array<IProductCategoryResponse>> = ref([])
 
@@ -67,17 +52,6 @@ const updateChoosenCategory = (category: IProductCategoryResponse) => {
     choosenCategory.value = category
 }
 
-const getCategories = async () => {
-    let response = await WOO.get('/products/categories', {
-        params: {
-            per_page: 100,
-            parent: 19,
-            order: 'desc',
-        }
-    })
-
-    return response.data;
-}
 
 const products: Ref<Array<IProduct>> = ref([])
 
@@ -121,11 +95,18 @@ const ConfigureProduct: Ref<IConfigureProduct> = ref({
 })
 
 onMounted(async () => {
-    categories.value = await getCategories()
+    categories.value = await getCategories({
+        per_page: 100,
+        parent: 19,
+        order: 'desc',
+    })
 
     choosenCategory.value = categories.value[0]
 
-    initializeSwiper()
+    initializeSwiper({
+        slidesPerView: 'auto',
+        spaceBetween: 30,
+    })
 })
 
 </script>
@@ -153,9 +134,10 @@ onMounted(async () => {
 }
 
 
-.first-section-wrapper{
+.first-section-wrapper {
     padding-top: 100px;
 }
+
 .swiper-wrapper {
     // display: flex;
     // gap: 30px;

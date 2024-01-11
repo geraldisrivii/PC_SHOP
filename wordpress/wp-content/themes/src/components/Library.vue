@@ -34,11 +34,15 @@ import 'swiper/css';
 import { useAppSettings } from '@/hooks/App/useAppSettings';
 import { useVuex } from '@/store/useVuex';
 import { IProductReviewImage } from '@/types/Product';
+import { useSwiper } from '@/hooks/Libs/useSwiper';
 
+const store = useVuex()
 
-const swiperContainer: Ref<HTMLElement | null> = ref(null)
+const { app } = useAppSettings(store)
 
-let swiper: Ref<Swiper | null> = ref(null)
+// SWIPER
+const { swiper, swiperContainer, initializeSwiper, swiperNext, swiperPrev } = useSwiper()
+
 
 let isLibraryShow: Ref<boolean> = ref(false)
 
@@ -46,23 +50,6 @@ let images: Ref<Array<IProductReviewImage>> = ref([])
 
 const imagesMoreOne = computed(() => images.value.length > 1)
 
-const store = useVuex()
-
-const { app } = useAppSettings(store)
-
-const initializeSwiper = () => {
-    swiper.value = new Swiper(swiperContainer.value, {
-        loop: true,
-        slidesPerView: 1,
-    });
-}
-
-const swiperPrev = () => {
-    swiper.value.slidePrev();
-}
-const swiperNext = () => {
-    swiper.value.slideNext();
-}
 
 
 const open = (images_param: Array<IProductReviewImage>) => {
@@ -70,7 +57,10 @@ const open = (images_param: Array<IProductReviewImage>) => {
 
     images.value = images_param
 
-    initializeSwiper()
+    initializeSwiper({
+        loop: true,
+        slidesPerView: 1,
+    })
 }
 
 const close = () => {

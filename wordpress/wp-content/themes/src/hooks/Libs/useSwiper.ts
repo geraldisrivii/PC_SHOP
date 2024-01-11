@@ -3,16 +3,14 @@ import 'swiper/css';
 import { SwiperOptions } from 'swiper/types/swiper-options';
 import { Ref, ref } from 'vue';
 
-export const useSwiper = (config: SwiperOptions) => {
+export const useSwiper = () => {
 
     let swiper: Ref<Swiper | null> = ref(null)
 
     const swiperContainer: Ref<HTMLElement | null> = ref(null)
 
-    const initializeSwiper = () => {
+    const initializeSwiper = (config: SwiperOptions) => {
         swiper.value = new Swiper(swiperContainer.value, {
-            slidesPerView: 'auto',
-            spaceBetween: 30,
             ...config
         });
     }
