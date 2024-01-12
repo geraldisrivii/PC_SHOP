@@ -21,7 +21,6 @@ import WP from '@/axiosWP'
 import { Ref, computed, onBeforeMount, onMounted, ref, watch } from 'vue';
 import { IGrouppedProduct } from '@/types/Product';
 import { useRoute } from 'vue-router';
-import { IParams, getProducts } from '@/api/Katalog/getProducts';
 
 import { useVuex } from '@/store/useVuex';
 import { usePageSettings } from '@/hooks/App/usePageSettings';

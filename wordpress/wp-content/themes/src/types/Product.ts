@@ -39,6 +39,7 @@ export interface IProduct {
     regular_price: string | number;
     sale_price: string | number;
     slug: string;
+    stock_quantity: number;
     images: Array<{
         src: string;
         [key: string]: any;

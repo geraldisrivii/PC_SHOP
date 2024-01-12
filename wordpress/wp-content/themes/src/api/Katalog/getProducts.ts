@@ -2,21 +2,9 @@ import WOO from '@/axiosWoocomerce'
 import { IProduct } from '@/types/Product';
 import { AxiosRequestConfig } from 'axios';
 
-export interface IParams {
-    cpu_socket?: Array<string>;
-    cpu_producer?: Array<string>;
-    cpu_model?: Array<number>;
-    gpu_model?: Array<number>;
-    gpu_producer?: Array<string>;
-    [key: string]: any;
-}
-
-
-export const getProducts = async (params?: IParams) => {
+export const getProducts = async (params?: object) => {
     let { data } = await WOO.get('products', {
-        params: {
-            ...params
-        }
+        params: params ? params : {}
     });
 
     return data

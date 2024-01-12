@@ -1,6 +1,6 @@
 <template>
     <div class="cart-button">
-        <button @click="onClick" class="button cart-button__button">{{ productInAddingField ? 'Убрать' : 'Добавить' }}</button>
+        <button :disabled="disabled" @click="onClick" class="button cart-button__button">{{ productInAddingField ? 'Убрать' : 'Добавить' }}</button>
     </div>
 </template>
 
@@ -13,13 +13,14 @@ import deepEqual from 'deep-equal';
 import { computed, toRefs } from 'vue';
 
 interface Props {
+    disabled?: boolean
     product: IProduct
     addingField: object | null
 }
 
 const props = defineProps<Props>()
 
-const { addingField, product } = toRefs(props)
+const { addingField, product, disabled = false } = toRefs(props)
 
 interface Emits {
     (e: 'update:addingField', value: object | null): void

@@ -7,9 +7,12 @@
             <div class="good-item-content__description">
                 <p class="good-item-content__title">{{ product.name }}</p>
                 <p class="good-item-content__price">{{ product.price }} руб / шт</p>
+                <p class="good-item-content__quantity"
+                :style="{'color': product.stock_quantity <= 5 ? 'red' : 'white'}"
+                >{{product.stock_quantity !== 0 ? `В наличии: ${product.stock_quantity} шт` : 'Не осталось на складе'}}</p>
             </div>
             <div class="good-item-content__quantity-box">
-                <CartButtonEasly :product="product" :adding-field="addingField"
+                <CartButtonEasly :disabled="product.stock_quantity <= 0" :product="product" :adding-field="addingField"
                     @update:adding-field="emit('update:addingField', $event)" />
                 <p class="good-item-content__spec-button" @click="onClick">Подробнее</p>
             </div>
@@ -101,6 +104,7 @@ const { app } = useAppSettings(store)
     }
 
     &__price {}
+    &__quantity {}
 
     &__spec-button {
         cursor: pointer;
