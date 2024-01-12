@@ -1,11 +1,11 @@
 <template>
-    <div @click="onClick" :key="category.id" class="cat">
-        <div v-if="ConfigureProduct[category.slug]" class="cat-good">
+    <div v-if="category" @click="onClick" :key="category.id" class="cat">
+        <div v-if="configureProduct[category.slug]" class="cat-good">
             <div class="cat-good__image-box">
-                <img class="cat-good__image" v-if="ConfigureProduct[category.slug].images"
-                    :src="ConfigureProduct[category.slug].images[0].src" :alt="ConfigureProduct[category.slug].name">
+                <img class="cat-good__image" v-if="configureProduct[category.slug].images"
+                    :src="configureProduct[category.slug].images[0].src" :alt="configureProduct[category.slug].name">
             </div>
-            <p class="cat-good__name">{{ ConfigureProduct[category.slug].name }}</p>
+            <p class="cat-good__name">{{ configureProduct[category.slug].name }}</p>
         </div>
         <div v-else class="cat__category">
             <img v-if="category.image" :src="category.image.src" :alt="category.image.name">
@@ -16,16 +16,18 @@
 
 <script setup lang="ts">
 import { useConfigureProduct } from '@/hooks/Configurator/useConfigureProduct';
+import { IConfigureProduct } from '@/types/Configurator';
 import { IProductCategoryResponse } from '@/types/Product';
 import { Ref, ref, toRefs } from 'vue';
 
 interface Props {
-    category: IProductCategoryResponse;
-    choosenCategory: IProductCategoryResponse | null
+    category: IProductCategoryResponse | null;
+    // choosenCategory: IProductCategoryResponse | null
+    configureProduct: IConfigureProduct
 }
 
 const props = defineProps<Props>()
-const { category, choosenCategory } = toRefs(props)
+const { category, configureProduct } = toRefs(props)
 
 interface Emits {
     (e: 'update:choosenCategory', value: IProductCategoryResponse): void
@@ -37,7 +39,6 @@ const onClick = () => {
     emit('update:choosenCategory', category.value)
 }
 
-const { ConfigureProduct, isAllGroupsFilled, missingGroups } = useConfigureProduct()
 
 </script>
 

@@ -1,5 +1,11 @@
 import { ApiImage, Term } from "./App";
 
+
+export interface IConfigureGroupe {
+    label: string,
+    includes: string[]
+}
+
 export interface IProductCategory extends Term {
 
 }

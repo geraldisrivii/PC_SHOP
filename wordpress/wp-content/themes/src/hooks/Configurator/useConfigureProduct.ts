@@ -1,5 +1,7 @@
 import { Ref, computed, ref } from "vue";
 import { IConfigureProduct } from "@/types/Configurator";
+import { IConfigureGroupe } from "@/types/Product";
+
 
 
 export const useConfigureProduct = () => {
@@ -17,7 +19,7 @@ export const useConfigureProduct = () => {
         cpu_cooler: null,
     })
 
-    const configureGroupes = [
+    const configureGroupes: IConfigureGroupe[] = [
         {
             label: 'Процессор',
             includes: ['cpu']
@@ -63,7 +65,6 @@ export const useConfigureProduct = () => {
             }))
         })
 
-        console.log(result)
         return result
     })
 

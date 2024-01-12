@@ -6,25 +6,11 @@
                 <div class="first-section-slider">
                     <div ref="swiperContainer" class="swiper-container">
                         <div class="swiper-wrapper">
-                            <!-- <div @click="updateChoosenCategory(category)" v-for="category in categories" :key="category.id"
-                                class="swiper-slide">
-                                <div v-if="ConfigureProduct[category.slug]" class="swiper-slide-good">
-                                    <div class="swiper-slide-good__image-box">
-                                        <img class="swiper-slide-good__image" v-if="ConfigureProduct[category.slug].images"
-                                            :src="ConfigureProduct[category.slug].images[0].src"
-                                            :alt="ConfigureProduct[category.slug].name">
-                                    </div>
-                                    <p class="swiper-slide-good__name">{{ ConfigureProduct[category.slug].name }}</p>
-                                </div>
-                                <div v-else class="swiper-slide__category">
-                                    <img v-if="category.image" :src="category.image.src" :alt="category.image.name">
-                                    <p>{{ category.name }}</p>
-                                </div>
-                            </div> -->
                             <ConfiguratorCategory
                             class="swiper-slide"
                             v-for="category in categories" :key="category.id"
                             :category="category"
+                            :configure-product="ConfigureProduct"
                             v-model:choosen-category="choosenCategory"
                             />
                         </div>
@@ -65,7 +51,10 @@
                         <p class="info-dialog__title">Недостающие категории</p>
                         <p class="info-dialog__text">Вам нужно добавить хотя бы один из элементов в категории указанных в недостающей группе категорий</p>
                         <div class="info-dialog-categories">
-                            <MissingCategoriesGroup/>
+                            <MissingCategoriesGroup v-for="(group, index) in missingGroups" :key="index" :groupe="group"
+                            :categories="categories"
+                            :configureProduct="ConfigureProduct"
+                            />
                         </div>
                     </div>
                 </my-dialog>
@@ -298,4 +287,13 @@ onMounted(async () => {
     flex-direction: column;
     gap: 6px;
 }
+
+
+.info-dialog {
+    &__title {}
+    &__text {}
+}
+.info-dialog-categories {
+}
+
 </style>
