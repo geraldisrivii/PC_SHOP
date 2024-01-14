@@ -7,13 +7,14 @@ export const useConfiguratorProducts = (choosenCategory: Ref<IProductCategoryRes
     const products: Ref<Array<IProduct>> = ref([])
 
     const filtersRequest = computed(() => {
-        let requests = {}
+        let requests = []
         filters.value.forEach(filter => {
-            requests[filter.key[0].slug] = {
+            requests.push({
+                name: filter.key[0].slug,
                 value: filter.value,
                 type: Object.keys(filter.type)[0],
                 kind: Object.keys(filter.kind)[0],
-            }
+            })
         })
 
         return requests
@@ -23,7 +24,7 @@ export const useConfiguratorProducts = (choosenCategory: Ref<IProductCategoryRes
         if (choosenCategory) {
             products.value = await getProducts({
                 category: choosenCategory.value.id,
-                ...filtersRequest.value
+                filters: filtersRequest.value
             })
         }
     }, { deep: true })

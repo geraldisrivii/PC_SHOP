@@ -1,6 +1,6 @@
 import { Ref, computed, ref } from "vue";
 import { IConfigureProduct } from "@/types/Configurator";
-import { IConfigureGroupe } from "@/types/Product";
+import { IConfigureGroupe, IProduct } from "@/types/Product";
 
 
 
@@ -72,10 +72,23 @@ export const useConfigureProduct = () => {
         return missingGroups.value.length === 0
     })
 
+    const totalPrice = computed(() => {
+        let result = 0
+
+        let products = (Object.values(ConfigureProduct.value) as IProduct[]).filter(product => product)
+        
+        products.forEach(product => {
+            result += Number(product.price)
+        })
+
+        return result
+    })
+
     return {
         ConfigureProduct,
         missingGroups,
-        isAllGroupsFilled
+        isAllGroupsFilled,
+        totalPrice
     }
 
 }

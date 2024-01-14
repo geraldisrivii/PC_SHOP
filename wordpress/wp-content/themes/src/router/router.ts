@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'product',
     },
     {
-        path: '/configurator',
+        path: '/configurator/:product',
         component: async () => import('@/views/configurator.vue'),
         name: 'configurator',
     },
@@ -40,6 +40,7 @@ const router = createRouter({
 declare var preloaderOpen: () => void;
 
 import deepEqual from 'deep-equal';
+
 router.afterEach((to, from) => {
     window.scrollTo(0, 0)
     if (to.fullPath == from.fullPath && deepEqual(to.params, from.params)) {

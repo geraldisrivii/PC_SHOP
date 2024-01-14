@@ -63,7 +63,7 @@ const onClick = () => {
     border-radius: 20px;
 
     min-width: 500px;
-    min-height: 350px;
+    min-height: 200px;
     max-height: 80vh;
     overflow-y: scroll;
 

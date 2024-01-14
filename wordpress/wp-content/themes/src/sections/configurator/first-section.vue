@@ -14,8 +14,8 @@
                 </div>
                 <div class="first-section-products-container">
                     <div class="first-section-goods">
-                        <GoodItem v-for="product in products" :key="product.id" 
-                            v-model:adding-field="ConfigureProduct[choosenCategory.slug]" :product="product" />
+                        <GoodItem v-for="product in products" :key="product.id" :chosen-category="choosenCategory"
+                            v-model:configure-product="ConfigureProduct" :product="product" />
                     </div>
                     <div class="first-section-filters">
                         <!-- <CustomSelect
@@ -34,9 +34,9 @@
                         </div>
                         <div class="first-section-total-panel__right">
                             <p class="first-section-total-panel__price">
-                                Итого: 54000 ₽
+                                Итого: {{ totalPrice }} ₽
                             </p>
-                            <button :disabled="!isAllGroupsFilled" class="button">
+                            <button @click="onCartButtonClick" :disabled="!isAllGroupsFilled" class="button">
                                 Добавить в корзину
                             </button>
                         </div>
@@ -57,6 +57,15 @@
                         </div>
                     </div>
                 </my-dialog>
+                <my-dialog v-model:isDialogShow="isNameDialogShow">
+                    <form @submit.prevent="createCustomProduct" class="name-dialog-form">
+                        <p class="name-dialog-form__title title">Имя конфигурации</p>
+                        <div class="name-dialog-form__inputs">
+                            <input v-model="name" type="text" class="name-dialog-form__input input" placeholder="Название">
+                            <button :disabled="!name" class="button">Сохранить</button>
+                        </div>
+                    </form>
+                </my-dialog>
             </div>
         </div>
     </div>
@@ -66,7 +75,7 @@
 import MissingCategoriesGroup from '../../components/MissingCategoriesGroup.vue'
 import { Ref, computed, onMounted, ref, watch } from 'vue';
 import WOO from '@/axiosWoocomerce'
-import { IProduct, IProductCategoryResponse } from '@/types/Product';
+import { IGrouppedProduct, IProduct, IProductCategoryResponse } from '@/types/Product';
 
 import GoodItem from '@/components/GoodItem.vue';
 import { useSwiper } from '@/hooks/Libs/useSwiper'
@@ -76,10 +85,19 @@ import { useConfigureProduct } from '@/hooks/Configurator/useConfigureProduct'
 import ConfiguratorCategory from '@/components/ConfiguratorCategory.vue';
 import { useConfiguratorCategories } from '@/hooks/Configurator/useConfiguratorCategories';
 import { useConfiguratorProducts } from '@/hooks/Configurator/useConfiguratorProducts';
+import { useCartButtonsActions } from '@/hooks/Cart/useCartButtonsActions';
+import { useBasketItems } from '@/hooks/Product/useBasketItems';
+import { useVuex } from '@/store/useVuex';
+
+interface Props {
+    product: IGrouppedProduct | null
+}
+
+const { product } = defineProps<Props>()
 
 const { swiperContainer, initializeSwiper } = useSwiper()
 
-const { ConfigureProduct, isAllGroupsFilled, missingGroups } = useConfigureProduct()
+const { ConfigureProduct, isAllGroupsFilled, missingGroups, totalPrice } = useConfigureProduct()
 
 const { categories, choosenCategory } = useConfiguratorCategories()
 
@@ -109,6 +127,41 @@ const openInfoDialog = () => {
     }
 }
 
+const setDefaultValuesToConfigureObject = () => {
+    if (product) {
+        for (const key in ConfigureProduct.value) {
+            ConfigureProduct.value[key] = product.grouped_products.find(item => item.categories.find(category => category.slug === key))
+        }
+        console.log(ConfigureProduct.value)
+    }
+}
+
+const store = useVuex()
+
+const { basketItems } = useBasketItems(store)
+
+const { } = useCartButtonsActions(basketItems, )
+
+const createCustomProduct = async () => {
+    const response = await WOO.post('products/customs', {
+        name: name.value,
+        items: Object.values(ConfigureProduct.value).filter(item => item).map((product: IProduct) => {
+            return product.id
+        })
+    })
+
+    if (response.status === 201) {
+        name.value = ''
+        isNameDialogShow.value = false
+    }
+}
+
+const name: Ref<string> = ref('')
+const isNameDialogShow: Ref<boolean> = ref(false)
+
+const onCartButtonClick = () => {
+    isNameDialogShow.value = true
+}
 
 onMounted(async () => {
     categories.value = await getCategories({
@@ -118,6 +171,8 @@ onMounted(async () => {
     })
 
     choosenCategory.value = categories.value[0]
+
+    setDefaultValuesToConfigureObject()
 
     initializeSwiper({
         slidesPerView: 4.5,
@@ -262,5 +317,25 @@ onMounted(async () => {
     flex-direction: column;
     gap: 20px;
     height: 100%;
+}
+
+.name-dialog-form {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    // gap: 40px;
+    text-align: center;
+
+    &__title {
+        margin-bottom: 35px;
+    }
+
+    &__input {}
+
+    &__inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 }
 </style>

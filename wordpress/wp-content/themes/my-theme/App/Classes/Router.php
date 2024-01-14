@@ -12,32 +12,32 @@ class Router
 
     private static string $namespace = 'wp/v2';
 
-    public static function get(string $routeName, string $routeCallback, $midlleWare = null, $request = null)
+    public static function get(string $routeName, string $routeCallback, $midlleWare = null, $request = null, $namespace = null)
     {
-        return Router::addRoute($routeName, 'GET', $routeCallback, $midlleWare, $request);
+        return Router::addRoute($routeName, 'GET', $routeCallback, $midlleWare, $request, $namespace);
     }
 
-    public static function post(string $routeName, string $routeCallback, $midlleWare = null, $request = null)
+    public static function post(string $routeName, string $routeCallback, $midlleWare = null, $request = null, $namespace = null)
     {
-        return Router::addRoute($routeName, 'POST', $routeCallback, $midlleWare, $request);
+        return Router::addRoute($routeName, 'POST', $routeCallback, $midlleWare, $request, $namespace);
     }
 
-    public static function put(string $routeName, string $routeCallback, $midlleWare = null, $request = null)
+    public static function put(string $routeName, string $routeCallback, $midlleWare = null, $request = null, $namespace = null)
     {
-        return Router::addRoute($routeName, 'PUT', $routeCallback, $midlleWare, $request);
+        return Router::addRoute($routeName, 'PUT', $routeCallback, $midlleWare, $request, $namespace);
     }
 
-    public static function patch(string $routeName, string $routeCallback, $midlleWare = null, $request = null)
+    public static function patch(string $routeName, string $routeCallback, $midlleWare = null, $request = null, $namespace = null)
     {
-        return Router::addRoute($routeName, 'PATCH', $routeCallback, $midlleWare, $request);
+        return Router::addRoute($routeName, 'PATCH', $routeCallback, $midlleWare, $request, $namespace);
     }
 
-    public static function delete(string $routeName, string $routeCallback, $midlleWare = null, $request = null)
+    public static function delete(string $routeName, string $routeCallback, $midlleWare = null, $request = null, $namespace = null)
     {
-        return Router::addRoute($routeName, 'DELETE', $routeCallback, $midlleWare, $request);
+        return Router::addRoute($routeName, 'DELETE', $routeCallback, $midlleWare, $request, $namespace);
     }
 
-    private static function addRoute(string $routeName, string $routeMethod, string $routeCallback, $midlleWare = null, $request = null)
+    private static function addRoute(string $routeName, string $routeMethod, string $routeCallback, $midlleWare = null, $request = null, $namespace = null)
     {
 
         $controller = substr($routeCallback, 0, strpos($routeCallback, '@'));
@@ -60,9 +60,9 @@ class Router
             $instanceRequest = new $requestPath();
         }
 
-
-        $namespace = Router::$namespace;
-        $instancePath = $instance::class;
+        if($namespace == null){
+            $namespace = Router::$namespace;
+        }
 
         $result = register_rest_route($namespace, $routeName, [
             'methods' => $routeMethod,

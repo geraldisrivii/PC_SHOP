@@ -15,7 +15,7 @@ class RestApiFilter extends Filter
     {
         $namespaceOfClass = self::class;
 
-        add_filter('rest_post_dispatch', "{$namespaceOfClass}::exludeEmpty", 12, 3);
+        // add_filter('rest_post_dispatch', "{$namespaceOfClass}::exludeEmpty", 12, 3);
         add_filter('woocommerce_rest_check_permissions', "{$namespaceOfClass}::disable_ssl_verification_for_local_development", 10, 4);
     }
 

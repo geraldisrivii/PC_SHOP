@@ -15,6 +15,13 @@
                 Игровые ноутбуки
             </button>
         </li>
+        <li class="site-menu__item">
+            <button @click=" $router.push({ name: 'configurator', params: {
+                product: 'new'
+            } })" class="site-menu__button">
+                Конфигуратор
+            </button>
+        </li>
     </ul>
 </template>
 

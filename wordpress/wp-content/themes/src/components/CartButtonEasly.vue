@@ -7,38 +7,40 @@
 <script setup lang="ts">
 import { useAppSettings } from '@/hooks/App/useAppSettings';
 import { usePageSettings } from '@/hooks/App/usePageSettings';
+import { useConfiguratorCategories } from '@/hooks/Configurator/useConfiguratorCategories';
 import { useVuex } from '@/store/useVuex';
-import { IProduct } from '@/types/Product';
+import { IConfigureProduct } from '@/types/Configurator';
+import { IProduct, IProductCategoryResponse } from '@/types/Product';
 import deepEqual from 'deep-equal';
 import { computed, toRefs } from 'vue';
 
 interface Props {
     disabled?: boolean
     product: IProduct
-    addingField: object | null
+    chosenCategory: IProductCategoryResponse | null
+    configureProduct: IConfigureProduct
 }
 
 const props = defineProps<Props>()
 
-const { addingField, product, disabled = false } = toRefs(props)
+const { configureProduct, product, disabled = false, chosenCategory } = toRefs(props)
 
 interface Emits {
-    (e: 'update:addingField', value: object | null): void
+    (e: 'update:configureProduct', value: IConfigureProduct): void
 }
 
 const emit = defineEmits<Emits>()
 
 const productInAddingField = computed(() => {
-    return deepEqual(addingField.value, product.value)
+    return configureProduct.value[chosenCategory.value.slug]?.id === product.value.id
 })
 
 
 const onClick = () => {
-    if(productInAddingField.value){
-        return emit('update:addingField', null)
+    if (productInAddingField.value) {
+        return emit('update:configureProduct', Object.assign({}, configureProduct.value, { [chosenCategory.value.slug]: null }))
     }
-
-    emit('update:addingField', product.value)
+    emit('update:configureProduct', Object.assign({}, configureProduct.value, { [chosenCategory.value.slug]: product.value }))
 }
 
 

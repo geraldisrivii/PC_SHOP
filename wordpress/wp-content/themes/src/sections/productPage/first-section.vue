@@ -20,9 +20,8 @@
                     <p class="first-section__price">{{ product.price }} ₽</p>
                     <div class="first-section__description" v-html="product.description"></div>
                     <div class="first-section__buttons">
-                        
                         <CartButton/>
-                        <button class="button button_white first-section__button">{{ page['first-section_button-conf-text']
+                        <button @click="$router.push({ name: 'configurator', params: { product: product.slug } })" class="button button_white first-section__button">{{ page['first-section_button-conf-text']
                         }}</button>
                     </div>
                 </div>

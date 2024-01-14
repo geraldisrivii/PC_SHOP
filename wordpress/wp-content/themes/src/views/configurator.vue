@@ -1,6 +1,6 @@
 <template>
     <main v-if="isPageDataLoaded">
-        <FirstSection/>
+        <FirstSection :product="product" />
     </main>
 </template>
 
@@ -10,7 +10,10 @@ import { getPageSettings } from '@/api/App/getPageSettings';
 import { useLoad } from '@/hooks/App/useLoad';
 import { usePageSettings } from '@/hooks/App/usePageSettings';
 import store from '@/store';
-import { onMounted, ref } from 'vue';
+import { Ref, onMounted, ref } from 'vue';
+import { IGrouppedProduct } from '@/types/Product';
+import { useRoute } from 'vue-router';
+import { getProducts } from '@/api/Katalog/getProducts';
 
 const isPageDataLoaded = ref(false)
 
@@ -23,11 +26,23 @@ loader.value.onAllisLoaded = () => {
     loader.value.restart()
 }
 
+const product: Ref<IGrouppedProduct | null> = ref(null)
 
-let { page } = usePageSettings(store)
+
+const { page } = usePageSettings(store)
+
+const route = useRoute()
+
+const setProducts = async () => {
+    if (route.params.product != 'new') {
+        product.value = (await getProducts({ slug: route.params.product }))[0]
+    }
+}
 
 onMounted(async () => {
     page.value = await getPageSettings(331)
+
+    await setProducts()
 
     isPageDataLoaded.value = true
 

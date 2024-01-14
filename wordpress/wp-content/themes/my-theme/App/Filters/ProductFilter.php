@@ -26,7 +26,8 @@ class ProductFilter extends Filter
 
     public static function filter_motherboard_socket($args, WP_REST_Request $request) {
         
-        if(!$request->get_param('motherboard-socket')){
+        $filters = $request->get_param('filters');
+        if(!isset($filters) && empty($filters)) {
             return $args;
         }
 
@@ -36,11 +37,14 @@ class ProductFilter extends Filter
             'max' => '<=',
         ];
 
-        $args['meta_query'][] = [
-            'prop' => 'prop',
-            'value' => "motherboard-socket:" . $request->get_param('motherboard-socket')['value'],
-            'compare' => $compares[$request->get_param('motherboard-socket')['kind']],
-        ];
+        foreach ($filters as $filter) {
+            $args['meta_query'][] = [
+                'prop' => 'prop',
+                'value' => $filter['name'] . ":" . $filter['value'],
+                'compare' =>  $compares[$filter['kind']],
+            ];
+        }
+
 
         return $args;
     }

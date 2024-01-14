@@ -2,7 +2,7 @@ import { IProduct } from "./Product";
 
 export interface IConfigureProduct {
     cpu: IProduct | null;
-    gpu: object | null;
+    gpu: IProduct | null;
     ram: IProduct | null;
     motherboard: IProduct | null;
     ssd: IProduct | null;

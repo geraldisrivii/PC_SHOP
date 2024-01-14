@@ -12,8 +12,8 @@
                 >{{product.stock_quantity !== 0 ? `В наличии: ${product.stock_quantity} шт` : 'Не осталось на складе'}}</p>
             </div>
             <div class="good-item-content__quantity-box">
-                <CartButtonEasly :disabled="product.stock_quantity <= 0" :product="product" :adding-field="addingField"
-                    @update:adding-field="emit('update:addingField', $event)" />
+                <CartButtonEasly :chosen-category="chosenCategory" :disabled="product.stock_quantity <= 0" :product="product" :configure-product="configureProduct"
+                    @update:configure-product="emit('update:configureProduct', $event)" />
                 <p class="good-item-content__spec-button" @click="onClick">Подробнее</p>
             </div>
         </div>
@@ -23,21 +23,23 @@
 <script setup lang="ts">
 import { useAppSettings } from '@/hooks/App/useAppSettings';
 import { useVuex } from '@/store/useVuex';
-import { IGrouppedProduct, IProduct } from '@/types/Product';
+import { IGrouppedProduct, IProduct, IProductCategoryResponse } from '@/types/Product';
 import { toRefs, watch } from 'vue';
 import CartButtonEasly from './CartButtonEasly.vue';
 import { useSpecDialog } from '@/hooks/App/useSpecDialog';
+import { IConfigureProduct } from '@/types/Configurator';
 
 interface Props {
     product: IProduct
-    addingField: object | null
+    configureProduct: IConfigureProduct
+    chosenCategory: IProductCategoryResponse | null
 }
 const props = defineProps<Props>()
 
-const { addingField, product } = toRefs(props)
+const { configureProduct, product, chosenCategory } = toRefs(props)
 
 interface Emits {
-    (e: 'update:addingField', value: object): void
+    (e: 'update:configureProduct', value: IConfigureProduct): void
 }
 
 const emit = defineEmits<Emits>()

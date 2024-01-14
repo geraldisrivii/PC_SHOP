@@ -12,6 +12,10 @@ add_action('rest_api_init', function () {
 	// Session
 	Router::post('/sessions', 'SessionController@create');
 
+
+	// Products
+	Router::post('/products/customs', 'ProductController@createCustomProduct', namespace: 'wc/v3', request: 'ProductRequest');
+
 	// User
 	Router::post('/users/signup', 'UserController@signup', 'HasCookieMiddleware', 'UserRequest');
 	Router::post('/users/signin', 'UserController@signin', 'HasCookieMiddleware', 'UserRequest');
