@@ -64,6 +64,8 @@ const onClick = () => {
 
     min-width: 500px;
     min-height: 350px;
+    max-height: 80vh;
+    overflow-y: scroll;
 
     @include table {
         min-width: 300px;

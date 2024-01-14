@@ -19,9 +19,31 @@ class ProductFilter extends Filter
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::add_images_to_response", 14, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::unsetMetadata", 20, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::optimize", 21, 3);
+        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::optimize", 21, 3);
+        add_filter('woocommerce_rest_product_object_query', "{$namespaceOfClass}::filter_motherboard_socket", 51, 2);
     }
 
 
+    public static function filter_motherboard_socket($args, WP_REST_Request $request) {
+        
+        if(!$request->get_param('motherboard-socket')){
+            return $args;
+        }
+
+        $compares = [
+            'match' => '=',
+            'min' => '>=',
+            'max' => '<=',
+        ];
+
+        $args['meta_query'][] = [
+            'prop' => 'prop',
+            'value' => "motherboard-socket:" . $request->get_param('motherboard-socket')['value'],
+            'compare' => $compares[$request->get_param('motherboard-socket')['kind']],
+        ];
+
+        return $args;
+    }
 
     public static function without_grouped_products(WP_REST_Response $response, WC_Product $product, WP_REST_Request $request)
     {

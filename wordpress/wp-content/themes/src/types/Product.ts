@@ -1,6 +1,20 @@
 import { ApiImage, Term } from "./App";
 
 
+
+export interface IProductFilter{
+    key: Term[];
+    link: Term[];
+    type: {
+        [key: string]: string
+    },
+    kind: {
+        [key: string]: string
+    };
+    value: string | number;
+    warning: string;
+}
+
 export interface IConfigureGroupe {
     label: string,
     includes: string[]
@@ -37,7 +51,8 @@ export interface IProduct {
     cfs: {
         shortly_name: string;
         properties: Array<{ key: Array<Term>, value: string }>;
-        statistic_games: Array<Game>
+        statistic_games: Array<Game>;
+        filters: IProductFilter[];
         [key: string]: any;
     }
     price: string | number;

@@ -4,7 +4,7 @@
             <p class="group-panel__title">{{ groupe.label }}</p>
         </div>
         <div class="group-categories">
-            <ConfiguratorCategory :configureProduct="configureProduct" v-for="category_slug in groupe.includes" :category="categories.find(category => category.slug === category_slug) ? categories.find(category => category.slug === category_slug) : null"/>
+            <ConfiguratorCategory @click="onclick(categories.find(category => category.slug === category_slug))"  :configureProduct="configureProduct" v-for="category_slug in groupe.includes" :category="categories.find(category => category.slug === category_slug) ? categories.find(category => category.slug === category_slug) : null"/>
         </div>
     </div>
 </template>
@@ -18,13 +18,48 @@ interface Props {
     groupe: IConfigureGroupe
     categories: IProductCategoryResponse[]
     configureProduct: IConfigureProduct
+    isInfoDialogShow: boolean
 }
+
+interface Emits {
+    (e: 'update:choosenCategory', category: IProductCategoryResponse): void
+    (e: 'update:isInfoDialogShow', status: boolean): void
+}
+
+const emit = defineEmits<Emits>()
 
 const { groupe } = defineProps<Props>()
 
+
+const onclick = (category: IProductCategoryResponse | null) => {
+    if(category){
+        window.scrollTo(0, 200)
+        emit('update:choosenCategory', category)
+        emit('update:isInfoDialogShow', false)
+    }
+}
 
 
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.group{
+    display: flex;
+    flex-direction: column;
+}
+.group-panel {
+    padding: 18px;
+    background-color: rgb(53, 53, 53);
+    &__title {
+        text-transform: uppercase;
+        font-size: 16px;
+    }
+}
+.group-categories {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+</style>

@@ -1,0 +1,10 @@
+2024-01-13T06:50:12+00:00 CRITICAL syntax error, unexpected token ",", expecting ")" в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 23
+
+2024-01-13T06:51:02+00:00 CRITICAL syntax error, unexpected identifier "motherboard", expecting ")" в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 23
+
+2024-01-13T06:53:00+00:00 CRITICAL syntax error, unexpected token ")" в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 29
+
+2024-01-13T06:53:12+00:00 CRITICAL syntax error, unexpected token ")" в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 29
+
+2024-01-13T07:00:53+00:00 CRITICAL syntax error, unexpected variable "$args" в /var/www/html/wp-content/themes/my-theme/App/Filters/ProductFilter.php на строке 35
+
