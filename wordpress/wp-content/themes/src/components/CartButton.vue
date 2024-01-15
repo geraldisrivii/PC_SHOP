@@ -1,7 +1,7 @@
 <template>
     <div class="cart-button">
         <CartButtonsQuantity v-show="hasQuantity" />
-        <button v-show="!hasQuantity" @click="addToCart"
+        <button v-show="!hasQuantity" @click="addToCart(product)"
             class="button cart-button__button">{{ page['first-section_button-text'] }}</button>
     </div>
 </template>
@@ -13,7 +13,7 @@ import { useBasketItems } from '@/hooks/Product/useBasketItems';
 import { useBasketItemsGrouped } from '@/hooks/Product/useBasketItemsGrouped';
 import { useCurrentProduct } from '@/hooks/Product/useCurrentProduct';
 import { useVuex } from '@/store/useVuex';
-import { computed } from 'vue';
+import { computed, toRef } from 'vue';
 import CartButtonsQuantity from './CartButtonsQuantity.vue';
 import { useCartButtonsActions } from '@/hooks/Cart/useCartButtonsActions';
 
@@ -27,7 +27,7 @@ const { BasketItemsGrouped } = useBasketItemsGrouped(store)
 
 const { basketItems } = useBasketItems(store)
 
-const { addToCart } = useCartButtonsActions(basketItems, product)
+const { addToCart } = useCartButtonsActions(basketItems)
 
 const { app } = useAppSettings(store)
 

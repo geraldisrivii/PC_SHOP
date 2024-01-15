@@ -1,14 +1,14 @@
 import { IGrouppedProduct } from '@/types/Product'
-import { ComputedRef, WritableComputedRef } from 'vue'
+import { ComputedRef, Ref, WritableComputedRef } from 'vue'
 
-export const useCartButtonsActions = (basketItems: WritableComputedRef<Array<IGrouppedProduct>>, product: WritableComputedRef<IGrouppedProduct>) => {
+export const useCartButtonsActions = (basketItems: WritableComputedRef<Array<IGrouppedProduct>>) => {
 
-    const addToCart = () => {
-        basketItems.value.push(product.value)
+    const addToCart = (product: IGrouppedProduct) => {
+        basketItems.value.push(product)
     }
 
-    const removeOfCart = () => {
-        const index = basketItems.value.findIndex(item => item.id == product.value.id)
+    const removeOfCart = (product: IGrouppedProduct) => {
+        const index = basketItems.value.findIndex(item => item.id == product.id)
 
         if (index < 0) {
             return

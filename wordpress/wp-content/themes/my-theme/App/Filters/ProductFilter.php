@@ -77,6 +77,7 @@ class ProductFilter extends Filter
         if(!isset($response->data['images'])){
             
             if($product->get_image_id() == ''){
+                $response->data['images'] = [];
                 return $response;
             }
 

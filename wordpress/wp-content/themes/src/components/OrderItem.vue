@@ -1,6 +1,6 @@
 <template>
     <div class="order-item">
-        <img class="order-item__image" :src="product.images[0].src" :alt="product.name">
+        <img v-if="product.images && product.images.length > 0" class="order-item__image" :src="product.images[0].src" :alt="product.name">
         <div class="order-item-content">
             <div class="order-item-content__description">
                 <p class="order-item-content__title">{{ product.name }}</p>

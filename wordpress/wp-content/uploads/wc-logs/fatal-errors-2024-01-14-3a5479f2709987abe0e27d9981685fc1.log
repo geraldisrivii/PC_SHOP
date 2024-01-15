@@ -481,3 +481,9 @@ Stack trace:
 #18 {main}
   thrown в /var/www/html/wp-content/plugins/woocommerce/includes/data-stores/class-wc-product-data-store-cpt.php на строке 167
 
+2024-01-14T12:03:18+00:00 CRITICAL syntax error, unexpected token "," в /var/www/html/wp-content/themes/my-theme/App/Filters/OrderFilter.php на строке 71
+
+2024-01-14T12:04:17+00:00 CRITICAL syntax error, unexpected token "," в /var/www/html/wp-content/themes/my-theme/App/Filters/OrderFilter.php на строке 75
+
+2024-01-14T12:04:39+00:00 CRITICAL syntax error, unexpected token "," в /var/www/html/wp-content/themes/my-theme/App/Filters/OrderFilter.php на строке 74
+

@@ -1,6 +1,6 @@
 <template>
     <div class="basket-item">
-        <img class="basket-item__image" :src="product.images[0].src" :alt="product.name">
+        <img v-if="product.images.length > 0" class="basket-item__image" :src="product.images[0].src" :alt="product.name">
         <div class="basket-item-content">
             <div class="basket-item-content__description">
                 <p class="basket-item-content__title">{{ product.name }}</p>

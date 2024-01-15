@@ -67,12 +67,17 @@ class OrderFilter extends Filter
 
             $productData = $product->get_data();
 
-            $attachmentImage = [
-                'src' => wp_get_attachment_image_src($product->get_image_id(), 'full')[0],
-                'name' => $product->get_image_id()
-            ];
+            $src = wp_get_attachment_image_src($product->get_image_id(), 'full');
 
-            $productData['images'][] = $attachmentImage;
+            if ($src) {
+                $attachmentImage = [
+                    'src' => $src[0],
+                    'name' => $product->get_image_id()
+                ];
+
+                $productData['images'][] = $attachmentImage;
+            }
+
 
             $productData['price'] = $totalOfProduct;
 

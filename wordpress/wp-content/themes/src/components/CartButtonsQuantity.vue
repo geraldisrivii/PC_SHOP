@@ -1,10 +1,10 @@
 <template>
     <div v-show="hasQuantity" class="cart-button-buttons">
-        <button class="cart-button-buttons__button" @click="removeOfCart">
+        <button class="cart-button-buttons__button" @click="removeOfCart(currentProduct)">
             <img :src="app['general_slider-button_left']" alt="button_left">
         </button>
         <p class="cart-button-buttons__quantity">{{ quantity }}</p>
-        <button class="cart-button-buttons__button " @click="addToCart">
+        <button class="cart-button-buttons__button " @click="addToCart(currentProduct)">
             <img :src="app['general_slider-button_right']" alt="button_right">
         </button>
     </div>
@@ -18,7 +18,7 @@ import { useBasketItemsGrouped } from '@/hooks/Product/useBasketItemsGrouped';
 import { useCurrentProduct } from '@/hooks/Product/useCurrentProduct';
 import { useVuex } from '@/store/useVuex';
 import { IGrouppedProduct } from '@/types/Product';
-import { WritableComputedRef, computed } from 'vue';
+import { WritableComputedRef, computed, toRef } from 'vue';
 
 
 interface Props {
@@ -39,7 +39,7 @@ const store = useVuex()
 
 const { basketItems } = useBasketItems(store)
 
-const { addToCart, removeOfCart } = useCartButtonsActions(basketItems, currentProduct)
+const { addToCart, removeOfCart } = useCartButtonsActions(basketItems)
 
 const { BasketItemsGrouped } = useBasketItemsGrouped(store)
 

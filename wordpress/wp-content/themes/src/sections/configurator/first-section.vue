@@ -140,7 +140,7 @@ const store = useVuex()
 
 const { basketItems } = useBasketItems(store)
 
-const { } = useCartButtonsActions(basketItems, )
+const { addToCart } = useCartButtonsActions(basketItems)
 
 const createCustomProduct = async () => {
     const response = await WOO.post('products/customs', {
@@ -153,6 +153,8 @@ const createCustomProduct = async () => {
     if (response.status === 201) {
         name.value = ''
         isNameDialogShow.value = false
+
+        addToCart(response.data)
     }
 }
 
