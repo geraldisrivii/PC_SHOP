@@ -22,6 +22,10 @@ class ProductController
         $product->set_status('publish');
         $product->set_catalog_visibility('hidden');
 
+        if($request['imageID']) {
+            $product->set_image_id( $request['imageID'] );
+        }
+
         $items = $request->get_param('items');
 
         $products = [];

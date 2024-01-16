@@ -143,12 +143,19 @@ const { basketItems } = useBasketItems(store)
 const { addToCart } = useCartButtonsActions(basketItems)
 
 const createCustomProduct = async () => {
-    const response = await WOO.post('products/customs', {
+    const data = {
         name: name.value,
         items: Object.values(ConfigureProduct.value).filter(item => item).map((product: IProduct) => {
             return product.id
-        })
-    })
+        }),
+    }
+
+    console.log(ConfigureProduct.value.case.images[0].name)
+
+    data['imageID'] = Number((ConfigureProduct.value.case.images[0].name))
+
+    const response = await WOO.post('products/customs', data)
+    console.log(response)
 
     if (response.status === 201) {
         name.value = ''

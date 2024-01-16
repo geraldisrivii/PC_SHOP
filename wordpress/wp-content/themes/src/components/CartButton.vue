@@ -1,7 +1,7 @@
 <template>
     <div class="cart-button">
         <CartButtonsQuantity v-show="hasQuantity" />
-        <button v-show="!hasQuantity" @click="addToCart(product)"
+        <button :disabled="!checkMaxQuantityOfProduct(toRef(basketItems), product)" v-show="!hasQuantity" @click="addToCart(product)"
             class="button cart-button__button">{{ page['first-section_button-text'] }}</button>
     </div>
 </template>
@@ -13,9 +13,10 @@ import { useBasketItems } from '@/hooks/Product/useBasketItems';
 import { useBasketItemsGrouped } from '@/hooks/Product/useBasketItemsGrouped';
 import { useCurrentProduct } from '@/hooks/Product/useCurrentProduct';
 import { useVuex } from '@/store/useVuex';
-import { computed, toRef } from 'vue';
+import { computed, onMounted, toRef } from 'vue';
 import CartButtonsQuantity from './CartButtonsQuantity.vue';
 import { useCartButtonsActions } from '@/hooks/Cart/useCartButtonsActions';
+import { checkMaxQuantityOfProduct } from '@/helpers/checkMaxQuantityOfProduct';
 
 const store = useVuex()
 
@@ -37,13 +38,18 @@ const hasQuantity = computed(() => {
 
 
 const quantity = computed(() => {
-    const basketItem = BasketItemsGrouped.value.find(item => item.product.id == product.value.id)
 
+    const basketItem = BasketItemsGrouped.value.find(item => item.product.id == product.value.id)
+    
     if (!basketItem) {
         return 0
     }
 
     return basketItem.quantity
+})
+
+onMounted(() => {
+    checkMaxQuantityOfProduct(toRef(basketItems), product.value)
 })
 
 </script>

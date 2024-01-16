@@ -2,7 +2,7 @@
     <my-side-dialog v-model:isDialogShow="isDialogShow">
         <div class="cart-dialog">
             <div class="cart-dialog-basket-items">
-                <BasketItem v-for="basketItem in BasketItemsGrouped" :key="basketItem.product.id"
+                <BasketItem  v-for="basketItem in BasketItemsGrouped" :key="basketItem.product.id"
                     :product="basketItem.product" :quantity="basketItem.quantity" />
             </div>
             <div class="cart-dialog-payment">
@@ -11,23 +11,66 @@
             </div>
         </div>
     </my-side-dialog>
-    <OrderDialog @pay="createPayment" v-model:isOrderDialogShow="isOrderDialogShow"/>
+    <OrderDialog @pay="createPayment" v-model:isOrderDialogShow="isOrderDialogShow" />
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref, toRef, toRefs, watch } from 'vue';
 import BasketItem from './BasketItem.vue';
 import { useBasketItemsGrouped } from '@/hooks/Product/useBasketItemsGrouped';
 import { useVuex } from '@/store/useVuex';
 import { useStoreUser } from '@/hooks/User/useStoreUser';
 import WP from '@/axiosWP'
+import WOO from '@/axiosWoocomerce'
 import OrderDialog from './UI/OrderDialog.vue';
 import { RequestData } from '@/types/components/cartDialog';
+import { useBasketItems } from '@/hooks/Product/useBasketItems';
+import { IGrouppedProduct } from '@/types/Product';
+import { checkMaxQuantityOfProduct } from '@/helpers/checkMaxQuantityOfProduct';
+import { getMaxQuantityOfProduct } from '@/helpers/getMaxQuantityOfProduct';
 
+interface Props {
+    isDataLoaded: boolean
+}
+
+const props = defineProps<Props>()
+
+const { isDataLoaded } = toRefs(props)
 
 const isDialogShow = ref(false)
 
 const isOrderDialogShow = ref(false)
+
+
+const store = useVuex()
+
+const { BasketItemsGrouped } = useBasketItemsGrouped(store)
+
+const { basketItems } = useBasketItems(store)
+
+watch(isDataLoaded, async () => {
+    if(isDataLoaded.value){
+
+        let newBasketItems: IGrouppedProduct[] = []
+
+        for (const basketItem of basketItems.value) {
+            const newItem = (await WOO.get('products/' + basketItem.id)).data
+
+            const MaxQuantity = getMaxQuantityOfProduct(basketItems, newItem)
+            
+            if(newBasketItems.filter(item => item.id == basketItem.id).length >= MaxQuantity){
+                continue
+            }
+            newBasketItems.push(newItem)
+        }
+
+        basketItems.value = newBasketItems
+    }
+})
+
+onMounted(async () => {
+
+})
 
 const open = () => {
     isDialogShow.value = true
@@ -41,9 +84,7 @@ defineExpose({
     close
 })
 
-const store = useVuex()
 
-const { BasketItemsGrouped } = useBasketItemsGrouped(store)
 
 const { user } = useStoreUser(store)
 
@@ -62,10 +103,10 @@ const createPayment = async (data: RequestData) => {
         amount: sum.value,
         items: BasketItemsGrouped.value,
         ...data
-    }, 
-    {
-        withCredentials: true
-    }).then(response => response.data)
+    },
+        {
+            withCredentials: true
+        }).then(response => response.data)
 
     console.log(response)
 

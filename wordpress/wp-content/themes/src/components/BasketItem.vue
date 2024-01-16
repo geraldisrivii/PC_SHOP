@@ -19,15 +19,23 @@ import { useAppSettings } from '@/hooks/App/useAppSettings';
 import { useVuex } from '@/store/useVuex';
 import CartButtonsQuantity from './CartButtonsQuantity.vue';
 import { IGrouppedProduct } from '@/types/Product';
+import { checkMaxQuantityOfProduct } from '@/helpers/checkMaxQuantityOfProduct';
+import { onMounted, toRefs, watch } from 'vue';
+import { useBasketItemsGrouped } from '@/hooks/Product/useBasketItemsGrouped';
+import { useBasketItems } from '@/hooks/Product/useBasketItems';
+import { getMaxQuantityOfProduct } from '@/helpers/getMaxQuantityOfProduct';
 
 interface Props {
     product: IGrouppedProduct
     quantity: number
 }
-
-const { product } = defineProps<Props>()
-
 const store = useVuex()
+
+const props = defineProps<Props>()
+
+const { product } = toRefs(props)
+
+
 
 const { app } = useAppSettings(store)
 

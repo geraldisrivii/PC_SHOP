@@ -1,6 +1,6 @@
 <template>
     <ProfileDialog ref="profile_dialog_instance" />
-    <CartDialog ref="cart_dialog_instance" />
+    <CartDialog :isDataLoaded="isDataLoaded" ref="cart_dialog_instance" />
     <StatusDialog v-if="isAppLoaded" ref="status_dialog_instance" />
     <Library v-if="isAppLoaded" ref="library" />
     <SpecDialog ref="spec_dialog_instance" />
@@ -88,13 +88,13 @@ onMounted(async () => {
     store.commit(Mutations.SET_CART_DIALOG, cart_dialog_instance.value)
     store.commit(Mutations.SET_PROFILE_DIALOG, profile_dialog_instance.value)
 
+    
+    // set basket items
+    let basketItemsLocalStorage = localStorage.getItem('basket')
+    basketItems.value = (basketItemsLocalStorage != null && basketItemsLocalStorage != 'undefined' ? JSON.parse(basketItemsLocalStorage) : [])
+    
     isDataLoaded.value = true
 
-    // set basket items
-
-    let basketItemsLocalStorage = localStorage.getItem('basket')
-
-    basketItems.value = (basketItemsLocalStorage != null && basketItemsLocalStorage != 'undefined' ? JSON.parse(basketItemsLocalStorage) : [])
 })
 </script>
 <style lang="scss">
@@ -161,6 +161,13 @@ button {
     font-family: Rubik;
     cursor: pointer;
     background-color: transparent;
+    &:disabled{
+        cursor: not-allowed;
+        img{
+            opacity: 0.3;
+        }
+    }
+
 }
 
 ul {

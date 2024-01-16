@@ -1,10 +1,13 @@
-import { IGrouppedProduct } from '@/types/Product'
+import { checkMaxQuantityOfProduct } from '@/helpers/checkMaxQuantityOfProduct'
+import { IGrouppedProduct, IProduct } from '@/types/Product'
 import { ComputedRef, Ref, WritableComputedRef } from 'vue'
 
 export const useCartButtonsActions = (basketItems: WritableComputedRef<Array<IGrouppedProduct>>) => {
 
     const addToCart = (product: IGrouppedProduct) => {
-        basketItems.value.push(product)
+        if(checkMaxQuantityOfProduct(basketItems, product)){
+            basketItems.value.push(product)
+        }
     }
 
     const removeOfCart = (product: IGrouppedProduct) => {

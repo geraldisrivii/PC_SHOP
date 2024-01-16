@@ -4,13 +4,14 @@
             <img :src="app['general_slider-button_left']" alt="button_left">
         </button>
         <p class="cart-button-buttons__quantity">{{ quantity }}</p>
-        <button class="cart-button-buttons__button " @click="addToCart(currentProduct)">
+        <button :disabled="!checkMaxQuantityOfProduct(toRef(basketItems), currentProduct)" class="cart-button-buttons__button " @click="addToCart(currentProduct)">
             <img :src="app['general_slider-button_right']" alt="button_right">
         </button>
     </div>
 </template>
 
 <script setup lang="ts">
+import { checkMaxQuantityOfProduct } from '@/helpers/checkMaxQuantityOfProduct';
 import { useAppSettings } from '@/hooks/App/useAppSettings';
 import { useCartButtonsActions } from '@/hooks/Cart/useCartButtonsActions';
 import { useBasketItems } from '@/hooks/Product/useBasketItems';

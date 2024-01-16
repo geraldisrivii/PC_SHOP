@@ -16,6 +16,10 @@ class ProductRequest
                 'type' => 'array',
                 'required' => true,
             ],
+            'imageID' => [
+                'type' => ['integer'],
+                'required' => true,
+            ],
         ];
     }
 }
