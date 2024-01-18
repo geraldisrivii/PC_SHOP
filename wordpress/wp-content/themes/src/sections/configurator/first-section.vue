@@ -14,8 +14,10 @@
                 </div>
                 <div class="first-section-products-container">
                     <div class="first-section-goods">
-                        <GoodItem v-for="product in products" :key="product.id" :chosen-category="choosenCategory"
-                            v-model:configure-product="ConfigureProduct" :product="product" />
+                        <TransitionGroup name="list">
+                            <GoodItem v-for="product in products" :key="product.id" :chosen-category="choosenCategory"
+                                v-model:configure-product="ConfigureProduct" :product="product" />
+                        </TransitionGroup>
                     </div>
                     <div class="first-section-filters">
                         <!-- <CustomSelect
@@ -150,9 +152,7 @@ const createCustomProduct = async () => {
         }),
     }
 
-    console.log(ConfigureProduct.value.case.images[0].name)
-
-    data['imageID'] = Number((ConfigureProduct.value.case.images[0].name))
+    data['imageID'] = (ConfigureProduct.value.case.images[0].id)
 
     const response = await WOO.post('products/customs', data)
     console.log(response)

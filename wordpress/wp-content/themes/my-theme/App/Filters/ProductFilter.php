@@ -83,7 +83,8 @@ class ProductFilter extends Filter
 
             $attachmentImage = [
                 'src' => wp_get_attachment_image_src($product->get_image_id(), 'full')[0],
-                'name' => $product->get_image_id()
+                'name' => $product->get_image_id(),
+                'id' => (integer)$product->get_image_id(),
             ];
 
             $response->data['images'][] = $attachmentImage;
@@ -93,7 +94,13 @@ class ProductFilter extends Filter
             }
 
             foreach ($product->get_gallery_image_ids() as $id) {
-                $response->data['images'][] = wp_get_attachment_image_src($id, 'full');
+
+                $attachmentImage = [
+                    'src' => wp_get_attachment_image_src($id, 'full')[0],
+                    'name' => (string)$id,
+                    'id' => (integer)$id
+                ];
+                $response->data['images'][] = $attachmentImage;
             }
             
         }

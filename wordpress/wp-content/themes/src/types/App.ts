@@ -50,6 +50,7 @@ export interface Term {
 
 
 export interface ApiImage {
+    id: number;
     name: string;
     src: string;
     [key: string]: any;
