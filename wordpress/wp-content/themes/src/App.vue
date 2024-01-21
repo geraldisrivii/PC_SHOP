@@ -1,5 +1,5 @@
 <template>
-    <ProfileDialog ref="profile_dialog_instance" />
+  <ProfileDialog ref="profile_dialog_instance" />
     <CartDialog :isDataLoaded="isDataLoaded" ref="cart_dialog_instance" />
     <StatusDialog v-if="isAppLoaded" ref="status_dialog_instance" />
     <Library v-if="isAppLoaded" ref="library" />

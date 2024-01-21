@@ -25,15 +25,15 @@ services:
       - 80:80
     depends_on:
       - wordpress
-  # certbot:
-  #   image: certbot/certbot
-  #   depends_on:
-  #     - nginx
-  #   container_name: wc_certbot
-  #   volumes:
-  #     - ./etc/letsencrypt:/etc/letsencrypt
-  #     - ./wordpress/:/var/www/html
-  #   command: certonly --webroot --webroot-path=/var/www/html --email aleksander.freelancer@gmail.com --agree-tos --no-eff-email -d legal-services.site
+  certbot:
+    image: certbot/certbot
+    depends_on:
+      - nginx
+    container_name: wc_certbot
+    volumes:
+      - ./etc/letsencrypt:/etc/letsencrypt
+      - ./wordpress/:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html --email aleksander.freelancer@gmail.com --agree-tos --no-eff-email -d legal-services.site
   wc_db:
     image: mysql:8.0
     environment:

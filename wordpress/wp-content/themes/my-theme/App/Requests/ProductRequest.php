@@ -18,7 +18,7 @@ class ProductRequest
             ],
             'imageID' => [
                 'type' => ['integer'],
-                'required' => true,
+                // 'required' => true,
             ],
         ];
     }
