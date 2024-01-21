@@ -18,8 +18,8 @@ class ProductFilter extends Filter
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::without_grouped_products", 13, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::add_images_to_response", 14, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::unsetMetadata", 20, 3);
-        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::optimize", 21, 3);
-        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::optimize", 21, 3);
+        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::unsetMetadata", 21, 3);
+        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::optimize", 22, 3);
         add_filter('woocommerce_rest_product_object_query', "{$namespaceOfClass}::filter_motherboard_socket", 51, 2);
     }
 
@@ -66,6 +66,13 @@ class ProductFilter extends Filter
 
 
     public static function unsetMetadata(WP_REST_Response $response, WC_Product $product, WP_REST_Request $request)
+    {
+        unset($response->data['meta_data']);
+
+        return $response;
+    }
+
+    public static function unsetDates(WP_REST_Response $response, WC_Product $product, WP_REST_Request $request)
     {
         unset($response->data['meta_data']);
 
@@ -124,6 +131,24 @@ class ProductFilter extends Filter
             unset($response->data['permalink_template']);
             unset($response->data['post_password']);
             unset($response->data['generated_slug']);
+            unset($response->data['catalog_visibility']);
+            unset($response->data['short_description']);
+            unset($response->data['date_on_sale_from']);
+            unset($response->data['date_on_sale_from_gmt']);
+            unset($response->data['date_on_sale_to']);
+            unset($response->data['date_on_sale_to_gmt']);
+            unset($response->data['on_sale']);
+            unset($response->data['purchasable']);
+            unset($response->data['virtual']);
+            unset($response->data['downloadable']);
+            unset($response->data['downloads']);
+            unset($response->data['download_limit']);
+            unset($response->data['download_expiry']);
+            unset($response->data['tax_status']);
+            unset($response->data['sold_individually']);
+            unset($response->data['weight']);
+            unset($response->data['dimensions']);
+            unset($response->data['shipping_required']);
         }
 
         return $response;
