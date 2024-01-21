@@ -2,12 +2,14 @@
     <my-side-dialog v-model:isDialogShow="isDialogShow">
         <div class="cart-dialog">
             <div class="cart-dialog-basket-items">
-                <BasketItem  v-for="basketItem in BasketItemsGrouped" :key="basketItem.product.id"
+                <p v-if="BasketItemsGrouped.length == 0" class="cart-dialog-basket-items__title">Добавьте продукт в корзину прежде чем выполнить заказ</p>
+                <BasketItem v-for="basketItem in BasketItemsGrouped" :key="basketItem.product.id"
                     :product="basketItem.product" :quantity="basketItem.quantity" />
             </div>
             <div class="cart-dialog-payment">
                 <p class="cart-dialog-payment__sum">Сумма к оплате: <span>{{ sum }}</span> руб</p>
-                <button @click="isOrderDialogShow = true" class="button cart-dialog-payment__button">Оплатить</button>
+                <p v-if="!user" class="cart-dialog-payment__text">Зарегистрируйтесь или авторизуйтесь прежде чем выполнить заказ</p>
+                <button :disabled="!user" @click="isOrderDialogShow = true" class="button cart-dialog-payment__button">Оплатить</button>
             </div>
         </div>
     </my-side-dialog>
@@ -29,6 +31,8 @@ import { IGrouppedProduct } from '@/types/Product';
 import { checkMaxQuantityOfProduct } from '@/helpers/checkMaxQuantityOfProduct';
 import { getMaxQuantityOfProduct } from '@/helpers/getMaxQuantityOfProduct';
 
+
+
 interface Props {
     isDataLoaded: boolean
 }
@@ -49,7 +53,7 @@ const { BasketItemsGrouped } = useBasketItemsGrouped(store)
 const { basketItems } = useBasketItems(store)
 
 watch(isDataLoaded, async () => {
-    if(isDataLoaded.value){
+    if (isDataLoaded.value) {
 
         let newBasketItems: IGrouppedProduct[] = []
 
@@ -57,8 +61,8 @@ watch(isDataLoaded, async () => {
             const newItem = (await WOO.get('products/' + basketItem.id)).data
 
             const MaxQuantity = getMaxQuantityOfProduct(basketItems, newItem)
-            
-            if(newBasketItems.filter(item => item.id == basketItem.id).length >= MaxQuantity){
+
+            if (newBasketItems.filter(item => item.id == basketItem.id).length >= MaxQuantity) {
                 continue
             }
             newBasketItems.push(newItem)
@@ -116,11 +120,19 @@ const createPayment = async (data: RequestData) => {
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/base/mixins.scss';
+@import '@/scss/base/typography.scss';
+
 .cart-dialog {
     display: grid;
     grid-template-columns: 5fr 2fr;
+
+    @include table {
+        grid-template-columns: 1fr;
+    }
+
     gap: 30px;
-    height: 100%;
+    height: 90%;
 }
 
 .cart-dialog-basket-items {
@@ -128,6 +140,7 @@ const createPayment = async (data: RequestData) => {
     flex-direction: column;
     gap: 30px;
     overflow-y: scroll;
+    overflow-x: hidden;
     height: 90%;
 }
 
@@ -148,5 +161,8 @@ const createPayment = async (data: RequestData) => {
     }
 
     &__button {}
+    &__text {
+        color: red;
+    }
 }
 </style>

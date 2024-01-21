@@ -4,7 +4,7 @@
         <div class="container fourth-section-container">
             <p class="fourth-section-container__title title">{{ page['fourth-section_title'] }}</p>
             <p class="fourth-section-container__text">{{ page['fourth-section_text'] }}</p>
-            <button class="button fourth-section-container__button">{{ page['fourth-section_button-text'] }}</button>
+            <button @click="$router.push({name: 'configurator', params: {product: 'new'}})" class="button fourth-section-container__button">{{ page['fourth-section_button-text'] }}</button>
         </div>
     </div>
 </template>

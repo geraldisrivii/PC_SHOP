@@ -45,7 +45,9 @@ const onClick = () => {
 <style lang="scss" scoped>
 .cat {
     height: 100%;
-    // width: 250px;
+    // max-width: 250px;
+    flex-basis: 260px;
+    min-width: 230px;
     background-color: rgb(24, 24, 24);
     cursor: pointer;
     border-radius: 5px;

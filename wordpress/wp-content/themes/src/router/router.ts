@@ -40,15 +40,22 @@ const router = createRouter({
 declare var preloaderOpen: () => void;
 
 import deepEqual from 'deep-equal';
+import { useGamburgerDialog } from '@/hooks/App/useGamburgerDialog';
+import store from '@/store';
+
+const { gamburgerDialog } = useGamburgerDialog(store)
 
 router.afterEach((to, from) => {
-    window.scrollTo(0, 0)
     if (to.fullPath == from.fullPath && deepEqual(to.params, from.params)) {
         console.log(to.fullPath)
         return
     }
-
+    if(gamburgerDialog.value){
+        gamburgerDialog.value.close()
+    }
+    
     preloaderOpen();
+    window.scrollTo(0, 0)
 })
 
 export default router

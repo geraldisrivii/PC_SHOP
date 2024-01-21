@@ -6,6 +6,8 @@ import { Ref, computed, ref, watch } from "vue"
 export const useConfiguratorProducts = (choosenCategory: Ref<IProductCategoryResponse>, filters: Ref<IProductFilter[]>) => {
     const products: Ref<Array<IProduct>> = ref([])
 
+    const isProductsLoaded = ref(false)
+
     const filtersRequest = computed(() => {
         let requests = []
         filters.value.forEach(filter => {
@@ -22,14 +24,17 @@ export const useConfiguratorProducts = (choosenCategory: Ref<IProductCategoryRes
 
     watch(choosenCategory, async () => {
         if (choosenCategory) {
+            isProductsLoaded.value = false
             products.value = await getProducts({
                 category: choosenCategory.value.id,
                 filters: filtersRequest.value
             })
+            isProductsLoaded.value = true
         }
     }, { deep: true })
 
     return {
-        products
+        products,
+        isProductsLoaded
     }
 }

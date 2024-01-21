@@ -5,7 +5,7 @@
             <div class="first-section-left">
                 <p class="first-section-left__title" :class="{ 'first-section-left__title--animate': isAllLoaded }">{{
                     page['first-section_title'] }}</p>
-                <button @click="$router.push({ name: 'katalog' })" class="first-section-left__button button">{{
+                <button @click="$router.push({ name: 'katalog', params: {category: 'gaming'} })" class="first-section-left__button button">{{
                     page['first-section_button_text'] }}</button>
             </div>
             <div class="first-section-right">
@@ -64,7 +64,7 @@ onMounted(() => {
 
 
 .first-section {
-    padding-top: 100px;
+    padding-top: 180px;
 }
 
 .first-section-container {
@@ -80,20 +80,18 @@ onMounted(() => {
 }
 
 .first-section-left {
+
+    
     @include table {
         z-index: 1;
+        text-align: center;
         position: relative;
-        height: 100vh;
+        height: 60vh;
     }
 
     &__title {
         &--animate {
             animation: leftToRight 1.2s ease-in-out;
-        }
-
-        @include table {
-            padding: 10px;
-            background-color: rgba(41, 41, 41, 0.8);
         }
 
         color: #FFF;

@@ -1,6 +1,6 @@
 import { getProducts } from "@/api/Katalog/getProducts"
 import { IGrouppedProduct, ISeriesProducts } from "@/types/Product"
-import { Ref, ref } from "vue"
+import { Ref, computed, ref } from "vue"
 import WP from '@/axiosWP'
 
 export const useProducts = () => {
@@ -9,6 +9,8 @@ export const useProducts = () => {
 
     let products: Ref<ISeriesProducts> = ref({})
 
+    const productsLoadedInfo = ref([])
+
     const category_ids = {
         laptop: 18,
         gaming: 16,
@@ -16,6 +18,9 @@ export const useProducts = () => {
     }
 
     const onMountedAction = async (category_slug: string) => {
+
+        productsLoadedInfo.value = []
+        
         serieses.value = (await WP.get('series')).data
 
         serieses.value = serieses.value.filter(item => item.slug.includes(category_slug))
@@ -33,19 +38,30 @@ export const useProducts = () => {
             }
         }, {})
 
+        
         for (const key in products.value) {
-            products.value[key] = await getProducts({
+            getProducts({
                 category: category_ids[category_slug],
                 per_page: 20,
                 series: key
+            }).then(data => {
+                products.value[key] = data
+                productsLoadedInfo.value.push(key)
             })
+
         }
-        
+
     }
+
+    const hasLoadedOneProduct = computed(() => {
+        return productsLoadedInfo.value.length > 0
+    })
 
     return {
         serieses,
         products,
-        onMountedAction
+        onMountedAction,
+        hasLoadedOneProduct,
+        productsLoadedInfo
     }
 }

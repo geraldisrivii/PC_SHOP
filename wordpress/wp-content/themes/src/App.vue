@@ -1,4 +1,5 @@
 <template>
+    <GamburgerDialog ref="gamburger_dialog_instance"/>
     <ProfileDialog ref="profile_dialog_instance" />
     <CartDialog :isDataLoaded="isDataLoaded" ref="cart_dialog_instance" />
     <StatusDialog v-if="isAppLoaded" ref="status_dialog_instance" />
@@ -38,6 +39,8 @@ import CartDialog from './components/CartDialog.vue';
 import { useCartDialog } from './hooks/App/useCartDialog';
 import ProfileDialog from './components/ProfileDialog.vue';
 import { useProfileDialog } from './hooks/App/useProfileDialog';
+import { useGamburgerDialog } from './hooks/App/useGamburgerDialog';
+import GamburgerDialog from './components/GamburgerDialog.vue';
 
 // DATA
 let isDataLoaded: Ref<boolean> = ref(false);
@@ -57,6 +60,7 @@ const { instance: status_dialog_instance } = useStatusDialog(store)
 const { instance: library } = useLibraryDialog(store)
 const { instance: cart_dialog_instance } = useCartDialog(store)
 const { instance: profile_dialog_instance } = useProfileDialog(store)
+const {instance: gamburger_dialog_instance} = useGamburgerDialog(store)
 
 const { app } = useAppSettings(store)
 
@@ -87,6 +91,7 @@ onMounted(async () => {
     store.commit(Mutations.SET_LIBRARY_DIALOG, library.value)
     store.commit(Mutations.SET_CART_DIALOG, cart_dialog_instance.value)
     store.commit(Mutations.SET_PROFILE_DIALOG, profile_dialog_instance.value)
+    store.commit(Mutations.SET_GAMBURGER_DIALOG, gamburger_dialog_instance.value)
 
     
     // set basket items
@@ -136,6 +141,7 @@ html {
     font-size: 62.5%;
 
     scroll-behavior: smooth;
+    overflow-x: hidden;
 
 
     @include min-table {

@@ -12,6 +12,8 @@ import { basket, basketMutations } from './basket/index'
 import { BasketState } from './basket/types';
 import CartDialog from '@/components/CartDialog.vue';
 import ProfileDialog from '@/components/ProfileDialog.vue';
+import GamburgerButton from '@/components/GamburgerButton.vue';
+import GamburgerDialog from '@/components/GamburgerDialog.vue';
 
 
 export enum Mutations {
@@ -22,6 +24,7 @@ export enum Mutations {
   SET_LIBRARY_DIALOG = 'SET_LIBRARY_DIALOG',
   SET_CART_DIALOG = 'SET_CART_DIALOG',
   SET_PROFILE_DIALOG = 'SET_PROFILE_DIALOG',
+  SET_GAMBURGER_DIALOG = 'SET_GAMBURGER_DIALOG',
 }
 
 interface StoreWithModules extends State {
@@ -53,6 +56,9 @@ export const mutations: MutationTree<State> = {
   [Mutations.SET_PROFILE_DIALOG](state, instance: InstanceType<typeof ProfileDialog>) {
     state.profile_dialog = instance
   },
+  [Mutations.SET_GAMBURGER_DIALOG](state, instance: InstanceType<typeof GamburgerDialog>) {
+    state.gamburger_dialog = instance
+  },
 }
 
 
@@ -67,6 +73,7 @@ export default createStore<StoreWithModules>({
     library_dialog: null,
     cart_dialog: null,
     profile_dialog: null,
+    gamburger_dialog: null
   },
   mutations,
   getters: {

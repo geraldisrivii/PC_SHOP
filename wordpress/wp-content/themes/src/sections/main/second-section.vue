@@ -1,11 +1,13 @@
 <template>
     <div class="second-section">
         <div class="container second-section-container">
-            <CategoryView class="category" v-if="isDataLoaded" v-for="(category, index) in categories" :key="index"
-                :image-src="category.image" :title="category.product_cat[0].name" :currency="'RUB'"
-                :price="category.price"
-                :slug="category.product_cat[0].slug"
-                />
+            <TransitionGroup name="list">
+                <CategoryView class="category" v-if="isDataLoaded" v-for="(category, index) in categories" :key="index"
+                    :image-src="category.image" :title="category.product_cat[0].name" :currency="'RUB'"
+                    :price="category.price"
+                    :slug="category.product_cat[0].slug"
+                    />
+            </TransitionGroup>
         </div>
     </div>
 </template>
@@ -49,5 +51,15 @@ onMounted(async () => {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     align-items: center;
     gap: 30px;
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>

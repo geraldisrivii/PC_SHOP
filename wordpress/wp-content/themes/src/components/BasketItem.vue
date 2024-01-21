@@ -42,9 +42,17 @@ const { app } = useAppSettings(store)
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/base/mixins.scss';
+@import '@/scss/base/typography.scss';
+
 .basket-item {
     display: flex;
     align-items: center;
+
+    @include min-table {
+        flex-direction: column;
+    }
+
     gap: 30px;
     width: 100%;
     padding: 17px 34px;
@@ -61,6 +69,12 @@ const { app } = useAppSettings(store)
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @include phone {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
 
     width: 100%;
 

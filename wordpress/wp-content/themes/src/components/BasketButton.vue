@@ -11,6 +11,7 @@
 import { useAppSettings } from '@/hooks/App/useAppSettings';
 import { useCartDialog } from '@/hooks/App/useCartDialog';
 import { useBasketItemsGrouped } from '@/hooks/Product/useBasketItemsGrouped';
+import { useStoreUser } from '@/hooks/User/useStoreUser';
 import { useVuex } from '@/store/useVuex';
 
 let store = useVuex()
@@ -18,6 +19,7 @@ let store = useVuex()
 let { app } = useAppSettings(store);
 
 const { cartDialog } = useCartDialog(store)
+
 
 const onClick = () => {
     cartDialog.value.open()

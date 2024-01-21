@@ -44,9 +44,14 @@ const onClick = () => {
     display: flex;
     align-items: center;
     position: relative;
+    flex-wrap: wrap;
 
     @include table {
-        padding: 10px;
+        padding: 14px;
+    }
+
+    @include phone {
+        padding: 12px;
     }
 
     &__label {
@@ -56,11 +61,11 @@ const onClick = () => {
         text-transform: uppercase;
         margin-right: 12px;
 
-        text-wrap: nowrap;
+        // text-wrap: nowrap;
         width: max-content;
 
         @include table {
-            font-size: 14px;
+            font-size: 16px;
             text-transform: none;
         }
     }
@@ -72,7 +77,7 @@ const onClick = () => {
         width: fit-content;
         
         @include table {
-            font-size: 14px;
+            font-size: 16px;
             margin-right: 20px;
         }
     }
