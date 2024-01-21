@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL: 'http://31.129.107.229/wp-json/wc/v3/',
-    headers: { 'Authorization': 'Basic Y2tfY2EzMjdkNjY1NGUyNjUwOTljNjI3ODYyOWE3ODFmMzQ5ZmIwYmNlYTpjc19hNDQ0NDQyOTZiOTI1ODA2ZjhmMWMzM2I5N2RmNjJiMTA0NzhlM2Q2' }
+    baseURL: 'https://computers-shop.ru/wp-json/wc/v3/',
+    headers: { 'Authorization': 'Basic Y2tfNmJjYzQ0OWJjYTBmNTMxZTdlN2I1MTc1ODcwZTkyMTk5NGRkNTY4YTpjc18zYTExODc5MGFhMzA5MTQzNjY5N2YwMjIxZWU3ODdiN2U5MDJiNjI2' }
 
 });
 

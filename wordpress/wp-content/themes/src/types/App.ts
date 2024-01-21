@@ -5,6 +5,8 @@ import StatusDialog from '@/components/UI/StatusDialog.vue';
 import Library from '@/components/Library.vue';
 import CartDialog from '@/components/CartDialog.vue';
 import ProfileDialog from '@/components/ProfileDialog.vue';
+import GamburgerButton from '@/components/GamburgerButton.vue';
+import GamburgerDialog from '@/components/GamburgerDialog.vue';
 
 
 export interface Settings {
@@ -21,6 +23,7 @@ export interface State {
     cart_dialog: InstanceType<typeof CartDialog> | null;
     library_dialog: InstanceType<typeof Library> | null;
     profile_dialog: InstanceType<typeof ProfileDialog> | null;
+    gamburger_dialog: InstanceType<typeof GamburgerDialog> | null;
 }
 
 
@@ -50,6 +53,7 @@ export interface Term {
 
 
 export interface ApiImage {
+    id: number;
     name: string;
     src: string;
     [key: string]: any;

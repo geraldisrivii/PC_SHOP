@@ -44,6 +44,9 @@ const onclick = (category: IProductCategoryResponse | null) => {
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/base/mixins.scss';
+@import '@/scss/base/typography.scss';
+
 .group{
     display: flex;
     flex-direction: column;
@@ -58,7 +61,11 @@ const onclick = (category: IProductCategoryResponse | null) => {
 }
 .group-categories {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    @include table{
+        grid-template-columns: 1fr;
+    }
     gap: 10px;
 }
 

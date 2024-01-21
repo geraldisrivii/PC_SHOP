@@ -7,12 +7,13 @@
             <div class="good-item-content__description">
                 <p class="good-item-content__title">{{ product.name }}</p>
                 <p class="good-item-content__price">{{ product.price }} руб / шт</p>
-                <p class="good-item-content__quantity"
-                :style="{'color': product.stock_quantity <= 5 ? 'red' : 'white'}"
-                >{{product.stock_quantity !== 0 ? `В наличии: ${product.stock_quantity} шт` : 'Не осталось на складе'}}</p>
+                <p class="good-item-content__quantity" :style="{ 'color': product.stock_quantity <= 5 ? 'red' : 'white' }">
+                    {{ product.stock_quantity !== 0 ? `В наличии: ${product.stock_quantity} шт` : 'Не осталось на складе' }}
+                </p>
             </div>
             <div class="good-item-content__quantity-box">
-                <CartButtonEasly :chosen-category="chosenCategory" :disabled="product.stock_quantity <= 0" :product="product" :configure-product="configureProduct"
+                <CartButtonEasly :chosen-category="chosenCategory" :disabled="product.stock_quantity <= 0"
+                    :product="product" :configure-product="configureProduct"
                     @update:configure-product="emit('update:configureProduct', $event)" />
                 <p class="good-item-content__spec-button" @click="onClick">Подробнее</p>
             </div>
@@ -58,6 +59,9 @@ const { app } = useAppSettings(store)
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/base/mixins.scss';
+@import '@/scss/base/typography.scss';
+
 .good-item {
     display: flex;
     align-items: center;
@@ -66,6 +70,11 @@ const { app } = useAppSettings(store)
     padding: 17px 34px;
     background-color: #181818;
     border-radius: 5px;
+
+    @include table {
+        flex-direction: column;
+        text-align: center;
+    }
 
     &__image {
         width: 90%;
@@ -79,6 +88,13 @@ const { app } = useAppSettings(store)
         justify-content: center;
         width: 200px;
         height: 130px;
+
+        @include table {
+            flex-direction: column;
+            width: 100px;
+            height: 100px;
+        }
+
         background-color: white;
         border-radius: 5px;
     }
@@ -88,6 +104,10 @@ const { app } = useAppSettings(store)
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @include table {
+        flex-direction: column;
+    }
 
     gap: 30px;
 
@@ -106,12 +126,14 @@ const { app } = useAppSettings(store)
     }
 
     &__price {}
+
     &__quantity {}
 
     &__spec-button {
         cursor: pointer;
 
         transition: all .3s ease-in-out;
+
         &:hover {
             text-decoration: underline;
         }

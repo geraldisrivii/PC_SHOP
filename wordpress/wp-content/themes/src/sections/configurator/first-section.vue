@@ -14,6 +14,7 @@
                 </div>
                 <div class="first-section-products-container">
                     <div class="first-section-goods">
+                        <Preloader ref="preloader" />
                         <GoodItem v-for="product in products" :key="product.id" :chosen-category="choosenCategory"
                             v-model:configure-product="ConfigureProduct" :product="product" />
                     </div>
@@ -88,6 +89,7 @@ import { useConfiguratorProducts } from '@/hooks/Configurator/useConfiguratorPro
 import { useCartButtonsActions } from '@/hooks/Cart/useCartButtonsActions';
 import { useBasketItems } from '@/hooks/Product/useBasketItems';
 import { useVuex } from '@/store/useVuex';
+import Preloader from '@/components/Preloader.vue';
 
 interface Props {
     product: IGrouppedProduct | null
@@ -115,8 +117,17 @@ watch(filters, () => {
 })
 
 
-const { products } = useConfiguratorProducts(choosenCategory, filters)
+const { products, isProductsLoaded } = useConfiguratorProducts(choosenCategory, filters)
 
+const preloader: Ref<InstanceType<typeof Preloader> | null> = ref(null)
+
+watch(isProductsLoaded, () => {
+    if (!isProductsLoaded.value) {
+        console.log(isProductsLoaded.value)
+        return preloader.value.open()
+    }
+    setTimeout(() => preloader.value.close(), 200)
+})
 
 
 const isInfoDialogShow = ref(false)
@@ -150,9 +161,7 @@ const createCustomProduct = async () => {
         }),
     }
 
-    console.log(ConfigureProduct.value.case.images[0].name)
-
-    data['imageID'] = Number((ConfigureProduct.value.case.images[0].name))
+    data['imageID'] = (ConfigureProduct.value.case.images[0].id)
 
     const response = await WOO.post('products/customs', data)
     console.log(response)
@@ -184,7 +193,7 @@ onMounted(async () => {
     setDefaultValuesToConfigureObject()
 
     initializeSwiper({
-        slidesPerView: 4.5,
+        slidesPerView: 'auto',
         spaceBetween: 30,
     })
 })
@@ -265,34 +274,49 @@ onMounted(async () => {
     overflow-x: hidden;
 }
 
+.swiper-slide{
+    // width: 250px;
+}
+
 
 .first-section-wrapper {
     padding-top: 100px;
 }
 
 .swiper-wrapper {
-    align-items: stretch !important;
-    // display: flex;
+    // align-items: stretch !important;
+    display: flex;
     // gap: 30px;
-    // width: 100%;
+    width: 100%;
 }
 
 .first-section-products-container {
     display: grid;
-    grid-template-columns: 5fr 2fr;
-    gap: 40px;
+    grid-template-columns: 4.6fr 2fr;
+    @include table{
+        grid-template-columns: 1fr;
+    }
+    gap: 30px;
     margin-bottom: 40px;
 }
 
 .first-section-goods {
+    position: relative;
     display: flex;
     flex-direction: column;
+    @include table{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
     height: 600px;
     overflow-y: scroll;
     gap: 10px;
 }
 
 .first-section-filters {
+    @include table{
+        display: none;
+    }
     padding: 15px 20px;
     background-color: rgb(24, 24, 24);
     display: flex;

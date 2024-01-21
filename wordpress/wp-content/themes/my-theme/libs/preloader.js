@@ -1,10 +1,12 @@
-const preloader = document.getElementById('preloader')
+const preloader = document.querySelector('.preloader')
 
 
 const preloaderOpen = () => {
-    preloader.classList.remove('close')
+    preloader.classList.add('preloader--active')
 }
 
 const preloaderClose = () => {
-    preloader.classList.add('close')
+    preloader.classList.remove('preloader--active')
 }
+
+preloaderOpen()

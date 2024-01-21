@@ -61,10 +61,7 @@ export interface IProduct {
     sale_price: string | number;
     slug: string;
     stock_quantity: number;
-    images: Array<{
-        src: string;
-        [key: string]: any;
-    }>
+    images: Array<ApiImage>;
     categories: IProductCategory[];
     taxonomies: {
         [key: string]: Term[]

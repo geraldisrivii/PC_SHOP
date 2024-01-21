@@ -14,6 +14,7 @@
                     @update:is-login-dialog-show="updateLoginDialogShow" />
             </template>
             <BasketButton />
+            <GamburgerButton/>
         </div>
     </header>
 </template>
@@ -25,6 +26,7 @@ import ProfileAddButton from '@/components/ProfileAddButton.vue';
 import ProfileLoginButton from '@/components/ProfileLoginButton.vue';
 import SiteMenu from '@/components/UI/SiteMenu.vue';
 import { useVuexWithRef } from '@/store/useVuex';
+import GamburgerButton from '@/components/GamburgerButton.vue';
 
 
 let store = useVuexWithRef();

@@ -50,6 +50,8 @@ const { order } = defineProps<Props>()
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/base/mixins.scss';
+@import '@/scss/base/typography.scss';
 .order {}
 
 .order-panel {
@@ -58,6 +60,11 @@ const { order } = defineProps<Props>()
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+
+    @include table{
+        flex-direction: column;
+    }
+
     font-weight: 300;
     color: rgb(214, 214, 214);
     border-radius: 5px 5px 0px 0px;

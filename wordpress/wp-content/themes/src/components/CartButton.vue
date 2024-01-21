@@ -17,6 +17,7 @@ import { computed, onMounted, toRef } from 'vue';
 import CartButtonsQuantity from './CartButtonsQuantity.vue';
 import { useCartButtonsActions } from '@/hooks/Cart/useCartButtonsActions';
 import { checkMaxQuantityOfProduct } from '@/helpers/checkMaxQuantityOfProduct';
+import { useStoreUser } from '@/hooks/User/useStoreUser';
 
 const store = useVuex()
 
@@ -47,6 +48,8 @@ const quantity = computed(() => {
 
     return basketItem.quantity
 })
+
+
 
 onMounted(() => {
     checkMaxQuantityOfProduct(toRef(basketItems), product.value)

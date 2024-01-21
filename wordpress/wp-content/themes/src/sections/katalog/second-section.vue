@@ -4,7 +4,7 @@
             <p class="products-wrapper__title title">Линейка {{ series.name }}</p>
             <div class="products-box">
                 <TransitionGroup name="list">
-                    <Product v-if="isDataLoaded" v-for="product in products[series.slug]" :key="product.id"
+                    <Product v-if="hasLoadedOneProduct" v-for="product in products[series.slug]" :key="product.id"
                         :image-src="product.images[0].src" :name="product.name" :grouped_products="product.grouped_products"
                         :price="product.price" :id="product.id" :slug="product.slug"
                         :category_slug="product.categories[0].slug" />
@@ -41,21 +41,26 @@ const { page } = usePageSettings(store);
 
 let isDataLoaded: Ref<boolean> = ref(false)
 
-const { serieses, products, onMountedAction } = useProducts()
+const { serieses, products, onMountedAction, hasLoadedOneProduct } = useProducts()
 
+watch(hasLoadedOneProduct, () => {
+    if (hasLoadedOneProduct.value) {
+        emit('load')
+    }
+})
 
 watch(route, async () => {
     await onMountedAction(route.params.category as string)
-    emit('load')
+    // emit('load')
 }, { deep: true })
 
 onBeforeMount(async () => {
 
     await onMountedAction(route.params.category as string)
 
-    isDataLoaded.value = true
+    // isDataLoaded.value = true
 
-    emit('load')
+    // emit('load')
 
 })
 

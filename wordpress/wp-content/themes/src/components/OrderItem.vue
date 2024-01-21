@@ -36,6 +36,8 @@ const { app } = useAppSettings(store)
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/base/mixins.scss';
+@import '@/scss/base/typography.scss';
 .order-item {
     display: flex;
     align-items: center;
@@ -43,6 +45,10 @@ const { app } = useAppSettings(store)
     width: 100%;
     padding: 12px 34px;
     background-color: #1C1C1C;
+
+    @include min-table{
+        flex-direction: column;
+    }
 
     &__image {
         width: 120px;
@@ -55,6 +61,12 @@ const { app } = useAppSettings(store)
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @include phone{
+        text-align: center;
+        gap: 20px;
+        flex-direction: column;
+    }
 
     width: 100%;
 

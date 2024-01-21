@@ -6,7 +6,7 @@
             <div class="third-section-description">
                 <p class="third-section-description__title title">{{ page['third-section_title'] }}</p>
                 <p class="third-section-description__text">{{ page['third-section_text'] }}</p>
-                <button class="button">{{ page['third-section_button-text'] }}</button>
+                <button @click="onClick" class="button">{{ page['third-section_button-text'] }}</button>
             </div>
         </div>
     </div>
@@ -21,6 +21,9 @@ const store = useVuex();
 const { page } = usePageSettings(store);
 
 
+const onClick = () => {
+    window.location.href = 'https://vk.com/'
+}
 
 </script>
 
@@ -31,12 +34,28 @@ const { page } = usePageSettings(store);
 .third-section {
     height: 600px;
     // margin-bottom: 120px;
+
+    @include table{
+        height: auto;
+        background: rgb(20, 20, 20) !important;
+    }
 }
 
 .third-section-description {
     padding-top: 230px;
     padding-bottom: 110px;
     max-width: 600px;
+
+    @include table{
+        padding-top: 110px;
+        padding-bottom: 70px;
+        align-items: center;
+        text-align: center;
+        max-width: none;
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 
     margin: 0 0 0 auto;
 
