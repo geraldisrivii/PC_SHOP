@@ -9,7 +9,7 @@
             <div class="cart-dialog-payment">
                 <p class="cart-dialog-payment__sum">Сумма к оплате: <span>{{ sum }}</span> руб</p>
                 <p v-if="!user" class="cart-dialog-payment__text">Зарегистрируйтесь или авторизуйтесь прежде чем выполнить заказ</p>
-                <button :disabled="!user" @click="isOrderDialogShow = true" class="button cart-dialog-payment__button">Оплатить</button>
+                <button :disabled="!user || BasketItemsGrouped.length == 0" @click="isOrderDialogShow = true" class="button cart-dialog-payment__button">Оплатить</button>
             </div>
         </div>
     </my-side-dialog>

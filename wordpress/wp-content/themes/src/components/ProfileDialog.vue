@@ -2,7 +2,7 @@
     <my-side-dialog v-model:isDialogShow="isDialogShow">
         <div class="profile-dialog">
             <div class="profile-dialog-orders">
-                <Order v-for="order in orders" :key="order.id" :order="order"/>
+                <Order v-for="order in orders" :key="order.id" :order="order" />
             </div>
             <MenuButtons :items="menuItems" v-model:chosenItem="chosenMenuItem" />
         </div>
@@ -16,19 +16,27 @@ import { useOrderMenuItems } from '@/hooks/Cart/useOrderMenuItems';
 import Order from './Order.vue';
 import WOO from '@/axiosWoocomerce'
 import { IOrder } from '@/types/Basket';
+import { useStoreUser } from '@/hooks/User/useStoreUser';
+import { useVuex } from '@/store/useVuex';
 
 
 const { menuItems, chosenMenuItem } = useOrderMenuItems()
 
+const store = useVuex()
+
+const { user } = useStoreUser(store)
+
 const orders: Ref<IOrder[]> = ref([])
 
 const getOrders = async () => {
-    const response = await WOO.get('orders')
+    const response = await WOO.get('orders', {
+        params: { customer: user.value.ID }
+    })
 
     return response.data;
 }
 
-onMounted( async () => {
+onMounted(async () => {
     orders.value = await getOrders()
 })
 

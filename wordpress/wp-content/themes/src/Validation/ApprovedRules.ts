@@ -15,7 +15,10 @@ export default [
                     let response = await WP.post("/mails/check", {
                         code: code
                     }, {
-                        withCredentials: true
+                        withCredentials: true,
+                        validateStatus: function (status) {
+                            return status < 500
+                        }
                     });
 
                     const { statusDialog } = useStatusDialog(store)

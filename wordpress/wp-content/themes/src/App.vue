@@ -1,6 +1,6 @@
 <template>
     <GamburgerDialog ref="gamburger_dialog_instance"/>
-    <ProfileDialog ref="profile_dialog_instance" />
+    <ProfileDialog v-if="isAppLoaded" ref="profile_dialog_instance" />
     <CartDialog :isDataLoaded="isDataLoaded" ref="cart_dialog_instance" />
     <StatusDialog v-if="isAppLoaded" ref="status_dialog_instance" />
     <Library v-if="isAppLoaded" ref="library" />
@@ -74,17 +74,17 @@ watch(basketItems, () => {
 onMounted(async () => {
     app.value = await getSettings()
 
+    const { user } = useStoreUser(store);
+    
+    let response = await WP.get('users/current')
+    user.value = response.data.status == false ? null : response.data
+    
     isAppLoaded.value = true
-
+    
     await WP.post('sessions', {}, {
         withCredentials: true
     })
 
-    const { user } = useStoreUser(store);
-
-    let response = await WP.get('users/current')
-
-    user.value = response.data.status == false ? null : response.data
 
     store.commit(Mutations.SET_SPEC_DIALOG, spec_dialog_instance.value)
     store.commit(Mutations.SET_STATUS_DIALOG, status_dialog_instance.value)

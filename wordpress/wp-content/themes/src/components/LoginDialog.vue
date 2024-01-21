@@ -53,18 +53,21 @@ const onSubmit = async (event: Event) => {
         'login': DataFields.value.login,
         'password': DataFields.value.password
     }, {
-        withCredentials: true
+        withCredentials: true,
+        validateStatus: function (status) {
+            return status < 500
+        }
     })
 
     onUpdate(false)
 
     const { statusDialog } = useStatusDialog(store)
 
-    statusDialog.value.open(responseLogin.data.status == true ? 'success' : 'error', responseLogin.data.message, null, 'Отлично!')
+    statusDialog.value.open(responseLogin.data.status == true ? 'success' : 'error', responseLogin.data.message, null, responseLogin.data.status ? 'Отлично!' : 'Закрыть' )
 
     const { user } = useStoreUser(store)
 
-    if(responseLogin.data.status){
+    if (responseLogin.data.status) {
         user.value = responseLogin.data.user
     }
 
