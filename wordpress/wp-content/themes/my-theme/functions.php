@@ -14,17 +14,6 @@ add_action('after_setup_theme', 'my_theme_setup');
 
 
 
-function change_language_for_all_users($locale)
-{
-    if (!is_ssl()) {
-        return $locale;
-    }
-
-    return $locale;
-}
-add_filter('locale', 'change_language_for_all_users');
-
-
 
 add_filter('redirect_canonical', 'disable_woocommerce_redirect_canonical');
 function disable_woocommerce_redirect_canonical($redirect_url)
