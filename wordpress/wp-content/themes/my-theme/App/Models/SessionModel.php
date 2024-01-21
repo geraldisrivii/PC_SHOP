@@ -8,9 +8,9 @@ class SessionModel
     public static function setSessionCookie()
     {
         return setcookie('auth', wp_hash_password('someone'), [
-            'secure' => true,
+            'secure' => false,
             'path' => '/',
-            'sameSite' => 'None',
+            // 'sameSite' => 'None',
             'expires' => time() + 5000 * 60 * 60
         ]);
     }

@@ -23,6 +23,7 @@ services:
       - ./etc/geoip:/etc/geoip
     ports:
       - 80:80
+      - 443:443
     depends_on:
       - wordpress
   # certbot:
@@ -33,7 +34,7 @@ services:
   #   volumes:
   #     - ./etc/letsencrypt:/etc/letsencrypt
   #     - ./wordpress/:/var/www/html
-  #   command: certonly --webroot --webroot-path=/var/www/html --email aleksander.freelancer@gmail.com --agree-tos --no-eff-email -d legal-services.site
+  #   command: certonly --webroot --webroot-path=/var/www/html --email aleksander.freelancer@gmail.com --agree-tos --no-eff-email -d computers-shop.ru
   wc_db:
     image: mysql:8.0
     environment:
