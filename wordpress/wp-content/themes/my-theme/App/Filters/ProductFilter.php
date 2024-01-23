@@ -18,7 +18,6 @@ class ProductFilter extends Filter
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::without_grouped_products", 13, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::add_images_to_response", 14, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::unsetMetadata", 20, 3);
-        add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::unsetMetadata", 21, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::optimize", 22, 3);
         add_filter('woocommerce_rest_product_object_query', "{$namespaceOfClass}::filter_motherboard_socket", 51, 2);
     }
@@ -66,13 +65,6 @@ class ProductFilter extends Filter
 
 
     public static function unsetMetadata(WP_REST_Response $response, WC_Product $product, WP_REST_Request $request)
-    {
-        unset($response->data['meta_data']);
-
-        return $response;
-    }
-
-    public static function unsetDates(WP_REST_Response $response, WC_Product $product, WP_REST_Request $request)
     {
         unset($response->data['meta_data']);
 

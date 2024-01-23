@@ -68,7 +68,7 @@ class GroupedProductFilter extends Filter
 
                 $childData = $child->get_data();
 
-                $childResponse = apply_filters('woocommerce_rest_prepare_product_object', new WP_REST_Response($childData), $child, $request);
+                $childResponse = apply_filters('cfs-rest-api-fields', new WP_REST_Response($childData), $child);
 
                 // $childResponse = new WP_REST_Response($childData);
 

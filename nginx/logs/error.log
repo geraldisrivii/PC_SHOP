@@ -3564,3 +3564,15 @@
 2024/01/21 07:32:53 [error] 72#72: *2104 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
 2024/01/21 07:37:16 [error] 66#66: *2138 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
 2024/01/21 07:44:40 [error] 66#66: *2209 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming"
+2024/01/23 07:55:58 [notice] 75#75: signal process started
+2024/01/23 07:56:00 [error] 82#82: *4485 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming"
+2024/01/23 07:56:09 [notice] 85#85: signal process started
+2024/01/23 07:56:11 [error] 90#90: *4497 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming"
+2024/01/23 07:58:16 [notice] 95#95: signal process started
+2024/01/23 07:58:25 [notice] 105#105: signal process started
+2024/01/23 07:58:27 [error] 108#108: *4535 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming"
+2024/01/23 07:58:51 [notice] 115#115: signal process started
+2024/01/23 07:58:53 [error] 118#118: *4563 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming"
+2024/01/23 08:03:23 [error] 118#118: *4605 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming"
+2024/01/23 08:03:32 [error] 118#118: *4625 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-400mx"
+2024/01/23 08:03:40 [error] 118#118: *4625 open() "/var/www/html/favicon.ico" failed (2: No such file or directory), client: 172.23.0.1, server: , request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/katalog/gaming/fury-400mx"

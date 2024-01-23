@@ -22,7 +22,7 @@ class AdminController{
     
         unset($response->data['ID']);
     
-        $response = apply_filters('pre_get_settings', $response, $post);
+        $response = apply_filters('cfs-rest-api-fields', $response, $post);
     
         return $response;
 
