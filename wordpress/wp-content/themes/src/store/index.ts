@@ -14,6 +14,7 @@ import CartDialog from '@/components/CartDialog.vue';
 import ProfileDialog from '@/components/ProfileDialog.vue';
 import GamburgerButton from '@/components/GamburgerButton.vue';
 import GamburgerDialog from '@/components/GamburgerDialog.vue';
+import CodeDialog from '@/components/CodeDialog.vue';
 
 
 export enum Mutations {
@@ -25,6 +26,7 @@ export enum Mutations {
   SET_CART_DIALOG = 'SET_CART_DIALOG',
   SET_PROFILE_DIALOG = 'SET_PROFILE_DIALOG',
   SET_GAMBURGER_DIALOG = 'SET_GAMBURGER_DIALOG',
+  SET_CODE_DIALOG = 'SET_CODE_DIALOG',
 }
 
 interface StoreWithModules extends State {
@@ -59,6 +61,9 @@ export const mutations: MutationTree<State> = {
   [Mutations.SET_GAMBURGER_DIALOG](state, instance: InstanceType<typeof GamburgerDialog>) {
     state.gamburger_dialog = instance
   },
+  [Mutations.SET_CODE_DIALOG](state, instance: InstanceType<typeof CodeDialog>) {
+    state.code_dialog = instance
+  },
 }
 
 
@@ -73,7 +78,8 @@ export default createStore<StoreWithModules>({
     library_dialog: null,
     cart_dialog: null,
     profile_dialog: null,
-    gamburger_dialog: null
+    gamburger_dialog: null,
+    code_dialog: null
   },
   mutations,
   getters: {

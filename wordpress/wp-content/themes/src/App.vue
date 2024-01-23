@@ -1,4 +1,5 @@
 <template>
+    <CodeDialog ref="code_dialog_instance"/>
     <GamburgerDialog ref="gamburger_dialog_instance"/>
     <ProfileDialog v-if="isAppLoaded" ref="profile_dialog_instance" />
     <CartDialog :isDataLoaded="isDataLoaded" ref="cart_dialog_instance" />
@@ -41,13 +42,15 @@ import ProfileDialog from './components/ProfileDialog.vue';
 import { useProfileDialog } from './hooks/App/useProfileDialog';
 import { useGamburgerDialog } from './hooks/App/useGamburgerDialog';
 import GamburgerDialog from './components/GamburgerDialog.vue';
+import CodeDialog from './components/CodeDialog.vue';
+import { useCodeDialog } from './hooks/App/useCodeDialog';
 
 // DATA
 let isDataLoaded: Ref<boolean> = ref(false);
 let isAppLoaded: Ref<boolean> = ref(false);
 let isBasketShow: Ref<boolean> = ref(false)
 let isProfileShow: Ref<boolean> = ref(false)
-let isRegisterDialogShow: Ref<boolean> = ref(false)
+let isRegisterDialogShow: Ref<boolean> = ref(true)
 let isLoginDialogShow: Ref<boolean> = ref(false)
 
 
@@ -61,6 +64,7 @@ const { instance: library } = useLibraryDialog(store)
 const { instance: cart_dialog_instance } = useCartDialog(store)
 const { instance: profile_dialog_instance } = useProfileDialog(store)
 const {instance: gamburger_dialog_instance} = useGamburgerDialog(store)
+const {instance: code_dialog_instance} = useCodeDialog(store)
 
 const { app } = useAppSettings(store)
 
@@ -71,10 +75,10 @@ watch(basketItems, () => {
     localStorage.setItem('basket', JSON.stringify(basketItems.value))
 }, { deep: true })
 
+const { user } = useStoreUser(store);
 onMounted(async () => {
     app.value = await getSettings()
 
-    const { user } = useStoreUser(store);
     
     let response = await WP.get('users/current')
     user.value = response.data.status == false ? null : response.data
@@ -92,6 +96,7 @@ onMounted(async () => {
     store.commit(Mutations.SET_CART_DIALOG, cart_dialog_instance.value)
     store.commit(Mutations.SET_PROFILE_DIALOG, profile_dialog_instance.value)
     store.commit(Mutations.SET_GAMBURGER_DIALOG, gamburger_dialog_instance.value)
+    store.commit(Mutations.SET_CODE_DIALOG, code_dialog_instance.value)
 
     
     // set basket items

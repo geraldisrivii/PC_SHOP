@@ -31,8 +31,8 @@
             </form>
             <Preloader ref="preloader" />
         </my-dialog>
-        <my-dialog v-model:isDialogShow="isCodeDialogShow">
-            <!-- <p class="register__title title">Потдверждение</p> -->
+
+        <!-- <my-dialog v-model:isDialogShow="isCodeDialogShow">
             <form class="register__form register__code-form">
                 <p class="register__title title">Потдверждение</p>
                 <div class="register__input-box register__code-input-box">
@@ -47,19 +47,20 @@
                     На вашу почту, которую вы указали при регистрации был выслан код подтверждения. Он состоит из 4-х цифр.
                 </p>
             </form>
-        </my-dialog>
+        </my-dialog> -->
     </div>
 </template>
 
 <script setup lang="ts">
 import WP from '@/axiosWP';
-import { Ref, ref, watch } from 'vue';
+import { Ref, onMounted, ref, watch } from 'vue';
 import { useRegisterFields } from '@/hooks/User/useRegisterFields';
 import { useStoreUser } from '@/hooks/User/useStoreUser';
 import { useVuex } from '@/store/useVuex';
 import { userApprovedFields } from '@/hooks/User/useApprovedFields';
 import Preloader from './Preloader.vue';
 import { useStatusDialog } from '@/hooks/App/useStatusDialog';
+import { useCodeDialog } from '@/hooks/App/useCodeDialog';
 
 interface Props { isRegisterDialogShow: boolean }
 
@@ -78,13 +79,26 @@ const onUpdate = (newValue: boolean) => emit('update:isRegisterDialogShow', newV
 
 const preloader = ref<InstanceType<typeof Preloader> | null>(null)
 
+const register = ref<HTMLElement | null>(null)
+
+
+const store = useVuex();
+
+const { user } = useStoreUser(store);
+
+
+const { codeDialog } = useCodeDialog(store)
+
+const callback = () => {
+    user.value.data.is_email_verified = true
+}
 
 const onSubmit = async () => {
     let response = await WP.post('users/signup', ValidFields.value, {
         withCredentials: true,
     })
 
-    user.value = response.data
+    user.value = response.data.user
 
     preloader.value.open()
 
@@ -98,7 +112,7 @@ const onSubmit = async () => {
 
 
     if (mailResponse.status == 200) {
-        isCodeDialogShow.value = true;
+        codeDialog.value.open(callback)
         onUpdate(false)
     }
 
@@ -106,18 +120,6 @@ const onSubmit = async () => {
 
 const { DataFields, isntValidFields, ValidFields, validData, isValidAll } = useRegisterFields();
 
-const { DataFields: DataAprovedFields, isntValidFields: isntValidApprovedFields, ValidFields: ValidApprovedFields, validData: validApprovedData, isValidAll: isValidApprovedAll } = userApprovedFields();
-
-
-watch(isValidApprovedAll, () => {
-    if (isValidApprovedAll.value) {
-        isCodeDialogShow.value = false;
-    }
-})
-
-const store = useVuex();
-
-const { user } = useStoreUser(store);
 
 </script>
 
@@ -126,6 +128,7 @@ const { user } = useStoreUser(store);
 @import '@/scss/base/typography.scss';
 
 .register {
+    position: relative;
     transition: opacity 0.4s ease;
     z-index: 100;
 
