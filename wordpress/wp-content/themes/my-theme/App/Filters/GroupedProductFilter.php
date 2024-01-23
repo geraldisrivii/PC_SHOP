@@ -70,14 +70,16 @@ class GroupedProductFilter extends Filter
 
                 $post_id = $child->get_id();
 
-                $fields = CFS()->find_fields([
-                    'post_id' => $post_id
-                ]);
+                // $fields = CFS()->find_fields([
+                //     'post_id' => $post_id
+                // ]);
 
-                foreach ($fields as $field) {
-                    $childData['cfs'][$field['name']] = CFS()->get($field['name'], $post_id);
-                }
-                
+                // foreach ($fields as $field) {
+                //     $childData['cfs'][$field['name']] = CFS()->get($field['name'], $post_id);
+                // }
+
+                $childData['cfs']['shortly_name'] = CFS()->get('shortly_name', $post_id);
+
                 $childResponse = new WP_REST_Response($childData);
 
                 $childResponse = apply_filters('add-images-to-product', $childResponse, $child, $request);
