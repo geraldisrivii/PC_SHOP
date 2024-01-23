@@ -70,6 +70,8 @@ class GroupedProductFilter extends Filter
 
                 $childResponse = apply_filters('woocommerce_rest_prepare_product_object', new WP_REST_Response($childData), $child, $request);
 
+                // $childResponse = new WP_REST_Response($childData);
+
                 $categories = $child->get_category_ids();
                 foreach ($categories as $id) {
                     $childResponse->data['categories'][] = get_term($id, 'product_cat');
