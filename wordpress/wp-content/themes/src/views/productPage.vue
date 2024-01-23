@@ -64,7 +64,6 @@ onBeforeMount(async () => {
 
     await getProduct()
 
-    console.log(product.value)
     isPageDataLoaded.value = true
 })
 

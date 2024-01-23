@@ -34,7 +34,7 @@ defineExpose({
 <style lang="scss" scoped>
 .preloader {
     z-index: 100;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;

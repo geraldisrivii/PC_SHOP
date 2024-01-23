@@ -55,14 +55,12 @@ loader.value.onAllisLoaded = () => {
 
 watch(route, async () => {
     imagesLoaded(box.value, () => {
-        console.log('first-section-images update 2')
         loader.value.load()
     })
 }, { deep: true })
 
 onMounted(async () => {
     imagesLoaded(box.value, () => {
-        console.log('first-section-images update 2')
         loader.value.load()
     })
 })

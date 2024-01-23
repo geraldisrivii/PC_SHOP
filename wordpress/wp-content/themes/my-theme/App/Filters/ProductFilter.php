@@ -20,6 +20,7 @@ class ProductFilter extends Filter
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::unsetMetadata", 20, 3);
         add_filter('woocommerce_rest_prepare_product_object', "{$namespaceOfClass}::optimize", 22, 3);
         add_filter('woocommerce_rest_product_object_query', "{$namespaceOfClass}::filter_motherboard_socket", 51, 2);
+        add_filter('add-images-to-product', "{$namespaceOfClass}::add_images_to_response", 1, 3);
     }
 
 

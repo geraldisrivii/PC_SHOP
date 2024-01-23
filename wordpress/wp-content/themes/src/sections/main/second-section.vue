@@ -31,9 +31,6 @@ onMounted(async () => {
     for (const category of categories.value) {
         category.price = await getCategoryPrice(category)
     }
-
-    console.log(categories.value)
-    
     isDataLoaded.value = true
 })
 </script>

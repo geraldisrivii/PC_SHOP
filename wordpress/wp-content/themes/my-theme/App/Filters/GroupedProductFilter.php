@@ -70,7 +70,7 @@ class GroupedProductFilter extends Filter
 
                 $childResponse = apply_filters('cfs-rest-api-fields', new WP_REST_Response($childData), $child);
 
-                // $childResponse = new WP_REST_Response($childData);
+                $childResponse = apply_filters('add-images-to-product', $childResponse, $child, $request);
 
                 $categories = $child->get_category_ids();
                 foreach ($categories as $id) {

@@ -25,8 +25,6 @@ export const useProducts = () => {
 
         serieses.value = serieses.value.filter(item => item.slug.includes(category_slug))
 
-        console.log(serieses.value)
-
         products.value = serieses.value.map(item => {
             return {
                 [item.slug]: []

@@ -18,11 +18,6 @@
                         <GoodItem v-for="product in products" :key="product.id" :chosen-category="choosenCategory"
                             v-model:configure-product="ConfigureProduct" :product="product" />
                     </div>
-                    <div class="first-section-filters">
-                        <!-- <CustomSelect
-                        
-                        /> -->
-                    </div>
                 </div>
                 <div class="first-section-total-box">
                     <div class="first-section-total-panel">
@@ -112,18 +107,12 @@ const filters = computed(() => {
     return allProductsFilters.filter(item => item.link[0].slug == choosenCategory.value.slug)
 })
 
-watch(filters, () => {
-    console.log(filters.value)
-})
-
-
 const { products, isProductsLoaded } = useConfiguratorProducts(choosenCategory, filters)
 
 const preloader: Ref<InstanceType<typeof Preloader> | null> = ref(null)
 
 watch(isProductsLoaded, () => {
     if (!isProductsLoaded.value) {
-        console.log(isProductsLoaded.value)
         return preloader.value.open()
     }
     setTimeout(() => preloader.value.close(), 200)
@@ -143,7 +132,6 @@ const setDefaultValuesToConfigureObject = () => {
         for (const key in ConfigureProduct.value) {
             ConfigureProduct.value[key] = product.grouped_products.find(item => item.categories.find(category => category.slug === key))
         }
-        console.log(ConfigureProduct.value)
     }
 }
 
@@ -164,7 +152,6 @@ const createCustomProduct = async () => {
     data['imageID'] = (ConfigureProduct.value.case.images[0].id)
 
     const response = await WOO.post('products/customs', data)
-    console.log(response)
 
     if (response.status === 201) {
         name.value = ''
@@ -292,7 +279,7 @@ onMounted(async () => {
 
 .first-section-products-container {
     display: grid;
-    grid-template-columns: 4.6fr 2fr;
+    // grid-template-columns: 4.6fr 2fr;
     @include table{
         grid-template-columns: 1fr;
     }
@@ -308,7 +295,9 @@ onMounted(async () => {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
-    height: 600px;
+    height: auto;
+    max-height: 600px;
+    // height: 600px;
     overflow-y: scroll;
     gap: 10px;
 }
