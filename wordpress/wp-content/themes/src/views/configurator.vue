@@ -35,7 +35,7 @@ const route = useRoute()
 
 const setProducts = async () => {
     if (route.params.product != 'new') {
-        product.value = (await getProducts({ slug: route.params.product }))[0]
+        product.value = (await getProducts({ slug: route.params.product, full: true }))[0]
     }
 }
 

@@ -52,7 +52,8 @@ loader.value.onAllisLoaded = () => {
 const getProduct = async () => {
     product.value = (await WOO.get('products', {
         params: {
-            slug: route.params.product_slug
+            slug: route.params.product_slug,
+            full: true
         }
     })).data[0]
 }

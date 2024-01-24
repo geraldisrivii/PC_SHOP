@@ -78,9 +78,14 @@ class GroupedProductFilter extends Filter
                 //     $childData['cfs'][$field['name']] = CFS()->get($field['name'], $post_id);
                 // }
 
-                $childData['cfs']['shortly_name'] = CFS()->get('shortly_name', $post_id);
-
                 $childResponse = new WP_REST_Response($childData);
+
+                if($request['full'] == true){
+                    $childResponse = apply_filters('cfs-rest-api-fields', $childResponse, $child);
+
+                } else{
+                    $childResponse->data['cfs']['shortly_name'] = CFS()->get('shortly_name', $post_id);
+                }
 
                 $childResponse = apply_filters('add-images-to-product', $childResponse, $child, $request);
 
