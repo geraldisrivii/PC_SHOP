@@ -48,6 +48,7 @@ import { useCodeDialog } from './hooks/App/useCodeDialog';
 // DATA
 let isDataLoaded: Ref<boolean> = ref(false);
 let isAppLoaded: Ref<boolean> = ref(false);
+let isUserLoaded: Ref<boolean> = ref(false);
 let isBasketShow: Ref<boolean> = ref(false)
 let isProfileShow: Ref<boolean> = ref(false)
 let isRegisterDialogShow: Ref<boolean> = ref(false)
@@ -78,16 +79,18 @@ watch(basketItems, () => {
 const { user } = useStoreUser(store);
 onMounted(async () => {
     app.value = await getSettings()
-
+    
+    
+    isAppLoaded.value = true
+    
     await WP.post('sessions', {}, {
         withCredentials: true
     })
 
     let response = await WP.get('users/current')
     user.value = response.data.status == false ? null : response.data
-    
-    isAppLoaded.value = true
 
+    isUserLoaded.value = true 
 
     store.commit(Mutations.SET_SPEC_DIALOG, spec_dialog_instance.value)
     store.commit(Mutations.SET_STATUS_DIALOG, status_dialog_instance.value)
