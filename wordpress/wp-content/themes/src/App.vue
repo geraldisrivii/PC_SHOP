@@ -1,7 +1,7 @@
 <template>
-    <CodeDialog ref="code_dialog_instance"/>
-    <GamburgerDialog ref="gamburger_dialog_instance"/>
-    <ProfileDialog v-if="isAppLoaded" ref="profile_dialog_instance" />
+    <CodeDialog ref="code_dialog_instance" />
+    <GamburgerDialog ref="gamburger_dialog_instance" />
+    <ProfileDialog v-if="isUserLoaded" ref="profile_dialog_instance" />
     <CartDialog :isDataLoaded="isDataLoaded" ref="cart_dialog_instance" />
     <StatusDialog v-if="isAppLoaded" ref="status_dialog_instance" />
     <Library v-if="isAppLoaded" ref="library" />
@@ -64,8 +64,8 @@ const { instance: status_dialog_instance } = useStatusDialog(store)
 const { instance: library } = useLibraryDialog(store)
 const { instance: cart_dialog_instance } = useCartDialog(store)
 const { instance: profile_dialog_instance } = useProfileDialog(store)
-const {instance: gamburger_dialog_instance} = useGamburgerDialog(store)
-const {instance: code_dialog_instance} = useCodeDialog(store)
+const { instance: gamburger_dialog_instance } = useGamburgerDialog(store)
+const { instance: code_dialog_instance } = useCodeDialog(store)
 
 const { app } = useAppSettings(store)
 
@@ -79,10 +79,10 @@ watch(basketItems, () => {
 const { user } = useStoreUser(store);
 onMounted(async () => {
     app.value = await getSettings()
-    
-    
+
+
     isAppLoaded.value = true
-    
+
     await WP.post('sessions', {}, {
         withCredentials: true
     })
@@ -90,21 +90,23 @@ onMounted(async () => {
     let response = await WP.get('users/current')
     user.value = response.data.status == false ? null : response.data
 
-    isUserLoaded.value = true 
+    isUserLoaded.value = true
 
-    store.commit(Mutations.SET_SPEC_DIALOG, spec_dialog_instance.value)
-    store.commit(Mutations.SET_STATUS_DIALOG, status_dialog_instance.value)
-    store.commit(Mutations.SET_LIBRARY_DIALOG, library.value)
-    store.commit(Mutations.SET_CART_DIALOG, cart_dialog_instance.value)
-    store.commit(Mutations.SET_PROFILE_DIALOG, profile_dialog_instance.value)
-    store.commit(Mutations.SET_GAMBURGER_DIALOG, gamburger_dialog_instance.value)
-    store.commit(Mutations.SET_CODE_DIALOG, code_dialog_instance.value)
+    setTimeout(() => {
+        store.commit(Mutations.SET_SPEC_DIALOG, spec_dialog_instance.value)
+        store.commit(Mutations.SET_STATUS_DIALOG, status_dialog_instance.value)
+        store.commit(Mutations.SET_LIBRARY_DIALOG, library.value)
+        store.commit(Mutations.SET_CART_DIALOG, cart_dialog_instance.value)
+        store.commit(Mutations.SET_PROFILE_DIALOG, profile_dialog_instance.value)
+        store.commit(Mutations.SET_GAMBURGER_DIALOG, gamburger_dialog_instance.value)
+        store.commit(Mutations.SET_CODE_DIALOG, code_dialog_instance.value)
+    }, 100)
 
-    
+
     // set basket items
     let basketItemsLocalStorage = localStorage.getItem('basket')
     basketItems.value = (basketItemsLocalStorage != null && basketItemsLocalStorage != 'undefined' ? JSON.parse(basketItemsLocalStorage) : [])
-    
+
     isDataLoaded.value = true
 
 })
@@ -174,9 +176,11 @@ button {
     font-family: Rubik;
     cursor: pointer;
     background-color: transparent;
-    &:disabled{
+
+    &:disabled {
         cursor: not-allowed;
-        img{
+
+        img {
             opacity: 0.3;
         }
     }
