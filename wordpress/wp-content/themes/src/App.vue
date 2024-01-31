@@ -79,15 +79,14 @@ const { user } = useStoreUser(store);
 onMounted(async () => {
     app.value = await getSettings()
 
-    
+    await WP.post('sessions', {}, {
+        withCredentials: true
+    })
+
     let response = await WP.get('users/current')
     user.value = response.data.status == false ? null : response.data
     
     isAppLoaded.value = true
-    
-    await WP.post('sessions', {}, {
-        withCredentials: true
-    })
 
 
     store.commit(Mutations.SET_SPEC_DIALOG, spec_dialog_instance.value)
