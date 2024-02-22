@@ -23,7 +23,6 @@ services:
       - ./etc/geoip:/etc/geoip
     ports:
       - 80:80
-      - 443:443
     depends_on:
       - wordpress
   # certbot:

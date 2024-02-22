@@ -1,7 +1,7 @@
 <template>
     <CodeDialog ref="code_dialog_instance" />
     <GamburgerDialog ref="gamburger_dialog_instance" />
-    <ProfileDialog v-if="isUserLoaded" ref="profile_dialog_instance" />
+    <ProfileDialog v-if="isUserLoaded && user != null" ref="profile_dialog_instance" />
     <CartDialog :isDataLoaded="isDataLoaded" ref="cart_dialog_instance" />
     <StatusDialog v-if="isAppLoaded" ref="status_dialog_instance" />
     <Library v-if="isAppLoaded" ref="library" />
@@ -14,6 +14,7 @@
     <SiteFooter v-if="isDataLoaded" />
 </template>
 <script setup lang="ts">
+
 // API
 import { getSettings } from './api/App/getSettings';
 // TYPES
@@ -101,6 +102,8 @@ onMounted(async () => {
         store.commit(Mutations.SET_GAMBURGER_DIALOG, gamburger_dialog_instance.value)
         store.commit(Mutations.SET_CODE_DIALOG, code_dialog_instance.value)
     }, 100)
+
+
 
 
     // set basket items

@@ -1,6 +1,5 @@
 <template>
     <my-dialog v-model:isDialogShow="isCodeDialogShow">
-        <!-- <p class="register__title title">Потдверждение</p> -->
         <form class="code-form-form">
             <p class="code-form-form__title title">Потдверждение</p>
             <div class="code-form__input-box code-form-input-box">

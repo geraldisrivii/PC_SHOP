@@ -1,0 +1,42 @@
+version: "3"
+services:
+  wordpress:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./wordpress/:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/conf.d/conf.ini
+    container_name: wc1_wordpress
+    depends_on:
+      - wc_db
+  nginx:
+    build:
+      context: .
+      dockerfile: NginxDockerfile
+    container_name: wc1_server
+    volumes:
+      - ./wordpress/:/var/www/html
+      - ./nginx/nginx.conf/:/etc/nginx/nginx.conf
+      - ./nginx/logs/:/var/log/nginx
+      - ./etc/letsencrypt:/etc/nginx/ssl
+      - ./etc/geoip:/etc/geoip
+    ports:
+      - 80:80
+    depends_on:
+      - wordpress
+  wc_db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    container_name: wc1_db
+    volumes:
+      - ./mysql:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: wc_db
+    container_name: wc1_admin

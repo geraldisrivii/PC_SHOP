@@ -1,6 +1,8 @@
 FROM nginx:latest
 
-# Установка composer
-RUN apt update && apt install -y wget
+# Установка wget и node + npm
+RUN apt update && apt install -y wget \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x \
+    && apt-get install -y nodejs
 
 WORKDIR .

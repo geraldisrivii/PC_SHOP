@@ -86,6 +86,8 @@ import { useBasketItems } from '@/hooks/Product/useBasketItems';
 import { useVuex } from '@/store/useVuex';
 import Preloader from '@/components/Preloader.vue';
 
+declare function ym (counter_id: number, api_method: string, ...args: any): any
+
 interface Props {
     product: IGrouppedProduct | null
 }
@@ -156,8 +158,10 @@ const createCustomProduct = async () => {
     if (response.status === 201) {
         name.value = ''
         isNameDialogShow.value = false
-
+        
         addToCart(response.data)
+
+        ym(96548842,'reachGoal','button-add-to-cart-configure-product')
     }
 }
 

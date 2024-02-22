@@ -11,7 +11,6 @@
 import { useAppSettings } from '@/hooks/App/useAppSettings';
 import { useCartDialog } from '@/hooks/App/useCartDialog';
 import { useBasketItemsGrouped } from '@/hooks/Product/useBasketItemsGrouped';
-import { useStoreUser } from '@/hooks/User/useStoreUser';
 import { useVuex } from '@/store/useVuex';
 
 let store = useVuex()
@@ -20,8 +19,11 @@ let { app } = useAppSettings(store);
 
 const { cartDialog } = useCartDialog(store)
 
+declare function ym(counter_id: number, api_method: string, ...args: any): any
 
 const onClick = () => {
+    ym(96548842, 'reachGoal', 'button')
+
     cartDialog.value.open()
 }
 
