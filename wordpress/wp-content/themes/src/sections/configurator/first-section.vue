@@ -86,7 +86,7 @@ import { useBasketItems } from '@/hooks/Product/useBasketItems';
 import { useVuex } from '@/store/useVuex';
 import Preloader from '@/components/Preloader.vue';
 
-declare function ym (counter_id: number, api_method: string, ...args: any): any
+declare function ym(counter_id: number, api_method: string, ...args: any): any
 
 interface Props {
     product: IGrouppedProduct | null
@@ -158,10 +158,10 @@ const createCustomProduct = async () => {
     if (response.status === 201) {
         name.value = ''
         isNameDialogShow.value = false
-        
+
         addToCart(response.data)
 
-        ym(96548842,'reachGoal','button-add-to-cart-configure-product')
+        ym(96548842, 'reachGoal', 'button-add-to-cart-configure-product')
     }
 }
 
@@ -265,7 +265,7 @@ onMounted(async () => {
     overflow-x: hidden;
 }
 
-.swiper-slide{
+.swiper-slide {
     // width: 250px;
 }
 
@@ -283,10 +283,12 @@ onMounted(async () => {
 
 .first-section-products-container {
     display: grid;
+
     // grid-template-columns: 4.6fr 2fr;
-    @include table{
+    @include table {
         grid-template-columns: 1fr;
     }
+
     gap: 30px;
     margin-bottom: 40px;
 }
@@ -295,10 +297,12 @@ onMounted(async () => {
     position: relative;
     display: flex;
     flex-direction: column;
-    @include table{
+
+    @include table {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
+
     height: auto;
     max-height: 600px;
     // height: 600px;
@@ -307,9 +311,10 @@ onMounted(async () => {
 }
 
 .first-section-filters {
-    @include table{
+    @include table {
         display: none;
     }
+
     padding: 15px 20px;
     background-color: rgb(24, 24, 24);
     display: flex;

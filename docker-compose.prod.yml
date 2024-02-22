@@ -17,23 +17,24 @@ services:
     container_name: wc1_server
     volumes:
       - ./wordpress/:/var/www/html
-      - ./nginx/nginx.conf/:/etc/nginx/nginx.conf
+      - ./nginx/prod/nginx.conf/:/etc/nginx/nginx.conf
       - ./nginx/logs/:/var/log/nginx
       - ./etc/letsencrypt:/etc/nginx/ssl
       - ./etc/geoip:/etc/geoip
     ports:
       - 80:80
+      - 443:443
     depends_on:
       - wordpress
-  # certbot:
-  #   image: certbot/certbot
-  #   depends_on:
-  #     - nginx
-  #   container_name: wc_certbot
-  #   volumes:
-  #     - ./etc/letsencrypt:/etc/letsencrypt
-  #     - ./wordpress/:/var/www/html
-  #   command: certonly --webroot --webroot-path=/var/www/html --email aleksander.freelancer@gmail.com --agree-tos --no-eff-email -d computers-shop.ru
+  certbot:
+    image: certbot/certbot
+    depends_on:
+      - nginx
+    container_name: wc_certbot
+    volumes:
+      - ./etc/letsencrypt:/etc/letsencrypt
+      - ./wordpress/:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html --email aleksander.freelancer@gmail.com --agree-tos --no-eff-email -d computers-shop.ru
   wc_db:
     image: mysql:8.0
     environment:
