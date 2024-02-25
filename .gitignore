@@ -1,3 +1,4 @@
 mysql
 nginx/logs
 wordpress/wp-content/themes/my-theme/assets/js
+wordpress/wp-content/themes/my-theme/vendor
