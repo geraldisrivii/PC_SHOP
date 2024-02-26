@@ -20,7 +20,7 @@ export const useGames = (product: Ref<IProduct>, resolutions: Ref<Resolutions[]>
                 game_statistic: editedGameStatistic
             }
         })
-        return product.value.cfs.statistic_games as Array<Game & StatsGraphValues>
+        return product.value.cfs.statistic_games as Array<Game>
     })
 
 

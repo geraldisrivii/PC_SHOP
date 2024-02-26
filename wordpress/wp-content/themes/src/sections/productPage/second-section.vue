@@ -54,15 +54,16 @@ const { resolutions, onMountedAction } = useResolutions();
 
 const { games } = useGames(product, resolutions);
 
-const { menuItems, chosenMenuItem } = useMenuItems()
 
 const isAddReviewDialogShow: Ref<boolean> = ref(false)
 
-const {reviews, onMountedAction: getProductReviews} = useProductReviews(product)
+const { reviews, onMountedAction: getProductReviews } = useProductReviews(product)
 
 const addReview = (event) => {
     isAddReviewDialogShow.value = true
 }
+
+const { menuItems, chosenMenuItem } = useMenuItems()
 
 const isDataLoaded = ref(false)
 
@@ -70,6 +71,10 @@ onMounted(async () => {
     await getProductReviews()
 
     await onMountedAction();
+
+    if (games.value.length == 0) {
+        menuItems.value = menuItems.value.filter(item => item.value != 'stats')
+    }
 
     isDataLoaded.value = true
 })
