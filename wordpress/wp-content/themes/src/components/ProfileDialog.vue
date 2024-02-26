@@ -2,6 +2,7 @@
     <my-side-dialog v-model:isDialogShow="isDialogShow">
         <div class="profile-dialog">
             <div class="profile-dialog-orders" v-if="chosenMenuItem.value == 'orders'">
+                <p v-if="orders.length == 0" class="profile-dialog-orders__text">У вас нет заказов</p>
                 <Order v-for="order in orders" :key="order.id" :order="order" />
             </div>
             <div class="profile-dialog-settings" v-if="chosenMenuItem.value == 'settings'">
@@ -100,7 +101,7 @@ const openCodeDialog = async () => {
     let mailResponse = await WP.post('mails', {}, {
         withCredentials: true
     })
-    if(mailResponse.status == 200){
+    if (mailResponse.status == 200) {
         codeDialog.value.open(callback)
     }
 }
@@ -113,6 +114,7 @@ const openCodeDialog = async () => {
 .profile-dialog {
     display: grid;
     grid-template-columns: 5fr 2fr;
+    align-items: flex-start;
     gap: 40px;
     height: 90%;
 
