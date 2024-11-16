@@ -16,5 +16,3 @@
 - Php-fpm.
 - MySQL.
 - PhpMyAdmin
-
-Сайт хостится на хостинге timeweb - https://computers.kisulkens.ru/ с минимальным тарифом по процессору.
